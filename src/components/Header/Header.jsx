@@ -1,11 +1,16 @@
-import { useState } from 'react';
 import { Twirl as Hamburger } from 'hamburger-react';
 import { useLocation, Link } from 'react-router-dom';
 import mainImage from "../../../public/mainImage.jpeg";
 import BackgroundImage from './BackgroundImage';
+import CustomersInfo from './CustomersInfo';
+
+import { Mycontext } from '../../context/context';
+import { useContext } from 'react';
+
 
 function Header() {
-  const [isOpen, setIsOpen] = useState(false);
+  const {isOpen,setIsOpen} = useContext(Mycontext)
+
   const location = useLocation();
 
   const toggleMenu = () => {
@@ -63,6 +68,7 @@ function Header() {
           </ul>
         </nav>
       </div>
+      <CustomersInfo />
     </div>
   );
 }
