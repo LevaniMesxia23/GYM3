@@ -34,11 +34,11 @@ function Header() {
         <Hamburger size={24} color="white" toggled={isOpen} toggle={toggleMenu} />
 
         <nav
-          className={`absolute top-[126.08px] right-0 h-[100vh] bg-[#4D4D4D] p-4 transition-transform duration-300 ease-in-out ${
-            isOpen ? 'translate-x-0' : 'translate-x-full'
-          } w-[33.33%]`}
+          className={`absolute top-[60px] left-0 right-0 bg-[black] px-10 py-14 transition-all duration-300 ease-in-out ${
+            isOpen ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-[-20px]'
+          }`}
         >
-          <ul className="flex flex-col gap-8">
+          <ul className="flex flex-col gap-4">
             {navItems.map(({ name, path }) => {
               const isActive = location.pathname === path;
 
@@ -49,7 +49,12 @@ function Header() {
                     isActive ? 'bg-[#D7FD44]' : 'bg-transparent'
                   }`}
                 >
-                  <Link to={path} className={`w-full text-white text-center font-Nunito text-[1rem] font-[700] leading-normal ${isActive && "text-black"}`}>
+                  <Link
+                    to={path}
+                    className={`w-full text-center font-Nunito text-[1rem] font-[700] leading-normal ${
+                      isActive ? 'text-black' : 'text-white' 
+                    }`}
+                  >
                     {name}
                   </Link>
                 </li>
