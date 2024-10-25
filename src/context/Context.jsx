@@ -12,8 +12,9 @@ export const Mycontext = createContext(defaultContextValues);
 export const MyProvider = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
   const isDesktop = useMediaQuery("only screen and (min-width : 1024px)");
+  const isTablet = useMediaQuery("only screen and (min-width : 769px)")
   return (
-    <Mycontext.Provider value={{isOpen, setIsOpen, isDesktop}}>
+    <Mycontext.Provider value={{isOpen, setIsOpen, isDesktop,isTablet}}>
       {children}
     </Mycontext.Provider>
   );
