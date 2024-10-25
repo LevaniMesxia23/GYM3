@@ -1,8 +1,8 @@
 import { Routes, Route } from "react-router-dom";
-import Home from "./components/Header/Header";
+import Home from "./pages/Home";
 import Contact from "./pages/Contact";
 import Services from "./pages/Services";
-import Stores from "./pages/Stores";
+import Stories from "./pages/Stories";
 import { MyProvider } from "./context/context";
 function App() {
   return (
@@ -11,7 +11,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/services" element={<Services />} />
-          <Route path="/stores" element={<Stores />} />
+          <Route path="/stories" element={<Stories />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
       </MyProvider>
