@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import { useGetExperience } from "../../hooks/useExperience";
+import { Mycontext } from "../../context/context";
+import { useContext } from "react";
 
 function AboutMe() {
+  const {isDesktop,isTablet} = useContext(Mycontext)
   const { data, error, isLoading } = useGetExperience();
   const Image = data?.about[0]?.image;
   const Story = data?.about[0]?.story;
@@ -14,7 +17,7 @@ function AboutMe() {
   const secondHalf = Story.slice(middleIndex);
 
   return (
-    <div className="pt-[3.75rem] px-[5rem] flex flex-col gap-10 bg-[#121212]">
+    <div className={`pt-[3.75rem] pb-10 px-[2.5rem] flex  ${isDesktop ? "flex-row" : "flex-col"} gap-10 bg-[#121212]`}>
       <div>
         <h1
           className="text-[24px] font-bold uppercase mb-6"
@@ -31,18 +34,18 @@ function AboutMe() {
         <img
           src={Image}
           alt="About Me"
-          className="h-[26.4375rem] w-[587px] rounded-[16px]"
+          className={` ${isDesktop || isTablet ? "h-[26.4375rem] w-[587px]" : "h-[13.28631rem] w-[295px]"}   rounded-[16px]`}
         />
       </div>
 
-      <div className="flex flex-col gap-6">
-        <p className="max-w-[36.6875rem] text-[#C4C4C4]">
+      <div className="flex flex-col gap-6 lg:justify-between lg:mt-[4.25rem]">
+        {isDesktop || isTablet ? <p className="max-w-[36.6875rem] text-[#C4C4C4]">
           {firstHalf}
           <br />
           <br />
           {secondHalf}
-        </p>
-        <div className="flex justify-start">
+        </p> : <p className="max-w-[36.6875rem] text-[#C4C4C4]">{Story}</p>}
+        <div className="flex justify-start lg:justify-end">
           <Link to={"/stories"}>
             <button className="bg-[#B8D44A] text-[1rem] rounded-lg py-2 px-[3.325rem]">
               See More
