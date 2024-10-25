@@ -1,11 +1,9 @@
 import { useQuery } from "@tanstack/react-query"
-import fetchExperience from "../services/GymApi"
+import {fetchExperience} from "../services/GymApi"
 
-function useGetExperience() {
+export const useGetExperience = () => {
   return useQuery({
     queryKey: ["experience"],
     queryFn: fetchExperience
   })
 }
-
-export default useGetExperience

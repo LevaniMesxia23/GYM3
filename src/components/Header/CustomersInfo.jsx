@@ -1,7 +1,7 @@
 import Star from "../../../public/star.svg"
 import { useContext } from "react";
 import { Mycontext } from "../../context/context";
-import  useGetExperience  from "../../hooks/useExperience";
+import  {useGetExperience}  from "../../hooks/useExperience";
 
 function CustomersInfo() {
   const {data, error, isLoading} = useGetExperience()
