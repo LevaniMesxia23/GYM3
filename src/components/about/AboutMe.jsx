@@ -43,7 +43,7 @@ function AboutMe() {
           {secondHalf}
         </p>
         <div className="flex justify-start">
-          <Link to={"/stores"}>
+          <Link to={"/stories"}>
             <button className="bg-[#B8D44A] text-[1rem] rounded-lg py-2 px-[3.325rem]">
               See More
             </button>
