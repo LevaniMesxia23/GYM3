@@ -19,5 +19,21 @@
   justify-content: center;
 }
 
+.gradient-text {
+  background: linear-gradient(180deg, #C4C4C4 0%, #7E7E7E 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 
+input[type='number'].no-arrows::-webkit-inner-spin-button,
+input[type='number'].no-arrows::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Hide arrows in Firefox */
+input[type='number'].no-arrows {
+  -moz-appearance: textfield;
+}
 
