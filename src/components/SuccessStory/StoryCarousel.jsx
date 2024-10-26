@@ -4,10 +4,14 @@ import "swiper/css/pagination";
 import 'swiper/css/grid';
 import { useSuccessStory } from "../../hooks/useSuccessStory";
 import ThreeArrow from "../../../public/threeArrow.svg";
-import { Grid, Pagination } from "swiper/modules";
+import FourArrow from "../../../public/fourArrow.svg"
+import { Grid } from "swiper/modules";
+import { Mycontext } from "../../context/context";
+import { useContext } from "react";
+
 
 function StoryCarousel() {
-
+  const {isDesktop} = useContext(Mycontext)
   const { data, error, isLoading } = useSuccessStory();
   const mappedImages = data?.about.map((item) => item.image);
 
@@ -17,7 +21,7 @@ function StoryCarousel() {
   return (
     <div className="border-[#4D4D4D] border-[1px] p-10  bg-[#121212] rounded-2xl mx-10">
       <div className=" flex justify-start items-center gap-6 mb-10">
-        <img src={ThreeArrow} alt="" className="rotate" />
+        <img src={isDesktop ? FourArrow : ThreeArrow} alt="" className="rotate" />
         <p
           className=" uppercase font-bold"
           style={{
@@ -37,10 +41,7 @@ function StoryCarousel() {
           grid={{
             rows: 1,
           }}
-          pagination={{
-            clickable: true,
-          }}
-          modules={[Grid, Pagination]}
+          modules={[Grid]}
           breakpoints={{
             640: {
               slidesPerView: 2,
@@ -63,7 +64,7 @@ function StoryCarousel() {
               <img
                 src={image}
                 alt={`Success Story ${index + 1}`}
-                className="w-full h-full object-cover"
+                className="w-full h-[215px] object-cover"
               />
               </div>
             </SwiperSlide>
@@ -71,7 +72,7 @@ function StoryCarousel() {
         </Swiper>
       </div>
       <div className="flex justify-end mt-10">
-        <img src={ThreeArrow} alt="" className="rotate-180" />
+        <img src={isDesktop ? FourArrow : ThreeArrow} alt="" className="rotate-180" />
       </div>
     </div>
   );
