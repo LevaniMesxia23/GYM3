@@ -57,14 +57,14 @@ function Prices() {
             }`}
             style={{ transformOrigin: "top" }}
           >
-            <div className={`bg-[#333] p-4 pl-8 mt-4 text-white border border-[#D7FD44] rounded-[8.75rem] transition-all duration-500 ease-in-out`}>
-              <p className="font-bold">
+            <div className={`flex flex-col md:flex-row lg:flex-row md:justify-around lg:justify-around md:py-8 lg:py-8 bg-[#333] p-4 pl-8 mt-4 text-white border border-[#D7FD44] rounded-[8.75rem] transition-all duration-500 ease-in-out`}>
+              <p className="font-bold md:text-[1.25rem] lg:text-[1.5rem]">
                 <b className="text-[#D7FD44] font-extrabold">X</b> 1 session - ${item.sessions_single}
               </p>
-              <p className="font-bold">
+              <p className="font-bold md:text-[1.25rem] lg:text-[1.5rem]">
                 <b className="text-[#D7FD44] font-extrabold">X</b> 5 sessions - ${item.sessions_five}
               </p>
-              <p className="font-bold">
+              <p className="font-bold md:text-[1.25rem] lg:text-[1.5rem]">
                 <b className="text-[#D7FD44] font-extrabold">X</b> 10 sessions - ${item.sessions_ten}
               </p>
             </div>
