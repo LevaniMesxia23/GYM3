@@ -32,8 +32,10 @@ input[type='number'].no-arrows::-webkit-outer-spin-button {
   margin: 0;
 }
 
-/* Hide arrows in Firefox */
 input[type='number'].no-arrows {
   -moz-appearance: textfield;
 }
 
+.transition-all {
+  transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
