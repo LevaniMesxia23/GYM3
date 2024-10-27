@@ -2,6 +2,8 @@ import { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 import { useMediaQuery } from "@uidotdev/usehooks";
 import { contactSchema } from "./ContactSchema"; 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const ContactUs = () => {
   const isMobile = useMediaQuery("only screen and (max-width: 769px)");
@@ -29,6 +31,7 @@ export const ContactUs = () => {
       });
       
       console.log("SUCCESS!");
+      toast.success("Message sent successfully!")
       e.target.reset();
     } catch (err) {
       const validationErrors = {};
@@ -36,12 +39,13 @@ export const ContactUs = () => {
         validationErrors[error.path] = error.message;
       });
       setErrors(validationErrors);
+      toast.error("Please fix the errors in the form.");
       console.log("Validation Failed", validationErrors);
     }
   };
 
   return (
-    <div className={` ${isMobile ? "mx-auto items-center" : "max-w-md"} shadow-lg rounded-lg px-10 mt-10`}>
+    <div className={` ${isMobile ? "mx-auto items-center" : "max-w-2xl"} shadow-lg rounded-lg px-10 mt-10`}>
       <h2 className="gradient-text font-nunito text-[0.875rem] font-bold uppercase mb-4">Contact</h2>
 
       <form ref={form} onSubmit={sendEmail} className="space-y-4">
@@ -92,6 +96,7 @@ export const ContactUs = () => {
             value="Send"
             className="px-4 py-2 border-[#4D4D4D] border-[1px] text-[#C4C4C499] w-[35%] rounded-lg hover:bg-blue-700 transition-colors cursor-pointer"
           />
+          <ToastContainer />
         </div>
       </form>
     </div>
