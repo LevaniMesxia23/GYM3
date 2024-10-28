@@ -1,5 +1,6 @@
 import AboutMe from "../components/about/AboutMe";
 import { ContactUs } from "../components/Contact/ContactUs";
+import Footer from "../components/Footer/footer";
 import Header from "../components/Header/Header";
 import MainHeader from "../components/Header/MainHeader/MainHeader";
 import Slider from "../components/Slider/ServicesCarousel"
@@ -14,6 +15,7 @@ const Home = () => {
         <AboutMe />
         <StoryCarousel />
         <ContactUs />
+        <Footer />
       </div>
     </section>
   );
