@@ -1,11 +1,14 @@
 import { Twirl as Hamburger } from "hamburger-react";
-
-import { Mycontext } from "../../context/context";
+import mainImage from "../../../../public/mainImage.jpeg";
+import BackgroundImage from "../BackgroundImage";
+import CustomersInfo from "../CustomersInfo";
+import { Mycontext } from "../../../context/context";
 import { useContext } from "react";
-import Navigation from "./Navigation";
-import Muscle from "../../../public/Vector.svg";
+import Navigation from "../Navigation";
+import Muscle from "../../../../public/Vector.svg";
+import MainNavigation from "./MainNavigation";
 
-function IconAndNav() {
+function MainHeader() {
   const { isOpen, setIsOpen, isDesktop } = useContext(Mycontext);
 
   const toggleMenu = () => {
@@ -13,7 +16,8 @@ function IconAndNav() {
   };
 
   return (
-    <div className="relative w-full pt-[2.5rem] overflow-hidden-x bg-[#121212] mb-9">
+    <div className="relative w-full pt-[2.5rem] overflow-hidden-x">
+      <BackgroundImage imageUrl={mainImage} height="28.27756rem" />
       <div className="bg-transparent flex justify-between items-center px-[2.5rem] relative z-10">
         <div className=" flex gap-4">
           <div className="flex flex-col items-center gap-1">
@@ -35,9 +39,10 @@ function IconAndNav() {
           />
         )}
       </div>
-      <Navigation setIsOpen={setIsOpen}/>
+      <MainNavigation />
+      <CustomersInfo />
     </div>
   );
 }
 
-export default IconAndNav;
+export default MainHeader;

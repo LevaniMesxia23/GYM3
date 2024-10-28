@@ -7,7 +7,6 @@ function CustomersInfo() {
   const {data, error, isLoading} = useGetExperience()
   const {isTablet} = useContext(Mycontext)
 
-  // console.log(data.about.map((item) => item.experience));
   if (isLoading) return <div className="text-red-500">Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
   console.log(data.about[0])
