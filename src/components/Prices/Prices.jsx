@@ -20,7 +20,7 @@ function Prices() {
   };
 
   return (
-    <div className="px-[5rem]">
+    <div className="px-[5rem] mt-[5rem]">
       <p
         className="uppercase font-bold text-[1.5rem]"
         style={{

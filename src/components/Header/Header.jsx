@@ -13,7 +13,7 @@ function IconAndNav() {
   };
 
   return (
-    <div className="relative w-full pt-[2.5rem] overflow-hidden-x bg-[#121212] mb-9">
+    <div className="relative w-full pt-[2.5rem] overflow-hidden-x bg-[#121212] pb-10">
       <div className="bg-transparent flex justify-between items-center px-[2.5rem] relative z-10">
         <div className=" flex gap-4">
           <div className="flex flex-col items-center gap-1">

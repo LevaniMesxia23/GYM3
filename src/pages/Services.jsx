@@ -1,5 +1,5 @@
 import Prices from "../components/Prices/Prices";
-import Slider from "../components/Slider/Slider";
+import Slider from "../components/Slider/ServicesCarousel";
 
 const Services = () => {
   return (
