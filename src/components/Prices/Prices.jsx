@@ -1,6 +1,6 @@
 import { useState } from "react";
 import DownArrow from "../../../public/downArrow.svg";
-import { usePrice } from "../../hooks/usePrice";
+import {usePrice} from "../../hooks/usePrice"
 
 function Prices() {
   const { data, error, isLoading } = usePrice();
@@ -20,7 +20,7 @@ function Prices() {
   };
 
   return (
-    <div className="px-[5rem] mt-[5rem]">
+    <div className="px-[5rem] mt-[5rem] pb-[10.5rem]">
       <p
         className="uppercase font-bold text-[1.5rem]"
         style={{
