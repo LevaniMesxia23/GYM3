@@ -6,6 +6,7 @@ import ClockLoader from "react-spinners/ClockLoader";
 function Prices() {
   const { data, error, isLoading } = usePrice();
   const [arrowClick, setArrowClick] = useState([]);
+  const [showAll, setShowAll] = useState(false);
 
   if (error) return <p className="text-red-500">{error.message}</p>;
   if (isLoading)
@@ -15,7 +16,8 @@ function Prices() {
       </div>
     );
 
-  const priceData = data?.about;
+  const priceData = data?.about || [];
+  const visibleData = showAll ? priceData : priceData.slice(0, 6);
 
   const handleToggle = (index) => {
     if (arrowClick.includes(index)) {
@@ -38,7 +40,7 @@ function Prices() {
       >
         Prices
       </p>
-      {priceData?.map((item, index) => (
+      {visibleData.map((item, index) => (
         <div key={index} className="w-full mt-7">
           <div
             className="bg-[#222] rounded-[8.75rem] px-8 py-6 flex items-center justify-between cursor-pointer"
@@ -65,9 +67,7 @@ function Prices() {
             }`}
             style={{ transformOrigin: "top" }}
           >
-            <div
-              className={`flex flex-col md:flex-row lg:flex-row md:justify-around lg:justify-around md:py-8 lg:py-8 bg-[#333] p-4 pl-8 mt-4 text-white border border-[#D7FD44] rounded-[8.75rem] transition-all duration-500 ease-in-out`}
-            >
+            <div className="flex flex-col md:flex-row lg:flex-row md:justify-around lg:justify-around md:py-8 lg:py-8 bg-[#333] p-4 pl-8 mt-4 text-white border border-[#D7FD44] rounded-[8.75rem] transition-all duration-500 ease-in-out">
               <p className="font-bold md:text-[1.25rem] lg:text-[1.5rem]">
                 <b className="text-[#D7FD44] font-extrabold">X</b> 1 session - $
                 {item.sessions_single}
@@ -84,6 +84,21 @@ function Prices() {
           </div>
         </div>
       ))}
+      {priceData.length > 6 && !showAll ? (
+        <button
+          onClick={() => setShowAll(true)}
+          className="mt-6 text-[#D7FD44] font-bold uppercase text-center w-full"
+        >
+          See More...
+        </button>
+      ) : (
+        <button
+          onClick={() => setShowAll(false)}
+          className="mt-6 text-[#D7FD44] font-bold uppercase text-center w-full"
+        >
+          Show Less...
+        </button>
+      )}
     </div>
   );
 }
