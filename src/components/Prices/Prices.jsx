@@ -1,13 +1,19 @@
 import { useState } from "react";
 import DownArrow from "../../../public/downArrow.svg";
-import {usePrice} from "../../hooks/usePrice"
+import { usePrice } from "../../hooks/usePrice";
+import ClockLoader from "react-spinners/ClockLoader";
 
 function Prices() {
   const { data, error, isLoading } = usePrice();
   const [arrowClick, setArrowClick] = useState([]);
 
   if (error) return <p className="text-red-500">{error.message}</p>;
-  if (isLoading) return <p className="text-gray-400">Loading...</p>;
+  if (isLoading)
+    return (
+      <div className="flex justify-center items-center h-[6.25rem]">
+        <ClockLoader color="#D7FD44" size={80} />
+      </div>
+    );
 
   const priceData = data?.about;
 
@@ -53,19 +59,26 @@ function Prices() {
           </div>
           <div
             className={`overflow-hidden transition-all duration-500 ease-in-out ${
-              arrowClick.includes(index) ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
+              arrowClick.includes(index)
+                ? "max-h-[500px] opacity-100"
+                : "max-h-0 opacity-0"
             }`}
             style={{ transformOrigin: "top" }}
           >
-            <div className={`flex flex-col md:flex-row lg:flex-row md:justify-around lg:justify-around md:py-8 lg:py-8 bg-[#333] p-4 pl-8 mt-4 text-white border border-[#D7FD44] rounded-[8.75rem] transition-all duration-500 ease-in-out`}>
+            <div
+              className={`flex flex-col md:flex-row lg:flex-row md:justify-around lg:justify-around md:py-8 lg:py-8 bg-[#333] p-4 pl-8 mt-4 text-white border border-[#D7FD44] rounded-[8.75rem] transition-all duration-500 ease-in-out`}
+            >
               <p className="font-bold md:text-[1.25rem] lg:text-[1.5rem]">
-                <b className="text-[#D7FD44] font-extrabold">X</b> 1 session - ${item.sessions_single}
+                <b className="text-[#D7FD44] font-extrabold">X</b> 1 session - $
+                {item.sessions_single}
               </p>
               <p className="font-bold md:text-[1.25rem] lg:text-[1.5rem]">
-                <b className="text-[#D7FD44] font-extrabold">X</b> 5 sessions - ${item.sessions_five}
+                <b className="text-[#D7FD44] font-extrabold">X</b> 5 sessions -
+                ${item.sessions_five}
               </p>
               <p className="font-bold md:text-[1.25rem] lg:text-[1.5rem]">
-                <b className="text-[#D7FD44] font-extrabold">X</b> 10 sessions - ${item.sessions_ten}
+                <b className="text-[#D7FD44] font-extrabold">X</b> 10 sessions -
+                ${item.sessions_ten}
               </p>
             </div>
           </div>

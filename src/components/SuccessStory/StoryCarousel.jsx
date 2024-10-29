@@ -8,13 +8,19 @@ import FourArrow from "../../../public/fourArrow.svg";
 import { Grid } from "swiper/modules";
 import { Mycontext } from "../../context/context";
 import { useContext } from "react";
+import ClockLoader from "react-spinners/ClockLoader";
 
 function StoryCarousel() {
   const { isDesktop } = useContext(Mycontext);
   const { data, error, isLoading } = useSuccessStory();
   const mappedImages = data?.about.map((item) => item.image);
 
-  if (error) return <p>{error.message}</p>;
+  if (error)
+    return (
+      <div className="flex justify-center items-center h-[6.25rem]">
+        <ClockLoader color="#D7FD44" size={80} />
+      </div>
+    );
   if (isLoading) return <p>Loading...</p>;
 
   return (
