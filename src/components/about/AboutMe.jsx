@@ -9,7 +9,7 @@ function AboutMe() {
   const Image = data?.about[0]?.image;
   const Story = data?.about[0]?.story;
 
-  if (isLoading) return <div className="text-red-500">Loading...</div>;
+  if (isLoading) return <div></div>;
   if (error) return <div>Error: {error.message}</div>;
 
   const middleIndex = Math.floor(Story.length / 2);
