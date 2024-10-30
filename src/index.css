@@ -1,38 +1,40 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap');
-
+.nunito {
+  font-family: "Nunito", sans-serif;
+}
 .swiper-grid-column > .swiper-wrapper {
   display: flex;
   align-items: end;
   justify-content: center;
-  flex-wrap: wrap; 
-  flex-direction: row !important; 
+  flex-wrap: wrap;
+  flex-direction: row !important;
 }
 
 .swiper-grid-column > .swiper-slide {
-  width: calc(50% - 10px); 
+  width: calc(50% - 10px);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .gradient-text {
-  background: linear-gradient(180deg, #C4C4C4 0%, #7E7E7E 100%);
+  background: linear-gradient(180deg, #c4c4c4 0%, #7e7e7e 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-input[type='number'].no-arrows::-webkit-inner-spin-button,
-input[type='number'].no-arrows::-webkit-outer-spin-button {
+input[type="number"].no-arrows::-webkit-inner-spin-button,
+input[type="number"].no-arrows::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
-input[type='number'].no-arrows {
+input[type="number"].no-arrows {
   -moz-appearance: textfield;
 }
 

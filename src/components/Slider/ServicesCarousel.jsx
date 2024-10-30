@@ -6,11 +6,11 @@ import { useServices } from "../../hooks/useServices";
 
 const ServicesCarousel = () => {
   const { data } = useServices();
+  console.log(data && data);
   const services = data?.data;
   console.log(services);
   return (
     <section className="bg-[#121212]">
-      <button>fetch</button>
       <section className=" md:pl-12 lg:pl-16 text-white pl-6 pt-5 pb-5 ">
         <h3 className="text-[#C4C4C4] mb-5 text-center lg:text-left text-md ">
           YOUR FITNESS JOURNEY STARTS HERE
