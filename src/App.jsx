@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Contact from "./pages/Contact";
+import Blogs from "./pages/Blogs";
 import Services from "./pages/Services";
 import Stories from "./pages/Stories";
 import { MyProvider } from "./context/context";
