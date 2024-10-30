@@ -10,6 +10,7 @@ import AdminLayout from "./components/UI/AdminLayout";
 import DashboardPage from "./pages/AdminPages/DashboardPage"
 import AddBlogs from "./pages/AdminPages/AddBlogs";
 import AdminServices from "./pages/AdminPages/AdminServices";
+import AdminPanel from "./components/AdminPanel/AdminPanel";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <Route path="contact" element={<Contact />} />
             <Route path="blogs" element={<Blogs />} />
           </Route>
+          <Route path="/admin/login" element={<AdminPanel />} />
           <Route path="admin" element={<AdminLayout />}>
             <Route index element={<DashboardPage />} />
             <Route path="dashboard" element={<DashboardPage />} />
