@@ -8,6 +8,7 @@ import { MyProvider } from "./context/context";
 import Layout from "./components/UI/Layout";
 import AdminLayout from "./components/UI/AdminLayout";
 import AdminPanel from "./components/AdminPanel/AdminPanel";
+import DashboardPage from "./pages/DashboardPage";
 
 
 function App() {
@@ -20,10 +21,12 @@ function App() {
             <Route path="services" element={<Services />} />
             <Route path="stories" element={<Stories />} />
             <Route path="contact" element={<Contact />} />
+            <Route path="blogs" element={<Blogs />} />
           </Route>
-
-          <Route element={<AdminLayout />}>
-            <Route path="admin" element={<AdminPanel />} />
+          <Route path="admin" element={<AdminLayout />}>
+            <Route path="login" element={<AdminPanel />} />
+            <Route path="dashboard" element={<DashboardPage />} />
+            <Route path="login" element={<AdminPanel />} />
           </Route>
 
         </Routes>

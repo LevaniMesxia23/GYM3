@@ -10,7 +10,8 @@ function AdminPanel() {
   const {register, handleSubmit, formState: {errors}} = useForm({
     resolver: yupResolver(adminSchema)
   })
-  const onSubmit = async (e) => {
+  const onSubmit = async (data) => {
+    sessionStorage.setItem("adminLogin", JSON.stringify(data))
     alert('Login successfull')
     navigate("/")
   };
@@ -29,7 +30,6 @@ function AdminPanel() {
           <input
             type="text"
             {...register("login")}
-            onChange={(e) => setLogin(e.target.value)}
             placeholder="Login"
             className="w-full px-4 py-2 rounded-md bg-[#2A2A2A] text-[#C4C4C4] placeholder-[#C4C4C4] focus:outline-none focus:ring-2 focus:ring-[#D7FD44] border border-[#3A3A3A]"
           />
@@ -40,7 +40,6 @@ function AdminPanel() {
           <input
             type="password"
             {...register("password")}
-            onChange={(e) => setPassword(e.target.value)}
             placeholder="Password"
             className="w-full px-4 py-2 rounded-md bg-[#2A2A2A] text-[#C4C4C4] placeholder-[#C4C4C4] focus:outline-none focus:ring-2 focus:ring-[#D7FD44] border border-[#3A3A3A]"
           />
