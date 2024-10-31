@@ -1,6 +1,7 @@
 import React from "react";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 import AdminNav from "../AdminPanel/AdminNavigation/AdminNav";
+import AdminHeader from "../AdminPanel/AdminHeader/AdminHeader";
 
 export default function AdminLayout() {
   const location = useLocation();
@@ -15,7 +16,8 @@ export default function AdminLayout() {
   }
 
   return (
-    <div>
+    <div className="bg-[#121212]">
+      <AdminHeader />
       <AdminNav />
       <Outlet />
     </div>
