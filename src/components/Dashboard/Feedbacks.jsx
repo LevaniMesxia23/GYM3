@@ -32,6 +32,19 @@ function Feedbacks() {
     },
   ];
 
+  const renderStars = (rating) => {
+    return Array.from({ length: 5 }, (_, i) => (
+      <span
+        key={i}
+        className={`text-xl ${
+          i < rating ? "text-yellow-500" : "text-gray-400"
+        }`}
+      >
+        ★
+      </span>
+    ));
+  };
+
   return (
     <div className="px-6 mt-14 py-14">
       <div className="bg-[#323232] text-white px-12 rounded-2xl py-8 flex flex-col gap-5 max-h-[540px] overflow-y-auto pr-10 custom-scrollbar ">
@@ -58,7 +71,7 @@ function Feedbacks() {
                   </div>
                 </div>
               </div>
-              <p>{info.rating}</p>
+              <div className="flex items-center gap-1">{renderStars(info.rating)}</div>
             </div>
             <p className="text-[#ADADAD]">{info.review}</p>
           </div>
