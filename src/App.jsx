@@ -7,8 +7,10 @@ import Stories from "./pages/Stories";
 import { MyProvider } from "./context/context";
 import Layout from "./components/UI/Layout";
 import AdminLayout from "./components/UI/AdminLayout";
+import DashboardPage from "./pages/AdminPages/DashboardPage"
+import AddBlogs from "./pages/AdminPages/AddBlogs";
+import AdminServices from "./pages/AdminPages/AdminServices";
 import AdminPanel from "./components/AdminPanel/AdminPanel";
-
 
 function App() {
   return (
@@ -20,12 +22,16 @@ function App() {
             <Route path="services" element={<Services />} />
             <Route path="stories" element={<Stories />} />
             <Route path="contact" element={<Contact />} />
+            <Route path="blogs" element={<Blogs />} />
           </Route>
-
-          <Route element={<AdminLayout />}>
-            <Route path="admin" element={<AdminPanel />} />
+          <Route path="admin/login" element={<AdminPanel />} />
+          <Route path="admin" element={<AdminLayout />}>
+            <Route index element={<DashboardPage />} />
+            <Route path="dashboard" element={<DashboardPage />} />
+            <Route path="add-blogs" element={<AddBlogs />} />
+            <Route path="about-me" element={<AddBlogs />} />
+            <Route path="admin-services" element={<AdminServices />} />
           </Route>
-
         </Routes>
       </MyProvider>
     </>
