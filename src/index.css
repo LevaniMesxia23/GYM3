@@ -41,3 +41,20 @@ input[type="number"].no-arrows {
 .transition-all {
   transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }
+
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #D7FD44; 
+  border-radius: 5px;
+  border: 2px solid #121212; 
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  margin: 20px 5px 20px 0;
+  background-color: #121212; 
+  border-radius: 10px;
+}
