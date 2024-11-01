@@ -2,20 +2,40 @@ import Star from "../../../public/star.svg";
 import { useContext } from "react";
 import { Mycontext } from "../../context/context";
 import { useGetExperience } from "../../hooks/useExperience";
-import ClockLoader from "react-spinners/ClockLoader";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 function CustomersInfo() {
   const { data, error, isLoading } = useGetExperience();
   const { isTablet } = useContext(Mycontext);
 
-  if (isLoading)
+  if (isLoading) {
     return (
-      <div className="flex justify-center items-center h-[6.25rem]">
-        <ClockLoader color="#D7FD44" size={80} />
+      <div className="bg-gray h-[6.25rem] mt-[348px] flex px-10 justify-evenly gap-3">
+        {isTablet && (
+          <div className="flex items-center ">
+            <Skeleton circle={true} height="2.77388rem" width="2.77388rem" />
+          </div>
+        )}
+        <div className="flex items-center justify-center text-center">
+          <Skeleton width="5rem" height="1.5rem" />
+        </div>
+        <div className="flex items-center justify-center text-center">
+          <Skeleton width="10rem" height="1.5rem" />
+        </div>
+        <div className="flex items-center justify-center text-center">
+          <Skeleton width="5rem" height="1.5rem" />
+        </div>
+        {isTablet && (
+          <div className="flex items-center">
+            <Skeleton circle={true} height="2.77388rem" width="2.77388rem" />
+          </div>
+        )}
       </div>
     );
+  }
+
   if (error) return <div>Error: {error.message}</div>;
-  console.log(data.about[0]);
 
   return (
     <div className="bg-[#D7FD44] h-[6.25rem] mt-[348px] flex px-10 justify-evenly gap-3">
