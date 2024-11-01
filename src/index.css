@@ -58,3 +58,18 @@ input[type="number"].no-arrows {
   background-color: #121212; 
   border-radius: 10px;
 }
+
+.slide-in {
+  opacity: 1;
+  transform: translateY(0);
+  z-index: 5;
+}
+
+.slide-out {
+  opacity: 0;
+  transform: translateY(-100%);
+}
+
+nav {
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}

@@ -16,7 +16,7 @@ function Feedbacks() {
   };
 
   return (
-    <div className=" mt-14 py-14">
+    <div className=" my-14  border border-[#ADADAD] bottom-1 rounded-2xl">
       <div className="bg-[#323232] text-white px-12 rounded-2xl py-8 flex flex-col gap-5 max-h-[540px] overflow-y-auto pr-10 custom-scrollbar ">
         <h1 className="text-[26px] font-bold">Client Feedbacks</h1>
         {clientInfo?.map((info, index) => (

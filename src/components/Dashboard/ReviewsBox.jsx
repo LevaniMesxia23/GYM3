@@ -9,14 +9,14 @@ function ReviewsBox() {
   console.log(mainRating.toFixed(1));
 
   return (
-    <div className="bg-[#323232] max-w-[536px] px-7 rounded-2xl py-8">
+    <div className="bg-[#323232] w-full px-7 rounded-2xl py-8 ">
         <h1 className="text-white text-[1.5rem] mb-3">Reviews and Ratings</h1>
       <div className="flex items-center gap-3 mb-5">
         <div>
           <h2 className=" text-white text-[2.5rem]">{mainRating.toFixed(1)}</h2>
         </div>
         <div>
-          <img className="w-[29px] h-[29px]" src="/Vector.svg" alt="" />
+          <img className="w-[22px] h-[22px]" src="/star.png" alt="" />
           <p className="text-[#A6A6A6]">Based on {infoLength} ratings</p>
         </div>
       </div>
