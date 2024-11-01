@@ -2,8 +2,9 @@ import { useLocation, Link } from "react-router-dom";
 import { Mycontext } from "../../context/context";
 import { useContext } from "react";
 
-function Navigation({ setIsOpen }) {
-  const { isOpen, isDesktop } = useContext(Mycontext);
+
+function Navigation({ isOpen, setIsOpen }) {
+  const { isDesktop } = useContext(Mycontext);
   const location = useLocation();
 
   const handleNavClick = () => {
@@ -15,19 +16,18 @@ function Navigation({ setIsOpen }) {
     { name: "Stories", path: "/stories" },
     { name: "Services", path: "/services" },
     { name: "Contact", path: "/contact" },
+    { name: "Blogs", path: "/blogs" },
   ];
 
   return (
     <div>
-      {!isDesktop ? (
+      {!isDesktop && (
         <nav
-          className={`absolute top-[100px] left-0 right-0 bg-[#121212] px-10 py-14 transition-all duration-300 ease-in-out ${
-            isOpen
-              ? "opacity-100 transform translate-y-0 z-50"
-              : "opacity-0 transform"
+          className={`absolute top-0 left-0 right-0 bg-[#121212] px-10 py-14 transform transition-all duration-300 ease-in-out ${
+            isOpen ? "slide-in" : "slide-out"
           }`}
         >
-          <ul className="flex flex-col gap-4 ">
+          <ul className="flex flex-col gap-4 pt-[100px]">
             {navItems.map(({ name, path }) => {
               const isActive = location.pathname === path;
 
@@ -52,7 +52,9 @@ function Navigation({ setIsOpen }) {
             })}
           </ul>
         </nav>
-      ) : (
+      )}
+
+      {isDesktop && (
         <ul className="absolute top-[38px] right-12 text-red-500 flex gap-4 bg-[#222] py-[0.62rem] rounded-[12.5rem] px-5 border-[#4D4D4D] z-10">
           {navItems.map(({ name, path }) => {
             const isActive = location.pathname === path;

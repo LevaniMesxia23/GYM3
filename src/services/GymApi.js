@@ -22,3 +22,47 @@ export const fetchPrices = async () => {
   let { data: about, error } = await supabase.from("prices").select("*");
   return { about, error };
 };
+
+
+export const clientInfo = [
+  {
+    name: "User Name Name",
+    day: 14,
+    month: "october",
+    year: 2024,
+    new: true,
+    rating: 3,
+    review:
+      "I've been training with [Trainer's Name] for six months now, and I couldn't be happier! Their personalized approach has helped me achieve my fitness goals while keeping me motivated and engaged. Highly recommend! I lost 15 pounds in just two months! Their tailored workout plans and nutritional guidance made all the difference. I never thought I could feel this confident. Thank you!",
+  },
+  {
+    name: "User Name Name",
+    day: 20,
+    month: "November",
+    year: 2022,
+    new: false,
+    rating: 4,
+    review:
+      "I've been training with [Trainer's Name] for six months now, and I couldn't be happier! Their personalized approach has helped me achieve my fitness goals while keeping me motivated and engaged. Highly recommend! I lost 15 pounds in just two months! Their tailored workout plans and nutritional guidance made all the difference. I never thought I could feel this confident. Thank you!",
+  },
+  {
+    name: "User Name Name",
+    day: 14,
+    month: "october",
+    year: 2024,
+    new: true,
+    rating: 4,
+    review:
+      "I've been training with [Trainer's Name] for six months now, and I couldn't be happier! Their personalized approach has helped me achieve my fitness goals while keeping me motivated and engaged. Highly recommend! I lost 15 pounds in just two months! Their tailored workout plans and nutritional guidance made all the difference. I never thought I could feel this confident. Thank you!",
+  },
+  {
+    name: "User Name Name",
+    day: 14,
+    month: "october",
+    year: 2024,
+    new: true,
+    rating: 4,
+    review:
+      "I've been training with [Trainer's Name] for six months now, and I couldn't be happier! Their personalized approach has helped me achieve my fitness goals while keeping me motivated and engaged. Highly recommend! I lost 15 pounds in just two months! Their tailored workout plans and nutritional guidance made all the difference. I never thought I could feel this confident. Thank you!",
+  },
+];

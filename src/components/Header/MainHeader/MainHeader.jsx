@@ -19,7 +19,7 @@ function MainHeader() {
     <div className="relative w-full pt-[2.5rem] overflow-hidden-x">
       <BackgroundImage imageUrl={mainImage} height="28.27756rem" />
       <div className="bg-transparent flex justify-between items-center px-[2.5rem] relative z-10">
-        <div className=" flex gap-4">
+        <div className="flex gap-4">
           <div className="flex flex-col items-center gap-1">
             <span className="bg-gradient-to-transparent bg-clip-text text-transparent text-[1.25rem] text-center">
               TRANSFORM
@@ -39,7 +39,7 @@ function MainHeader() {
           />
         )}
       </div>
-      <MainNavigation />
+      <MainNavigation setIsOpen={setIsOpen} />
       <CustomersInfo />
     </div>
   );

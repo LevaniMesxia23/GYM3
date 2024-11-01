@@ -46,12 +46,13 @@ function StoryCarousel() {
       <div className="">
         <Swiper
           spaceBetween={20}
-          slidesPerView={2}
+          slidesPerView={1}
           grid={{
             rows: 1,
           }}
           modules={[Grid]}
           breakpoints={{
+            
             640: {
               slidesPerView: 2,
               grid: { rows: 1 },
