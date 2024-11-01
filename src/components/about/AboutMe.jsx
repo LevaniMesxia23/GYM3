@@ -47,9 +47,9 @@ function AboutMe() {
         )}
       </div>
 
-      <div className="flex flex-col gap-6 lg:justify-between lg:mt-[4.25rem]">
+      <div className={`flex flex-col gap-6 lg:justify-between lg:mt-[4.25rem] ${isDesktop ? "w-[587px]" : "100%"}`}>
         {isLoading ? (
-          <Skeleton count={2} width="100%" height="5.2rem" className="max-w-[36.6875rem]" />
+          <Skeleton count={2} width="100%" height="5.2rem" className="max-w-[36.6875rem] " />
         ) : (
           isDesktop || isTablet ? (
             <p className="max-w-[36.6875rem] text-[#C4C4C4]">

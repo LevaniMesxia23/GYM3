@@ -27,7 +27,7 @@ const ServicesCarousel = () => {
           spaceBetween={15}
           slidesPerView={1}
         >
-          {(isLoading ? Array.from({ length: 3 }) : services)?.map((service, index) => (
+          {(isLoading ? Array.from({ length: 5 }) : services)?.map((service, index) => (
             <SwiperSlide
               key={service?.id || index}
               className="cursor-pointer rounded-2xl max-w-[305px] lg:max-w-[295px] border border-[#4D4D4D]"
