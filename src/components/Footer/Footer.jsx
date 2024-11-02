@@ -29,7 +29,7 @@ function Footer() {
             WITH TUNA
           </span>
         </div>
-        <img src={Muscle} alt="Muscle" />
+        {isDesktop && isTablet && <img src={Muscle} alt="Muscle" />}
       </div>
 
       <div className="md:flex md:flex-col md:justify-center md:gap-8 lg:flex lg:flex-col lg:justify-center lg:gap-8">
