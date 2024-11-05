@@ -9,7 +9,7 @@ import Layout from "./components/UI/Layout";
 import AdminLayout from "./components/UI/AdminLayout";
 import DashboardPage from "./pages/AdminPages/DashboardPage"
 import AddBlogs from "./pages/AdminPages/AddBlogs";
-import AdminServices from "./pages/AdminPages/AdminServices";
+import AdminServices from "./pages/AdminPages/AdminServicesPage";
 import AdminPanel from "./components/AdminPanel/AdminPanel";
 
 function App() {
