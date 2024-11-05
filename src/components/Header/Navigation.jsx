@@ -23,7 +23,7 @@ function Navigation({ isOpen, setIsOpen }) {
     <div>
       {!isDesktop && (
         <nav
-          className={`absolute top-0 left-0 right-0 bg-[#121212] px-10 py-14 transform transition-all duration-300 ease-in-out ${
+          className={`absolute top-0 left-0 right-0 bg-[#121212] px-10 py-14 transform transition-all duration-300 ease-in-out border-b-[#D7FD44] border-b-[1px] ${
             isOpen ? "slide-in" : "slide-out"
           }`}
         >
