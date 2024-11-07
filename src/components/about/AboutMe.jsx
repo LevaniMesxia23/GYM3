@@ -18,7 +18,11 @@ function AboutMe() {
   const secondHalf = Story ? Story.slice(middleIndex) : "";
 
   return (
-    <div className={`pt-[3.75rem] pb-10 px-[2.5rem] flex ${isDesktop ? "flex-row" : "flex-col"} gap-10 bg-[#121212]`}>
+    <div
+      className={`pt-[3.75rem] pb-10 px-[2.5rem] flex ${
+        isDesktop ? "flex-row" : "flex-col"
+      } gap-10 bg-[#121212]`}
+    >
       <div>
         <h1
           className="text-[24px] font-bold uppercase mb-6"
@@ -42,25 +46,36 @@ function AboutMe() {
           <img
             src={Image}
             alt="About Me"
-            className={` ${isDesktop || isTablet ? "h-[26.4375rem] w-[587px]" : "h-[13.28631rem] w-[295px]"} rounded-[16px]`}
+            className={` ${
+              isDesktop || isTablet
+                ? "h-[26.4375rem] w-[587px]"
+                : "h-[13.28631rem] w-[295px]"
+            } rounded-[16px]`}
           />
         )}
       </div>
 
-      <div className={`flex flex-col gap-6 lg:justify-between lg:mt-[4.25rem] ${isDesktop ? "w-[587px]" : "100%"}`}>
+      <div
+        className={`flex flex-col gap-6 lg:justify-between lg:mt-[4.25rem] ${
+          isDesktop ? "w-[587px]" : "100%"
+        }`}
+      >
         {isLoading ? (
-          <Skeleton count={2} width="100%" height="5.2rem" className="max-w-[36.6875rem] " />
+          <Skeleton
+            count={2}
+            width="100%"
+            height="5.2rem"
+            className="max-w-[36.6875rem] "
+          />
+        ) : isDesktop || isTablet ? (
+          <p className="max-w-[36.6875rem] text-[#C4C4C4]">
+            {firstHalf}
+            <br />
+            <br />
+            {secondHalf}
+          </p>
         ) : (
-          isDesktop || isTablet ? (
-            <p className="max-w-[36.6875rem] text-[#C4C4C4]">
-              {firstHalf}
-              <br />
-              <br />
-              {secondHalf}
-            </p>
-          ) : (
-            <p className="max-w-[36.6875rem] text-[#C4C4C4]">{Story}</p>
-          )
+          <p className="max-w-[36.6875rem] text-[#C4C4C4]">{Story}</p>
         )}
         <div className="flex justify-start lg:justify-end">
           <Link to={"/stories"}>

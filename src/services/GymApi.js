@@ -20,6 +20,7 @@ export const fetchCertification = async () => {
 
 export const fetchPrices = async () => {
   let { data: about, error } = await supabase.from("prices").select("*");
+  console.log(about);
   return { about, error };
 };
 
