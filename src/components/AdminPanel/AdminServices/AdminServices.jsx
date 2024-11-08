@@ -1,13 +1,16 @@
-import { useState } from "react";
 import DownArrow from "/downArrow.svg";
-import { usePrice } from "../../../hooks/usePrice";
 import Skeleton from "react-loading-skeleton";
+import { useState } from "react";
+import { usePrice } from "../../../hooks/usePrice";
+import useAddService from "../../../hooks/useAddServices";
 
 function AdminServices() {
+  const {addServicesInfo} = useAddService()
   const { data, error, isLoading } = usePrice();
   const [arrowClick, setArrowClick] = useState([]);
   const [showAll, setShowAll] = useState(false);
-
+  const [serviceText, setServiceText] = useState("")
+  
   if (error) return <p className="text-red-500">{error.message}</p>;
 
   const priceData = data?.about || [];
@@ -18,6 +21,15 @@ function AdminServices() {
       setArrowClick(arrowClick.filter((i) => i !== index));
     } else {
       setArrowClick([...arrowClick, index]);
+    }
+  };
+
+  const handleAddService = async () => {
+    try {
+      await addServicesInfo({ name: serviceText }); 
+      setServiceText(""); 
+    } catch (error) {
+      console.error(error);
     }
   };
 
@@ -32,8 +44,9 @@ function AdminServices() {
         </div>
         <div className="border-[1px] border-[#D7FD44] flex gap-[0.62rem] px-10 py-2 rounded-3xl">
           <p className="w-3 h-3 text-[#D7FD44]">+</p>
-          <p className="text-[#D7FD44]">Add Service</p>
+          <p onClick={handleAddService} className="text-[#D7FD44]">Add Service</p>
         </div>
+          <input type="text" onChange={(e) => setServiceText(e.target.value)} value={serviceText} />
       </div>
 
       {isLoading
@@ -53,13 +66,13 @@ function AdminServices() {
               className={`w-full mt-7 bg-[#222] ${
                 arrowClick.includes(index) ? "rounded-xl" : "rounded-[8.75rem]"
               }  px-8 py-6 flex flex-col cursor-pointer transition-all duration-500`}
-              onClick={() => handleToggle(index)}
+              
             >
               <div className="flex items-center justify-between">
                 <p className="text-[1.25rem] font-bold text-[#C4C4C4] uppercase">
                   {item.name}
                 </p>
-                <div className="bg-[#D7FD44] rounded-full w-[3.375rem] h-[3.375rem] flex items-center justify-center">
+                <div onClick={() => handleToggle(index)} className="bg-[#D7FD44] rounded-full w-[3.375rem] h-[3.375rem] flex items-center justify-center">
                   <img
                     src={DownArrow}
                     alt="Expand section"
