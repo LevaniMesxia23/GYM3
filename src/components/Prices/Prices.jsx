@@ -1,7 +1,6 @@
 import { useState } from "react";
 import DownArrow from "../../../public/downArrow.svg";
 import { usePrice } from "../../hooks/usePrice";
-import ClockLoader from "react-spinners/ClockLoader";
 import Skeleton from "react-loading-skeleton";
 
 function Prices() {

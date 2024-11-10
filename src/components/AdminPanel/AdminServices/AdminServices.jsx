@@ -1,14 +1,18 @@
-import DownArrow from "/downArrow.svg";
-import Skeleton from "react-loading-skeleton";
 import { useContext, useState } from "react";
 import { usePrice } from "../../../hooks/usePrice";
 import ServicesModal from "./ServicesModal";
+import EditModal from "./EditModal";
+import DownArrow from "/downArrow.svg";
+import Skeleton from "react-loading-skeleton";
 import { Mycontext } from "../../../context/context";
 
 function AdminServices() {
   const { data, error, isLoading } = usePrice();
   const [arrowClick, setArrowClick] = useState([]);
   const { openModal, isModalOpen } = useContext(Mycontext);
+  const [openEditModal, setOpenEditModal] = useState(false);
+  const [selectedId, setSelectedId] = useState(null); 
+  console.log(selectedId);
 
   if (error) return <p className="text-red-500">{error.message}</p>;
 
@@ -18,6 +22,11 @@ function AdminServices() {
     setArrowClick((prev) =>
       prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
     );
+  };
+
+  const handleOpenEditModal = (id) => {
+    setSelectedId(id); 
+    setOpenEditModal(true); 
   };
 
   return (
@@ -39,16 +48,14 @@ function AdminServices() {
       </div>
 
       {isLoading
-        ? Array.from({ length: priceData.length }).map(
-            (_, index) => (
-              <div key={index} className="w-full mt-7">
-                <div className="bg-[#222] rounded-[8.75rem] px-8 py-6 flex items-center justify-between">
-                  <Skeleton className="w-1/2 h-[2rem]" />
-                  <Skeleton circle className="w-[5rem] h-[5rem]" />
-                </div>
+        ? Array.from({ length: priceData.length }).map((_, index) => (
+            <div key={index} className="w-full mt-7">
+              <div className="bg-[#222] rounded-[8.75rem] px-8 py-6 flex items-center justify-between">
+                <Skeleton className="w-1/2 h-[2rem]" />
+                <Skeleton circle className="w-[5rem] h-[5rem]" />
               </div>
-            )
-          )
+            </div>
+          ))
         : priceData.map((item, index) => (
             <div
               key={index}
@@ -68,9 +75,7 @@ function AdminServices() {
                     src={DownArrow}
                     alt="Expand section"
                     className={`transition-transform duration-300 w-[1.58206rem] h-[1.58206rem] ${
-                      arrowClick.includes(index)
-                        ? "-rotate-[90deg]"
-                        : "rotate-0"
+                      arrowClick.includes(index) ? "-rotate-[90deg]" : "rotate-0"
                     }`}
                   />
                 </div>
@@ -90,24 +95,21 @@ function AdminServices() {
                       </p>
                       <div>
                         <p className="text-[#ABABAB]">
-                          Single Session One-on-one training session $
-                          {item.sessions_single}
+                          Single Session One-on-one training session ${item.sessions_single}
                         </p>
                         <p className="text-[#ABABAB]">
-                          5-Session Package: 5 one-on-one training sessions $
-                          {item.sessions_five}
+                          5-Session Package: 5 one-on-one training sessions ${item.sessions_five}
                         </p>
                         <p className="text-[#ABABAB]">
-                          10-Session Package: 10 one-on-one training sessions $
-                          {item.sessions_ten}
+                          10-Session Package: 10 one-on-one training sessions ${item.sessions_ten}
                         </p>
                       </div>
                     </div>
-                    <div className="bg-[#D7FD44] w-[3.375rem] h-[3.375rem] rounded-full flex items-center justify-center">
+                    <div onClick={() => handleOpenEditModal(item.id)} className="bg-[#D7FD44] w-[3.375rem] h-[3.375rem] rounded-full flex items-center justify-center">
                       <img
                         className="w-[1.58206rem] h-[1.58206rem]"
                         src="/pen.png"
-                        alt=""
+                        alt="Edit"
                       />
                     </div>
                   </div>
@@ -116,10 +118,14 @@ function AdminServices() {
             </div>
           ))}
 
-
       {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
           <ServicesModal />
+        </div>
+      )}
+      {openEditModal && selectedId && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+          <EditModal id={selectedId} />
         </div>
       )}
     </div>
