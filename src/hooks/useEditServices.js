@@ -3,7 +3,7 @@ import { EditPrices } from "../services/GymApi";
 
 const useEditService = () => {
   const queryClient = useQueryClient();
-  const { mutateAsync: editServicesInfo, id } = useMutation({
+  const { mutateAsync: editServicesInfo } = useMutation({
     mutationFn: () => EditPrices(id),
     onSuccess: () => {
       queryClient.invalidateQueries(["prices"]);
