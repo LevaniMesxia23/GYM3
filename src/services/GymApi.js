@@ -20,10 +20,33 @@ export const fetchCertification = async () => {
 
 export const fetchPrices = async () => {
   let { data: about, error } = await supabase.from("prices").select("*");
-  console.log(about);
   return { about, error };
 };
 
+export const fetchPricesId = async (priceId) => {
+  let { data: about, error } = await supabase
+    .from("prices")
+    .select("*")
+    .eq("id", priceId);
+  return { about, error };
+};
+
+export const AddServices = async (addServices) => {
+  const { data: services, error } = await supabase
+    .from("prices")
+    .insert([addServices]);
+
+  if (error) throw new Error(error.message);
+  return { services, error };
+};
+
+export const EditPrices = async (updatedData, id) => {
+  const { data: services, error } = await supabase
+    .from("prices")
+    .update(updatedData)
+    .eq("id", id);
+  if (error) throw new Error(error.message);
+};
 
 export const clientInfo = [
   {

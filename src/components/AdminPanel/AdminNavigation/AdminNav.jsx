@@ -12,7 +12,6 @@ function AdminNav({setIsOpen}) {
     {name: "About Me", path: "/admin/about-me"},
     {name: "Services", path: "/admin/admin-services"},
   ]
-  console.log(location.pathname);
   return (
     <div className=" flex items-center justify-center">
 

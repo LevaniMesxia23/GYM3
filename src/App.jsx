@@ -11,6 +11,7 @@ import DashboardPage from "./pages/AdminPages/DashboardPage"
 import AddBlogs from "./pages/AdminPages/AddBlogs";
 import AdminServices from "./pages/AdminPages/AdminServicesPage";
 import AdminPanel from "./components/AdminPanel/AdminPanel";
+import ServicesModal from "./components/AdminPanel/AdminServices/ServicesModal";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <MyProvider>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="modal" element={<ServicesModal />} />
           <Route element={<Layout />}>
             <Route path="services" element={<Services />} />
             <Route path="stories" element={<Stories />} />
