@@ -9,10 +9,9 @@ import { Mycontext } from "../../../context/context";
 function AdminServices() {
   const { data, error, isLoading } = usePrice();
   const [arrowClick, setArrowClick] = useState([]);
-  const { openModal, isModalOpen } = useContext(Mycontext);
+  const { openModal, isModalOpen, selectedId, setSelectedId } = useContext(Mycontext);
   const [openEditModal, setOpenEditModal] = useState(false);
-  const [selectedId, setSelectedId] = useState(null); 
-  console.log(selectedId);
+  // const [selectedId, setSelectedId] = useState(null); 
 
   if (error) return <p className="text-red-500">{error.message}</p>;
 
@@ -125,7 +124,7 @@ function AdminServices() {
       )}
       {openEditModal && selectedId && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-          <EditModal id={selectedId} />
+          <EditModal />
         </div>
       )}
     </div>

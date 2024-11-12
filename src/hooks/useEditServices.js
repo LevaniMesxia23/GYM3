@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { EditPrices } from "../services/GymApi";
 
-const useEditService = () => {
+const useEditPrices = () => {
   const queryClient = useQueryClient();
   const { mutateAsync: editServicesInfo } = useMutation({
     mutationFn: () => EditPrices(id),
@@ -16,4 +16,4 @@ const useEditService = () => {
   return { editServicesInfo };
 };
 
-export default useEditService;
+export default useEditPrices;

@@ -1,18 +1,29 @@
 import Cancel from "/cancel.svg";
 import { usePriceId } from "../../../hooks/usePriceId";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { Mycontext } from "../../../context/context";
+import useEditPrices from "../../../hooks/useEditPrices"
 
-function EditModal({ id }) {
-  // if (!id) {
-  //   return null;
-  // }
-  // const { data, isLoading } = usePriceId(id);
-  // const priceData = data?.about || {};
-  // console.log("EditModal ID:", id);
+function EditModal() {
+  const {selectedId} = useContext(Mycontext)
+  const {editServicesInfo} = useEditPrices()
+  
+  const { data, isLoading, isError, error } = usePriceId(selectedId);
 
-  // if (isLoading) {
-  //   return <p>Loading...</p>;
-  // }
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+  if (isError) {
+    return <p>{error.message}</p>;
+  }
+  
+  function formAction(e) {
+    e.preventDefault()
+    const formData = new FormData(e.target);
+    const formValues = Object.fromEntries(formData);
+  }
+  const {id,name,sessions_single,sessions_five,sessions_ten} = data?.about[0]
+
 
   return (
     <div className="p-[2.56rem] bg-[#323232] flex items-center justify-center w-[55rem] rounded-[1.25rem]">
@@ -28,15 +39,7 @@ function EditModal({ id }) {
             <img src={Cancel} alt="Close" />
           </div>
         </div>
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-
-            const formData = new FormData(e.target);
-            const formValues = Object.fromEntries(formData);
-            console.log(formValues);
-          }}
-        >
+        <form onSubmit={formAction}>
           <div className="flex flex-col gap-3">
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 bg-white rounded-full"></div>
@@ -48,6 +51,7 @@ function EditModal({ id }) {
                 className="w-full bg-[#323232] rounded-lg h-11 pl-[1.44rem] text-white"
                 placeholder="Weight Loss"
                 name="title"
+                defaultValue={name}
               />
             </div>
           </div>
@@ -68,6 +72,7 @@ function EditModal({ id }) {
                   className="bg-[#323232] rounded-lg h-11 pl-[1.44rem] text-white"
                   placeholder="10$"
                   name="singleSession"
+                  defaultValue={sessions_single}
                 />
               </div>
 
@@ -78,6 +83,7 @@ function EditModal({ id }) {
                   className="bg-[#323232] rounded-lg h-11 pl-[1.44rem] text-white"
                   placeholder="50$"
                   name="fiveSession"
+                  defaultValue={sessions_five}
                 />
               </div>
 
@@ -88,6 +94,7 @@ function EditModal({ id }) {
                   className="bg-[#323232] rounded-lg h-11 pl-[1.44rem] text-white"
                   placeholder="100$"
                   name="tenSession"
+                  defaultValue={sessions_ten}
                 />
               </div>
             </div>

@@ -14,16 +14,16 @@ export const Mycontext = createContext(defaultContextValues);
 export const MyProvider = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedId, setSelectedId] = useState(null); 
   const isDesktop = useMediaQuery("only screen and (min-width : 1024px)");
   const isTablet = useMediaQuery("only screen and (min-width : 769px)")
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => {
     setIsModalOpen(false);
-    console.log("rame");
   }
   return (
-    <Mycontext.Provider value={{isOpen, setIsOpen, isDesktop,isTablet, openModal, closeModal, isModalOpen}}>
+    <Mycontext.Provider value={{isOpen, setIsOpen, isDesktop,isTablet, openModal, closeModal, isModalOpen,selectedId, setSelectedId}}>
       {children}
     </Mycontext.Provider>
   );
