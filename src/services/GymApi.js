@@ -40,7 +40,7 @@ export const AddServices = async (addServices) => {
   return { services, error };
 };
 
-export const EditPrices = async (updatedData, id) => {
+export const editPrices = async (id,updatedData) => {
   const { data: services, error } = await supabase
     .from("prices")
     .update(updatedData)

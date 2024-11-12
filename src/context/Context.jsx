@@ -14,6 +14,7 @@ export const Mycontext = createContext(defaultContextValues);
 export const MyProvider = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [openEditModal, setOpenEditModal] = useState(false);
   const [selectedId, setSelectedId] = useState(null); 
   const isDesktop = useMediaQuery("only screen and (min-width : 1024px)");
   const isTablet = useMediaQuery("only screen and (min-width : 769px)")
@@ -21,9 +22,10 @@ export const MyProvider = ({ children }) => {
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => {
     setIsModalOpen(false);
+    setOpenEditModal(false)
   }
   return (
-    <Mycontext.Provider value={{isOpen, setIsOpen, isDesktop,isTablet, openModal, closeModal, isModalOpen,selectedId, setSelectedId}}>
+    <Mycontext.Provider value={{isOpen, setIsOpen, isDesktop,isTablet, openModal, closeModal, isModalOpen,selectedId, setSelectedId, openEditModal, setOpenEditModal}}>
       {children}
     </Mycontext.Provider>
   );

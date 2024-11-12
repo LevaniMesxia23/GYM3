@@ -9,8 +9,8 @@ import { Mycontext } from "../../../context/context";
 function AdminServices() {
   const { data, error, isLoading } = usePrice();
   const [arrowClick, setArrowClick] = useState([]);
-  const { openModal, isModalOpen, selectedId, setSelectedId } = useContext(Mycontext);
-  const [openEditModal, setOpenEditModal] = useState(false);
+  const { openModal, isModalOpen, selectedId, setSelectedId, openEditModal, setOpenEditModal } = useContext(Mycontext);
+
   // const [selectedId, setSelectedId] = useState(null); 
 
   if (error) return <p className="text-red-500">{error.message}</p>;
