@@ -18,6 +18,7 @@ export const MyProvider = ({ children }) => {
   const [selectedId, setSelectedId] = useState(null); 
   const isDesktop = useMediaQuery("only screen and (min-width : 1024px)");
   const isTablet = useMediaQuery("only screen and (min-width : 769px)")
+  const isSmallResponsive = useMediaQuery("only screen and (min-width : 368px)")
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => {
@@ -25,7 +26,7 @@ export const MyProvider = ({ children }) => {
     setOpenEditModal(false)
   }
   return (
-    <Mycontext.Provider value={{isOpen, setIsOpen, isDesktop,isTablet, openModal, closeModal, isModalOpen,selectedId, setSelectedId, openEditModal, setOpenEditModal}}>
+    <Mycontext.Provider value={{isOpen, setIsOpen, isDesktop,isTablet, openModal, closeModal, isModalOpen,selectedId, setSelectedId, openEditModal, setOpenEditModal,isSmallResponsive}}>
       {children}
     </Mycontext.Provider>
   );

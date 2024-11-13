@@ -15,7 +15,7 @@ import { grid } from "ldrs";
 grid.register();
 
 function StoryCarousel() {
-  const { isDesktop } = useContext(Mycontext);
+  const { isDesktop,isSmallResponsive } = useContext(Mycontext);
   const { data, error, isLoading } = useSuccessStory();
   const mappedImages = data?.about.map((item) => item.image);
 
@@ -46,7 +46,7 @@ function StoryCarousel() {
           alt=""
           className="rotate"
         />
-        <p
+        {isSmallResponsive && <p
           className="uppercase font-bold"
           style={{
             background: "linear-gradient(180deg, #C4C4C4 0%, #737373 100%)",
@@ -56,7 +56,7 @@ function StoryCarousel() {
           }}
         >
           Success Story
-        </p>
+        </p>}
       </div>
       <div className="">
         <Swiper
