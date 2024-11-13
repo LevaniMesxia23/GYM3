@@ -19,7 +19,7 @@ function Footer() {
   ];
 
   return (
-    <footer className="px-[5rem] py-[3rem] bg-[#242424] flex flex-col md:flex-row lg:flex-row justify-between gap-6">
+    <footer className="px-[2.5rem] py-[3rem] bg-[#242424] flex flex-col md:flex-row lg:flex-row justify-between gap-6">
       <div className="flex gap-4 md:items-center lg:items-center">
         <div className="flex flex-col items-center gap-1">
           <span className="bg-gradient-to-transparent bg-clip-text text-transparent text-[1.25rem] text-center">
