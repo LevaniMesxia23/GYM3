@@ -1,29 +1,43 @@
 import Cancel from "/cancel.svg";
 import { usePriceId } from "../../../hooks/usePriceId";
-import { useState, useEffect, useContext } from "react";
+import { useContext, useState } from "react";
 import { Mycontext } from "../../../context/context";
-import useEditPrices from "../../../hooks/useEditPrices"
+import useEditPrices from "../../../hooks/useEditPrices";
 
 function EditModal() {
-  const {selectedId} = useContext(Mycontext)
-  const {editServicesInfo} = useEditPrices()
-  
-  const { data, isLoading, isError, error } = usePriceId(selectedId);
+  const { selectedId, closeModal } = useContext(Mycontext);
+  const { mutate: editService } = useEditPrices();
 
-  if (isLoading) {
+  const {
+    data,
+    isLoading: priceLoading,
+    isError,
+    error: priceError,
+  } = usePriceId(selectedId);
+
+  if (priceLoading) {
     return <p>Loading...</p>;
   }
   if (isError) {
-    return <p>{error.message}</p>;
+    return <p>{priceError.message}</p>;
   }
-  
+
   function formAction(e) {
-    e.preventDefault()
+    e.preventDefault();
     const formData = new FormData(e.target);
     const formValues = Object.fromEntries(formData);
-  }
-  const {id,name,sessions_single,sessions_five,sessions_ten} = data?.about[0]
 
+    const updatedData = {
+      name: formValues.title,
+      sessions_single: formValues.singleSession,
+      sessions_five: formValues.fiveSession,
+      sessions_ten: formValues.tenSession,
+    };
+    editService({ id, updatedData });
+    closeModal();
+  }
+  const { id, name, sessions_single, sessions_five, sessions_ten } =
+    data?.about[0];
 
   return (
     <div className="p-[2.56rem] bg-[#323232] flex items-center justify-center w-[55rem] rounded-[1.25rem]">
@@ -35,7 +49,10 @@ function EditModal() {
             </p>
             <p className="text-white">Edit services you provide</p>
           </div>
-          <div className="bg-[#D7FD44] flex py-4 px-4 items-center justify-center rounded-full cursor-pointer">
+          <div
+            onClick={() => closeModal()}
+            className="bg-[#D7FD44] flex py-4 px-4 items-center justify-center rounded-full cursor-pointer"
+          >
             <img src={Cancel} alt="Close" />
           </div>
         </div>

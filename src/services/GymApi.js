@@ -2,6 +2,7 @@ import { supabase } from "./supabaseConfig";
 
 export const fetchExperience = async () => {
   let { data: about, error } = await supabase.from("about").select("*");
+  console.log(about);
   return { about, error };
 };
 
@@ -40,7 +41,7 @@ export const AddServices = async (addServices) => {
   return { services, error };
 };
 
-export const EditPrices = async (updatedData, id) => {
+export const editPrices = async (id,updatedData) => {
   const { data: services, error } = await supabase
     .from("prices")
     .update(updatedData)

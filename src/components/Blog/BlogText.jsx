@@ -92,6 +92,7 @@ const BlogText = () => {
           achieve sustainable results.
         </p>
       </div>
+      <div className=" w-full h-[1px] bg-[#4D4D4D] mt-8"></div>
     </div>
   );
 };

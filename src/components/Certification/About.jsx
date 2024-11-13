@@ -33,7 +33,10 @@ const About = ({ arrows, story, star, exp }) => {
           </span>
         </p>
         <div className="flex flex-col gap-4 justify-center text-center items-center">
-          <img src={star} className="lg:w-[100px]" />
+          <div className=" relative flex justify-center items-center">
+          <img src={star} className="lg:w-[12.5rem] lg:h-[12.5rem] w-[5rem] h-[5rem]" />
+          <span className=" absolute text-[1.5rem] lg:text-[2.5rem] font-bold text-black">3+</span>
+          </div>
           <span className="text-white ">{exp}</span>
         </div>
       </div>
@@ -41,10 +44,10 @@ const About = ({ arrows, story, star, exp }) => {
   );
 };
 About.propTypes = {
-  arrows: PropTypes.string.isRequired,
-  story: PropTypes.string.isRequired,
-  star: PropTypes.string.isRequired,
-  exp: PropTypes.string.isRequired,
+  arrows: PropTypes.string,
+  story: PropTypes.string,
+  star: PropTypes.string,
+  exp: PropTypes.string,
 };
 
 export default About;

@@ -14,8 +14,8 @@ const ServicesCarousel = () => {
   const services = data?.data;
 
   return (
-    <section className="bg-[#121212]">
-      <section className="md:pl-12 lg:pl-16 text-white pl-6 pt-5 pb-5">
+    <div className="bg-[#121212] h-[422px] py-[4rem]">
+      <section className=" lg:pl-10 text-white pl-10 py-5">
         <h3 className="text-[#C4C4C4] mb-5 text-center lg:text-left text-md">
           YOUR FITNESS JOURNEY STARTS HERE
         </h3>
@@ -55,7 +55,7 @@ const ServicesCarousel = () => {
           ))}
         </Swiper>
       </section>
-    </section>
+    </div>
   );
 };
 
