@@ -34,7 +34,7 @@ function IconAndNav() {
           />
         )}
       </div>
-      <Navigation isOpen={isOpen} setIsOpen={setIsOpen}/>
+      <Navigation isOpen={isOpen} setIsOpen={setIsOpen} />
     </div>
   );
 }
