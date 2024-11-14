@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import DownArrow from "../../../public/downArrow.svg";
 import { usePrice } from "../../hooks/usePrice";
 import Skeleton from "react-loading-skeleton";
-import { Mycontext } from "../../context/context";
+import { Mycontext } from "../../context/Context";
 
 function Prices() {
   const { data, error, isLoading } = usePrice();

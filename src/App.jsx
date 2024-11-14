@@ -4,7 +4,7 @@ import Contact from "./pages/Contact";
 import Blogs from "./pages/Blogs";
 import Services from "./pages/Services";
 import Stories from "./pages/Stories";
-import { MyProvider } from "./context/context";
+import { MyProvider } from "./context/Context";
 import Layout from "./components/UI/Layout";
 import AdminLayout from "./components/UI/AdminLayout";
 import DashboardPage from "./pages/AdminPages/DashboardPage"

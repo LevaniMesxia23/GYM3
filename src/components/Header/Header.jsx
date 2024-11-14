@@ -1,5 +1,5 @@
 import { Twirl as Hamburger } from "hamburger-react";
-import { Mycontext } from "../../context/context";
+import { Mycontext } from "../../context/Context";
 import { useContext } from "react";
 import Navigation from "./Navigation";
 import Muscle from "../../../public/Vector.svg";

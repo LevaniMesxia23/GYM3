@@ -1,6 +1,6 @@
 import Star from "../../../public/star.svg";
 import { useContext } from "react";
-import { Mycontext } from "../../context/context";
+import { Mycontext } from "../../context/Context";
 import { useGetExperience } from "../../hooks/useExperience";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";

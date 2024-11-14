@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useGetExperience } from "../../hooks/useExperience";
-import { Mycontext } from "../../context/context";
+import { Mycontext } from "../../context/Context";
 import { useContext } from "react";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
