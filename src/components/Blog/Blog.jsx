@@ -1,8 +1,8 @@
 import ServicesCarousel from "../Slider/ServicesCarousel";
-
 import BlogHeader from "./BlogHeader";
-import BlogAuthor from "./Blogauthor";
+import BlogAuthor from "./BlogAuthor";
 import BlogText from "./BlogText";
+
 const Blog = () => {
   return (
     <section className="bg-[#121212] nunito ">
@@ -12,8 +12,7 @@ const Blog = () => {
         <BlogText />
       </div>
       <div className=" pb-[8rem]">
-      <ServicesCarousel />
-
+        <ServicesCarousel />
       </div>
     </section>
   );
