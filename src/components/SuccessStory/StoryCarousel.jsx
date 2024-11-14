@@ -6,7 +6,7 @@ import { useSuccessStory } from "../../hooks/useSuccessStory";
 import ThreeArrow from "../../../public/threeArrow.svg";
 import FourArrow from "../../../public/fourArrow.svg";
 import { Grid } from "swiper/modules";
-import { Mycontext } from "../../context/context";
+import { Mycontext } from "../../context/Context";
 import { useContext } from "react";
 import ClockLoader from "react-spinners/ClockLoader";
 import Skeleton from "react-loading-skeleton";

@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import Cancel from "/cancel.svg";
-import { Mycontext } from "../../../context/context";
+import { Mycontext } from "../../../context/Context";
 import useAddService from "../../../hooks/useAddServices";
 
 function ServicesModal() {

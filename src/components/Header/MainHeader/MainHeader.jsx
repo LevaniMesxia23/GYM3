@@ -2,7 +2,7 @@ import { Twirl as Hamburger } from "hamburger-react";
 import mainImage from "../../../../public/mainImage.jpeg";
 import BackgroundImage from "../BackgroundImage";
 import CustomersInfo from "../CustomersInfo";
-import { Mycontext } from "../../../context/context";
+import { Mycontext } from "../../../context/Context";
 import { useContext } from "react";
 import Navigation from "../Navigation";
 import Muscle from "../../../../public/Vector.svg";

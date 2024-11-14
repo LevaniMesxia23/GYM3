@@ -1,5 +1,5 @@
 import { useLocation, Link } from "react-router-dom";
-import { Mycontext } from "../../context/context";
+import { Mycontext } from "../../context/Context";
 import { useContext } from "react";
 
 

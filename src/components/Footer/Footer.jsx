@@ -5,7 +5,7 @@ import Facebook from "/facebook.svg";
 import Instagram from "/instagram.svg";
 import Tiktok from "/tiktok.svg";
 import Twitter from "/twitter.svg";
-import { Mycontext } from "../../context/context";
+import { Mycontext } from "../../context/Context";
 import { useContext } from "react";
 
 function Footer() {

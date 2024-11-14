@@ -4,7 +4,7 @@ import ServicesModal from "./ServicesModal";
 import EditModal from "./EditModal";
 import DownArrow from "/downArrow.svg";
 import Skeleton from "react-loading-skeleton";
-import { Mycontext } from "../../../context/context";
+import { Mycontext } from "../../../context/Context";
 
 function AdminServices() {
   const { data, error, isLoading } = usePrice();

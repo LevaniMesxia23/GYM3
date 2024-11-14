@@ -1,7 +1,7 @@
 import Cancel from "/cancel.svg";
 import { usePriceId } from "../../../hooks/usePriceId";
 import { useContext, useState } from "react";
-import { Mycontext } from "../../../context/context";
+import { Mycontext } from "../../../context/Context";
 import useEditPrices from "../../../hooks/useEditPrices";
 
 function EditModal() {
