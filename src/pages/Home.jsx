@@ -1,7 +1,6 @@
 import AboutMe from "../components/about/AboutMe";
 import { ContactUs } from "../components/Contact/ContactUs";
-import Footer from "../components/Footer/footer";
-import Header from "../components/Header/Header";
+import Footer from "../components/Footer/Footer";
 import MainHeader from "../components/Header/MainHeader/MainHeader";
 import Slider from "../components/Slider/ServicesCarousel"
 import StoryCarousel from "../components/SuccessStory/StoryCarousel";

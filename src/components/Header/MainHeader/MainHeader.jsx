@@ -4,7 +4,6 @@ import BackgroundImage from "../BackgroundImage";
 import CustomersInfo from "../CustomersInfo";
 import { Mycontext } from "../../../context/Context";
 import { useContext } from "react";
-import Navigation from "../Navigation";
 import Muscle from "../../../../public/Vector.svg";
 import MainNavigation from "./MainNavigation";
 
