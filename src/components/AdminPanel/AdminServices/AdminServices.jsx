@@ -11,8 +11,6 @@ function AdminServices() {
   const [arrowClick, setArrowClick] = useState([]);
   const { openModal, isModalOpen, selectedId, setSelectedId, openEditModal, setOpenEditModal } = useContext(Mycontext);
 
-  // const [selectedId, setSelectedId] = useState(null); 
-
   if (error) return <p className="text-red-500">{error.message}</p>;
 
   const priceData = data?.about || [];
