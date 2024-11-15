@@ -1,4 +1,4 @@
-import { useGetExperience } from "../../hooks/useExperience";
+import { useFetchAbout } from "../../hooks/useFetchAbout";
 import arrows from "../../../public/threeArrow.svg";
 import star from "../../../public/star11.svg";
 import star5 from "../../../public/star5.svg";
@@ -8,7 +8,7 @@ import GirlRun from "/girlRun.png";
 import StoryCarousel from "../SuccessStory/StoryCarousel";
 import Check from "/check.png";
 const Certification = () => {
-  const { data } = useGetExperience();
+  const { data } = useFetchAbout();
   const { data: certifications } = useCertification();
   const story = data?.about[0]?.story;
   const exp = data?.about[0].experience;

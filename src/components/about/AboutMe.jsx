@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useGetExperience } from "../../hooks/useExperience";
+import { useFetchAbout } from "../../hooks/useFetchAbout";
 import { Mycontext } from "../../context/Context";
 import { useContext } from "react";
 import Skeleton from "react-loading-skeleton";
@@ -7,7 +7,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 
 function AboutMe() {
   const { isDesktop, isTablet } = useContext(Mycontext);
-  const { data, error, isLoading } = useGetExperience();
+  const { data, error, isLoading } = useFetchAbout();
   const Image = data?.about[0]?.image;
   const Story = data?.about[0]?.story;
 
