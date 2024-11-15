@@ -1,6 +1,4 @@
-import { useFetchAbout } from "../../hooks/useFetchAbout";
 import arrows from "../../../public/threeArrow.svg";
-import star from "../../../public/star11.svg";
 import star5 from "../../../public/star5.svg";
 import { useCertification } from "../../hooks/useCertification";
 import About from "./About";
@@ -8,12 +6,20 @@ import GirlRun from "/girlRun.png";
 import StoryCarousel from "../SuccessStory/StoryCarousel";
 import Check from "/check.png";
 const Certification = () => {
-  const { data } = useFetchAbout();
-  const { data: certifications } = useCertification();
-  const story = data?.about[0]?.story;
-  const exp = data?.about[0].experience;
+  const {
+    data: certifications,
+    isError,
+    isLoading,
+    error,
+  } = useCertification();
   const certification = certifications?.data;
-  console.log(certification);
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+  if (isError) {
+    return <p>{error.message}</p>;
+  }
 
   return (
     <div className="bg-[#121212] pb-[5rem]">
@@ -24,7 +30,7 @@ const Certification = () => {
         />
       </div>
       <div className="flex flex-col  items-center justify-center mx-auto w-[92%]">
-        <About arrows={arrows} story={story} star={star} exp={exp} />
+        <About />
         <div className="flex flex-col w-full  pt-14  gap-10 bg-[#121212]">
           <div className="flex gap-3 items-center">
             <img src={arrows} className="w-[80px]" />

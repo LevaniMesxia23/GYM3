@@ -1,5 +1,20 @@
 import PropTypes from "prop-types";
-const About = ({ arrows, story, star, exp }) => {
+import { useFetchAbout } from "../../hooks/useFetchAbout";
+import arrows from "../../../public/threeArrow.svg";
+import star from "../../../public/star11.svg";
+const About = () => {
+  const { data, error, isLoading, isError } = useFetchAbout();
+  console.log(data?.about[0]);
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+  if (isError) {
+    return <p>{error.message}</p>;
+  }
+
+  const {story,experience} = data?.about[0]
+
   return (
     <div className=" flex flex-col gap-5 text-[#C4C4C4] leading-[27.2px] text-[18px] ">
       <div className="flex gap-3 items-center">
@@ -19,25 +34,18 @@ const About = ({ arrows, story, star, exp }) => {
       <div className="flex flex-col gap-12 md:justify-between md:items-center  md:flex-row">
         <p className="text-white  flex flex-col gap-3 md:w-[60%]   ">
           <span>{story}</span>
-          <span className="hidden md:inline">
-            Now, I specialize in personalized training programs tailored to your
-            unique goals—whether it’s weight loss, strength training, or simply
-            feeling healthier and happier. I believe in creating sustainable
-            routines that fit seamlessly into your lifestyle
-          </span>
-          <span className="hidden md:inline">
-            Fitness is about both body and mind. I’m here to guide, support, and
-            challenge you on your journey to becoming the best version of
-            yourself. Let’s work together to achieve your goals and embrace a
-            stronger, healthier you!
-          </span>
         </p>
         <div className="flex flex-col gap-4 justify-center text-center items-center">
           <div className=" relative flex justify-center items-center">
-          <img src={star} className="lg:w-[12.5rem] lg:h-[12.5rem] w-[5rem] h-[5rem]" />
-          <span className=" absolute text-[1.5rem] lg:text-[2.5rem] font-bold text-black">3+</span>
+            <img
+              src={star}
+              className="lg:w-[12.5rem] lg:h-[12.5rem] w-[5rem] h-[5rem]"
+            />
+            <span className=" absolute text-[1.5rem] lg:text-[2.5rem] font-bold text-black">
+              3+
+            </span>
           </div>
-          <span className="text-white ">{exp}</span>
+          <span className="text-white ">{experience}</span>
         </div>
       </div>
     </div>
