@@ -12,6 +12,7 @@ import AddBlogs from "./pages/AdminPages/AddBlogs";
 import AdminServices from "./pages/AdminPages/AdminServicesPage";
 import AdminPanel from "./components/AdminPanel/AdminPanel";
 import ServicesModal from "./components/AdminPanel/AdminServices/ServicesModal";
+import AboutMe from "./pages/AdminPages/AboutMe";
 
 function App() {
   return (
@@ -31,7 +32,7 @@ function App() {
             <Route index element={<DashboardPage />} />
             <Route path="dashboard" element={<DashboardPage />} />
             <Route path="add-blogs" element={<AddBlogs />} />
-            <Route path="about-me" element={<AddBlogs />} />
+            <Route path="about-me" element={<AboutMe />} />
             <Route path="admin-services" element={<AdminServices />} />
           </Route>
         </Routes>
