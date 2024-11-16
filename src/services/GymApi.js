@@ -2,7 +2,6 @@ import { supabase } from "./supabaseConfig";
 
 export const fetchAbout = async () => {
   let { data: about, error } = await supabase.from("about").select("*");
-  console.log(about);
   return { about, error };
 };
 
@@ -47,6 +46,16 @@ export const editPrices = async (id,updatedData) => {
     .update(updatedData)
     .eq("id", id);
   if (error) throw new Error(error.message);
+};
+
+export const editAboutInfo = async (id,updatedAbout) => {
+  const { data: editAbout, error } = await supabase
+    .from("about")
+    .update(updatedAbout)
+    .eq("id", id);
+    console.log(editAbout);
+  if (error) throw new Error(error.message);
+  return editAbout;
 };
 
 export const clientInfo = [

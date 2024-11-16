@@ -1,10 +1,12 @@
 import { useCertification } from "../../../hooks/useCertification";
+import useEditAbout from "../../../hooks/useEditAbout";
 import { useFetchAbout } from "../../../hooks/useFetchAbout";
 import UpdateButton from "./UpdateButton";
 
 export default function AboutMainInfo() {
   const { data, isLoading, error, isError } = useFetchAbout();
   const { data: certifications } = useCertification();
+  const editAbout = useEditAbout();
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -13,16 +15,33 @@ export default function AboutMainInfo() {
   if (isError) {
     return <p>{error.message}</p>;
   }
+
   function aboutFormAction(e) {
     e.preventDefault();
+
     const formData = new FormData(e.target);
     const formAction = Object.fromEntries(formData);
-    console.log(formData);
-    console.log(formAction);
+
+    const updatedAbout = {
+      story: formAction.story,
+    };
+
+    editAbout.mutate(
+      { id: data.about[0].id, updatedAbout },
+      {
+        onSuccess: () => {
+          console.log("About info updated successfully!");
+        },
+        onError: (error) => {
+          console.error("Failed to update about info:", error.message);
+        },
+      }
+    );
   }
 
-  const { story } = data.about[0];
+  const { story, id } = data.about[0];
   const certification = certifications?.data;
+  const certificationMap = certification?.map((item) => item.name).join("\n");
 
   return (
     <div className="flex flex-col gap-3 mt-[1.87rem]">
@@ -48,9 +67,7 @@ export default function AboutMainInfo() {
                 placeholder="List your certifications"
                 name="certification"
                 rows="5"
-                defaultValue={certification
-                  ?.map((item) => item.name)
-                  .join("\n")}
+                defaultValue={certificationMap}
               ></textarea>
             </div>
             <div className="border-[1px] border-[#D7FD44] flex gap-[0.62rem] px-10 py-2 rounded-3xl cursor-pointer max-w-[15.1875rem]">
