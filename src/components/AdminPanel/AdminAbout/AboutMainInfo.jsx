@@ -1,17 +1,20 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useCertification } from "../../../hooks/useCertification";
-import useEditAbout from "../../../hooks/useEditAbout";
 import { useFetchAbout } from "../../../hooks/useFetchAbout";
+import { Mycontext } from "../../../context/Context";
+import useEditAbout from "../../../hooks/useEditAbout";
 import UpdateButton from "./UpdateButton";
 import CertificateAddModal from "./CertificateAddModal"; 
-import { Mycontext } from "../../../context/Context";
+import useAddCertification from "../../../hooks/useAddCertification";
 
 export default function AboutMainInfo() {
-  const { openCertificateModal, setOpenCertificateModal, setSelectedCertificateId } =
-    useContext(Mycontext);
+  const { openCertificateModal, setOpenCertificateModal, setSelectedCertificateId } = useContext(Mycontext);
   const { data, isLoading, error, isError } = useFetchAbout();
   const { data: certifications } = useCertification();
   const editAbout = useEditAbout();
+  const { addCertificateInfo } = useAddCertification()
+  const [certificateText, setCertificateText] = useState("");
+
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -30,6 +33,15 @@ export default function AboutMainInfo() {
     const updatedAbout = {
       story: formAction.story,
     };
+
+    try {
+       addCertificateInfo({
+        name: certificateText
+      })
+      setCertificateText("")
+    } catch (error) {
+      console.error(error);
+    }
 
     editAbout.mutate(
       { id: data.about[0].id, updatedAbout },
@@ -80,7 +92,7 @@ export default function AboutMainInfo() {
                 </div>
               ))}
             </div>
-            {openCertificateModal && <CertificateAddModal />} 
+            {openCertificateModal && <CertificateAddModal certificateText={certificateText} setCertificateText={setCertificateText} />} 
 
             <div
               className="border-[1px] border-[#D7FD44] flex gap-[0.62rem] px-10 py-2 rounded-3xl cursor-pointer max-w-[15.1875rem]"

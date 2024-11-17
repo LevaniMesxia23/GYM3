@@ -58,6 +58,14 @@ export const editAboutInfo = async (id,updatedAbout) => {
   return editAbout;
 };
 
+export const addCertification = async (addCerf) => {
+  const {data: addCertificate, error} = await supabase
+  .from("certification")
+  .insert([addCerf])
+  if(error) throw new Error(error.message)
+  return addCertificate
+}
+
 export const editCertificateInfo = async (id,updatedCertificate) => {
   const { data: editCertificate, error } = await supabase
     .from("certification")
