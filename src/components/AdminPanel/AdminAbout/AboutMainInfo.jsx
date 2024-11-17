@@ -33,6 +33,7 @@ export default function AboutMainInfo() {
 
     const updatedAbout = {
       story: formAction.story,
+      experience: formAction.experience
     };
     if(certificateText.trim() != ""){
       try {
@@ -67,13 +68,13 @@ export default function AboutMainInfo() {
     deleteCertification(id)
   }
 
-  const { story } = data.about[0];
+  const { story, experience } = data.about[0];
   const certification = certifications?.data;
 
   return (
     <div className="flex flex-col gap-3 mt-[1.87rem]">
       <form onSubmit={aboutFormAction}>
-        <div className="flex flex-col w-full gap-3">
+        <div className="flex flex-col w-full gap-6">
           <div className="flex flex-col w-full gap-3">
             <p className="text-white">Share your story</p>
             <textarea
@@ -84,6 +85,11 @@ export default function AboutMainInfo() {
               rows="7"
               defaultValue={story}
             ></textarea>
+          </div>
+
+          <div>
+            <p className="text-white">Experience</p>
+            <input type="text" name="experience" defaultValue={experience} className="placeholder:w-[34rem] w-full p-[0.625rem] rounded-2xl bg-[#323232] text-white font-light placeholder:text-[#C4C4C4]"/>
           </div>
 
           <div className="flex flex-col gap-3">
