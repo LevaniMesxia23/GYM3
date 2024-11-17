@@ -7,6 +7,7 @@ export const useDeleteCertification = () => {
   return useMutation({
     mutationFn: deleteCertification,
     onSuccess: (data, variables) => {
+      console.log("Deleted certification:", data);
       queryClient.invalidateQueries(["certifications"], (oldData) =>
         oldData?.filter((cert) => cert.id !== variables)
       );

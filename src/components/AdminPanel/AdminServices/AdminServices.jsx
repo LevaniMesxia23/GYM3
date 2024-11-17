@@ -5,11 +5,24 @@ import EditModal from "./EditModal";
 import DownArrow from "/downArrow.svg";
 import Skeleton from "react-loading-skeleton";
 import { Mycontext } from "../../../context/Context";
+import { useDeleteServices } from "../../../hooks/useDeleteServices";
 
 function AdminServices() {
   const { data, error, isLoading } = usePrice();
   const [arrowClick, setArrowClick] = useState([]);
-  const { openModal, isModalOpen, selectedId, setSelectedId, openEditModal, setOpenEditModal } = useContext(Mycontext);
+  const {
+    openModal,
+    isModalOpen,
+    selectedId,
+    setSelectedId,
+    openEditModal,
+    setOpenEditModal,
+  } = useContext(Mycontext);
+  const { mutate: deleteServices } = useDeleteServices();
+
+  if (isLoading) {
+    return <p>Loading</p>;
+  }
 
   if (error) return <p className="text-red-500">{error.message}</p>;
 
@@ -22,8 +35,13 @@ function AdminServices() {
   };
 
   const handleOpenEditModal = (id) => {
-    setSelectedId(id); 
-    setOpenEditModal(true); 
+    setSelectedId(id);
+    setOpenEditModal(true);
+  };
+
+  const handleDelete = (id) => {
+    console.log("Deleting service with ID:", id);
+    deleteServices(id);
   };
 
   return (
@@ -64,16 +82,25 @@ function AdminServices() {
                 <p className="text-[1.25rem] font-bold text-[#C4C4C4] uppercase">
                   {item.name}
                 </p>
-                <div
-                  onClick={() => handleToggle(index)}
-                  className="bg-[#D7FD44] rounded-full w-[3.375rem] h-[3.375rem] flex items-center justify-center"
-                >
+                <div className="flex items-center justify-center gap-5">
+                  <div
+                    onClick={() => handleToggle(index)}
+                    className="bg-[#D7FD44] rounded-full w-[3.375rem] h-[3.375rem] flex items-center justify-center"
+                  >
+                    <img
+                      src={DownArrow}
+                      alt="Expand section"
+                      className={`transition-transform duration-300 w-[1.58206rem] h-[1.58206rem] ${
+                        arrowClick.includes(index)
+                          ? "-rotate-[90deg]"
+                          : "rotate-0"
+                      }`}
+                    />
+                  </div>
                   <img
-                    src={DownArrow}
-                    alt="Expand section"
-                    className={`transition-transform duration-300 w-[1.58206rem] h-[1.58206rem] ${
-                      arrowClick.includes(index) ? "-rotate-[90deg]" : "rotate-0"
-                    }`}
+                    onClick={() => handleDelete(item.id)}
+                    src="/delete.png"
+                    className="w-6 h-6 "
                   />
                 </div>
               </div>
@@ -92,17 +119,23 @@ function AdminServices() {
                       </p>
                       <div>
                         <p className="text-[#ABABAB]">
-                          Single Session One-on-one training session ${item.sessions_single}
+                          Single Session One-on-one training session $
+                          {item.sessions_single}
                         </p>
                         <p className="text-[#ABABAB]">
-                          5-Session Package: 5 one-on-one training sessions ${item.sessions_five}
+                          5-Session Package: 5 one-on-one training sessions $
+                          {item.sessions_five}
                         </p>
                         <p className="text-[#ABABAB]">
-                          10-Session Package: 10 one-on-one training sessions ${item.sessions_ten}
+                          10-Session Package: 10 one-on-one training sessions $
+                          {item.sessions_ten}
                         </p>
                       </div>
                     </div>
-                    <div onClick={() => handleOpenEditModal(item.id)} className="bg-[#D7FD44] w-[3.375rem] h-[3.375rem] rounded-full flex items-center justify-center">
+                    <div
+                      onClick={() => handleOpenEditModal(item.id)}
+                      className="bg-[#D7FD44] w-[3.375rem] h-[3.375rem] rounded-full flex items-center justify-center"
+                    >
                       <img
                         className="w-[1.58206rem] h-[1.58206rem]"
                         src="/pen.png"
