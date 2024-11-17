@@ -66,6 +66,15 @@ export const addCertification = async (addCerf) => {
   return addCertificate
 }
 
+export const deleteCertification = async (id) => {
+  const {data: deleteCertificate, error} = await supabase
+  .from("certification")
+  .delete()
+  .eq("id", id)
+  if(error) throw new Error(error.message)
+  return deleteCertificate
+}
+
 export const editCertificateInfo = async (id,updatedCertificate) => {
   const { data: editCertificate, error } = await supabase
     .from("certification")

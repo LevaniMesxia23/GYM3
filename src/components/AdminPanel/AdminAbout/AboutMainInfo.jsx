@@ -6,15 +6,16 @@ import useEditAbout from "../../../hooks/useEditAbout";
 import UpdateButton from "./UpdateButton";
 import CertificateAddModal from "./CertificateAddModal"; 
 import useAddCertification from "../../../hooks/useAddCertification";
+import { useDeleteCertification } from "../../../hooks/useDeleteCertificate";
 
 export default function AboutMainInfo() {
+  const [certificateText, setCertificateText] = useState("");
   const { openCertificateModal, setOpenCertificateModal, setSelectedCertificateId } = useContext(Mycontext);
   const { data, isLoading, error, isError } = useFetchAbout();
   const { data: certifications } = useCertification();
-  const editAbout = useEditAbout();
+  const { mutate: deleteCertification } = useDeleteCertification();
   const { addCertificateInfo } = useAddCertification()
-  const [certificateText, setCertificateText] = useState("");
-
+  const editAbout = useEditAbout();
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -33,14 +34,15 @@ export default function AboutMainInfo() {
     const updatedAbout = {
       story: formAction.story,
     };
-
-    try {
-       addCertificateInfo({
-        name: certificateText
-      })
-      setCertificateText("")
-    } catch (error) {
-      console.error(error);
+    if(certificateText.trim() != ""){
+      try {
+         addCertificateInfo({
+          name: certificateText
+        })
+        setCertificateText("")
+      } catch (error) {
+        console.error(error);
+      }
     }
 
     editAbout.mutate(
@@ -60,6 +62,10 @@ export default function AboutMainInfo() {
     setSelectedCertificateId(id);
     setOpenCertificateModal(true);
   };
+
+  const handleDelete = (id) => {
+    deleteCertification(id)
+  }
 
   const { story } = data.about[0];
   const certification = certifications?.data;
@@ -86,9 +92,11 @@ export default function AboutMainInfo() {
               {certification?.map((item) => (
                 <div
                   key={item.id}
-                  className="w-full p-[0.625rem] rounded-2xl bg-[#323232] text-white font-light placeholder:text-[#C4C4C4]"
+                  className="w-full flex items-center justify-between p-[0.625rem] rounded-2xl bg-[#323232] text-white font-light placeholder:text-[#C4C4C4]"
                 >
-                  {item.name}
+                  <p>{item.name}</p>
+                  <img src="/delete.png" className="w-4 h-4" onClick={() => handleDelete(item.id)} />
+                  
                 </div>
               ))}
             </div>
@@ -105,8 +113,6 @@ export default function AboutMainInfo() {
         </div>
         <UpdateButton />
       </form>
-
-      
     </div>
   );
 }
