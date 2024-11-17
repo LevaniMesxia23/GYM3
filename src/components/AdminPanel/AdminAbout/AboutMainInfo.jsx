@@ -69,6 +69,7 @@ export default function AboutMainInfo() {
   }
 
   const { story, experience } = data.about[0];
+  const yearExp = experience.split("").filter(char => !isNaN(char)).join("")
   const certification = certifications?.data;
 
   return (
@@ -89,7 +90,7 @@ export default function AboutMainInfo() {
 
           <div>
             <p className="text-white">Experience</p>
-            <input type="text" name="experience" defaultValue={experience} className="placeholder:w-[34rem] w-full p-[0.625rem] rounded-2xl bg-[#323232] text-white font-light placeholder:text-[#C4C4C4]"/>
+            <input type="number" name="experience" placeholder="add your experience" defaultValue={yearExp} className="placeholder:w-[34rem] w-full p-[0.625rem] rounded-2xl bg-[#323232] text-white font-light placeholder:text-[#C4C4C4]"/>
           </div>
 
           <div className="flex flex-col gap-3">

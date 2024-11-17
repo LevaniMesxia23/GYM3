@@ -1,0 +1,18 @@
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { deleteCertification } from "../services/GymApi";
+
+export const useDeleteCertification = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: deleteCertification,
+    onSuccess: (data, variables) => {
+      queryClient.invalidateQueries(["certifications"], (oldData) =>
+        oldData?.filter((cert) => cert.id !== variables)
+      );
+    },
+    onError: (error) => {
+      console.error("Error deleting certification:", error.message);
+    },
+  });
+};
