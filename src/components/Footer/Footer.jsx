@@ -13,9 +13,9 @@ function Footer() {
   const navNames = [
     { name: "Home", path: "/" },
     { name: "About Me", path: "/stories" },
-    { name: "Success Story", path: "/" },
     { name: "Services", path: "/services" },
     { name: "Contact", path: "/contact" },
+    { name: "Blogs", path: "/blogs" },
   ];
 
   return (

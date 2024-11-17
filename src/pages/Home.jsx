@@ -4,8 +4,10 @@ import Footer from "../components/Footer/Footer";
 import MainHeader from "../components/Header/MainHeader/MainHeader";
 import Slider from "../components/Slider/ServicesCarousel"
 import StoryCarousel from "../components/SuccessStory/StoryCarousel";
+import useScrollToTop from "../ScrollToTop";
 
 const Home = () => {
+  useScrollToTop()
   return (
     <section>
       <MainHeader />
