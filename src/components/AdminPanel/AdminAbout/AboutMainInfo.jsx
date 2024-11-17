@@ -1,9 +1,14 @@
+import { useContext } from "react";
 import { useCertification } from "../../../hooks/useCertification";
 import useEditAbout from "../../../hooks/useEditAbout";
 import { useFetchAbout } from "../../../hooks/useFetchAbout";
 import UpdateButton from "./UpdateButton";
+import CertificateAddModal from "./CertificateAddModal"; 
+import { Mycontext } from "../../../context/Context";
 
 export default function AboutMainInfo() {
+  const { openCertificateModal, setOpenCertificateModal, setSelectedCertificateId } =
+    useContext(Mycontext);
   const { data, isLoading, error, isError } = useFetchAbout();
   const { data: certifications } = useCertification();
   const editAbout = useEditAbout();
@@ -39,9 +44,13 @@ export default function AboutMainInfo() {
     );
   }
 
-  const { story, id } = data.about[0];
+  const handleOpenCertificateModal = (id) => {
+    setSelectedCertificateId(id);
+    setOpenCertificateModal(true);
+  };
+
+  const { story } = data.about[0];
   const certification = certifications?.data;
-  const certificationMap = certification?.map((item) => item.name).join("\n");
 
   return (
     <div className="flex flex-col gap-3 mt-[1.87rem]">
@@ -60,17 +69,23 @@ export default function AboutMainInfo() {
           </div>
 
           <div className="flex flex-col gap-3">
-            <div className="flex flex-col w-full gap-3">
+            <div className="flex flex-col gap-3">
               <label className="text-white">Certification</label>
-              <textarea
-                className="h-[200px] w-full p-[0.625rem] rounded-2xl bg-[#323232] text-white font-light placeholder:text-[#C4C4C4]"
-                placeholder="List your certifications"
-                name="certification"
-                rows="5"
-                defaultValue={certificationMap}
-              ></textarea>
+              {certification?.map((item) => (
+                <div
+                  key={item.id}
+                  className="w-full p-[0.625rem] rounded-2xl bg-[#323232] text-white font-light placeholder:text-[#C4C4C4]"
+                >
+                  {item.name}
+                </div>
+              ))}
             </div>
-            <div className="border-[1px] border-[#D7FD44] flex gap-[0.62rem] px-10 py-2 rounded-3xl cursor-pointer max-w-[15.1875rem]">
+            {openCertificateModal && <CertificateAddModal />} 
+
+            <div
+              className="border-[1px] border-[#D7FD44] flex gap-[0.62rem] px-10 py-2 rounded-3xl cursor-pointer max-w-[15.1875rem]"
+              onClick={() => handleOpenCertificateModal(null)}
+            >
               <p className="w-3 h-3 text-black">+</p>
               <p className="text-[#D7FD44]">Add Experience</p>
             </div>
@@ -78,6 +93,8 @@ export default function AboutMainInfo() {
         </div>
         <UpdateButton />
       </form>
+
+      
     </div>
   );
 }
