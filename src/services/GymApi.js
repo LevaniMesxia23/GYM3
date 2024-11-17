@@ -1,8 +1,7 @@
 import { supabase } from "./supabaseConfig";
 
-export const fetchExperience = async () => {
+export const fetchAbout = async () => {
   let { data: about, error } = await supabase.from("about").select("*");
-  console.log(about);
   return { about, error };
 };
 
@@ -47,6 +46,44 @@ export const editPrices = async (id,updatedData) => {
     .update(updatedData)
     .eq("id", id);
   if (error) throw new Error(error.message);
+};
+
+export const editAboutInfo = async (id,updatedAbout) => {
+  const { data: editAbout, error } = await supabase
+    .from("about")
+    .update(updatedAbout)
+    .eq("id", id);
+    console.log(editAbout);
+  if (error) throw new Error(error.message);
+  return editAbout;
+};
+
+export const addCertification = async (addCerf) => {
+  const {data: addCertificate, error} = await supabase
+  .from("certification")
+  .insert([addCerf])
+  if(error) throw new Error(error.message)
+  return addCertificate
+}
+
+export const deleteCertification = async (id) => {
+  const {data: deleteCertificate, error} = await supabase
+  .from("certification")
+  .delete()
+  .eq("id", id)
+  if(error) throw new Error(error.message)
+  return deleteCertificate
+}
+
+export const editCertificateInfo = async (id,updatedCertificate) => {
+  const { data: editCertificate, error } = await supabase
+    .from("certification")
+    .update(updatedCertificate)
+    .eq(id, "id")
+    .select()
+    console.log(editCertificate);
+  if (error) throw new Error(error.message);
+  return editCertificate;
 };
 
 export const clientInfo = [

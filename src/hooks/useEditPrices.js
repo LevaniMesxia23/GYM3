@@ -3,15 +3,14 @@ import { editPrices } from "../services/GymApi";
 
 const useEditPrices = () => {
   const queryClient = useQueryClient();
-  const { mutate, isLoading, error, isSuccess }  = useMutation({
-    mutationFn: ({id,updatedData}) => editPrices(id,updatedData),
+  const { mutate, isLoading, error, isSuccess } = useMutation({
+    mutationFn: ({ id, updatedData }) => editPrices(id, updatedData),
     onSuccess: () => {
       queryClient.invalidateQueries(["prices"]);
     },
     onError: (error) => {
       console.error("Error updating service:", error);
     },
-    
   });
 
   return { mutate, isLoading, error, isSuccess };

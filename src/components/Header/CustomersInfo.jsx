@@ -1,12 +1,12 @@
 import Star from "../../../public/star.svg";
 import { useContext } from "react";
 import { Mycontext } from "../../context/Context";
-import { useGetExperience } from "../../hooks/useExperience";
+import { useFetchAbout } from "../../hooks/useFetchAbout"
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
 function CustomersInfo() {
-  const { data, error, isLoading } = useGetExperience();
+  const { data, error, isLoading } = useFetchAbout();
   const { isTablet } = useContext(Mycontext);
 
   if (isLoading) {
