@@ -14,6 +14,7 @@ const About = () => {
   }
 
   const {story,experience} = data?.about[0]
+  const yearExp = experience.split("").filter(char => !isNaN(char)).join("")
 
   return (
     <div className=" flex flex-col gap-5 text-[#C4C4C4] leading-[27.2px] text-[18px] ">
@@ -42,10 +43,10 @@ const About = () => {
               className="lg:w-[12.5rem] lg:h-[12.5rem] w-[5rem] h-[5rem]"
             />
             <span className=" absolute text-[1.5rem] lg:text-[2.5rem] font-bold text-black">
-              3+
+              {yearExp}+
             </span>
           </div>
-          <span className="text-white ">{experience}</span>
+          <span className="text-white ">{yearExp} Years Of Training Experience</span>
         </div>
       </div>
     </div>

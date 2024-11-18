@@ -33,6 +33,7 @@ export default function AboutMainInfo() {
 
     const updatedAbout = {
       story: formAction.story,
+      experience: formAction.experience
     };
     if(certificateText.trim() != ""){
       try {
@@ -67,13 +68,14 @@ export default function AboutMainInfo() {
     deleteCertification(id)
   }
 
-  const { story } = data.about[0];
+  const { story, experience } = data.about[0];
+  const yearExp = experience.split("").filter(char => !isNaN(char)).join("")
   const certification = certifications?.data;
 
   return (
     <div className="flex flex-col gap-3 mt-[1.87rem]">
       <form onSubmit={aboutFormAction}>
-        <div className="flex flex-col w-full gap-3">
+        <div className="flex flex-col w-full gap-6">
           <div className="flex flex-col w-full gap-3">
             <p className="text-white">Share your story</p>
             <textarea
@@ -84,6 +86,11 @@ export default function AboutMainInfo() {
               rows="7"
               defaultValue={story}
             ></textarea>
+          </div>
+
+          <div>
+            <p className="text-white">Experience</p>
+            <input type="number" name="experience" placeholder="add your experience" defaultValue={yearExp} className="placeholder:w-[34rem] w-full p-[0.625rem] rounded-2xl bg-[#323232] text-white font-light placeholder:text-[#C4C4C4]"/>
           </div>
 
           <div className="flex flex-col gap-3">
@@ -101,13 +108,15 @@ export default function AboutMainInfo() {
               ))}
             </div>
             {openCertificateModal && <CertificateAddModal certificateText={certificateText} setCertificateText={setCertificateText} />} 
+            <div className="flex justify-center items-center py-4">
 
             <div
               className="border-[1px] border-[#D7FD44] flex gap-[0.62rem] px-10 py-2 rounded-3xl cursor-pointer max-w-[15.1875rem]"
               onClick={() => handleOpenCertificateModal(null)}
             >
-              <p className="w-3 h-3 text-black">+</p>
+              <p className="w-3 h-3 text-[#D7FD44]">+</p>
               <p className="text-[#D7FD44]">Add Experience</p>
+            </div>
             </div>
           </div>
         </div>

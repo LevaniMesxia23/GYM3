@@ -15,6 +15,7 @@ export const fetchServices = async () => {
 };
 export const fetchCertification = async () => {
   let { data, error } = await supabase.from("certification").select("*");
+  console.log(data);
   return { data, error };
 };
 
@@ -39,6 +40,17 @@ export const AddServices = async (addServices) => {
   if (error) throw new Error(error.message);
   return { services, error };
 };
+
+export const deleteServices = async (id) => {
+  const { data : deleteService, error} = await supabase
+  .from("prices")
+  .delete()
+  .eq("id", id)
+
+  console.log(id);
+  if(error) throw new Error(error.message)
+  return deleteService
+}
 
 export const editPrices = async (id,updatedData) => {
   const { data: services, error } = await supabase
