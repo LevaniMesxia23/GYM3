@@ -4,17 +4,22 @@ import { useFetchAbout } from "../../../hooks/useFetchAbout";
 import { Mycontext } from "../../../context/Context";
 import useEditAbout from "../../../hooks/useEditAbout";
 import UpdateButton from "./UpdateButton";
-import CertificateAddModal from "./CertificateAddModal"; 
+import CertificateAddModal from "./CertificateAddModal";
 import useAddCertification from "../../../hooks/useAddCertification";
 import { useDeleteCertification } from "../../../hooks/useDeleteCertificate";
 
 export default function AboutMainInfo() {
   const [certificateText, setCertificateText] = useState("");
-  const { openCertificateModal, setOpenCertificateModal, setSelectedCertificateId } = useContext(Mycontext);
+  const [certificateStart, setCertificateStart] = useState("")
+  const {
+    openCertificateModal,
+    setOpenCertificateModal,
+    setSelectedCertificateId,
+  } = useContext(Mycontext);
   const { data, isLoading, error, isError } = useFetchAbout();
   const { data: certifications } = useCertification();
   const { mutate: deleteCertification } = useDeleteCertification();
-  const { addCertificateInfo } = useAddCertification()
+  const { addCertificateInfo } = useAddCertification();
   const editAbout = useEditAbout();
 
   if (isLoading) {
@@ -33,18 +38,21 @@ export default function AboutMainInfo() {
 
     const updatedAbout = {
       story: formAction.story,
-      experience: formAction.experience
+      experience: formAction.experience,
     };
-    if(certificateText.trim() != ""){
+    if (certificateText.trim() != "") {
       try {
-         addCertificateInfo({
-          name: certificateText
-        })
-        setCertificateText("")
+        addCertificateInfo({
+          name: certificateText,
+          // startDate: certificateStart,
+        });
+        setCertificateText("");
+        setCertificateStart("")
       } catch (error) {
         console.error(error);
       }
     }
+    console.log(certificateStart);
 
     editAbout.mutate(
       { id: data.about[0].id, updatedAbout },
@@ -65,11 +73,14 @@ export default function AboutMainInfo() {
   };
 
   const handleDelete = (id) => {
-    deleteCertification(id)
-  }
+    deleteCertification(id);
+  };
 
   const { story, experience } = data.about[0];
-  const yearExp = experience.split("").filter(char => !isNaN(char)).join("")
+  const yearExp = experience
+    .split("")
+    .filter((char) => !isNaN(char))
+    .join("");
   const certification = certifications?.data;
 
   return (
@@ -90,33 +101,67 @@ export default function AboutMainInfo() {
 
           <div>
             <p className="text-white">Experience</p>
-            <input type="number" name="experience" placeholder="add your experience" defaultValue={yearExp} className="placeholder:w-[34rem] w-full p-[0.625rem] rounded-2xl bg-[#323232] text-white font-light placeholder:text-[#C4C4C4]"/>
+            <input
+              type="number"
+              name="experience"
+              placeholder="add your experience"
+              defaultValue={yearExp}
+              className="placeholder:w-[34rem] w-full p-[0.625rem] rounded-2xl bg-[#323232] text-white font-light placeholder:text-[#C4C4C4]"
+            />
           </div>
 
           <div className="flex flex-col gap-3">
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-3 ">
               <label className="text-white">Certification</label>
               {certification?.map((item) => (
-                <div
-                  key={item.id}
-                  className="w-full flex items-center justify-between p-[0.625rem] rounded-2xl bg-[#323232] text-white font-light placeholder:text-[#C4C4C4]"
-                >
-                  <p>{item.name}</p>
-                  <img src="/delete.png" className="w-4 h-4" onClick={() => handleDelete(item.id)} />
-                  
+                <div key={item.id} className="bg-[#323232] p-[0.625rem] shadow-lg rounded-lg">
+                  <div className="w-full flex items-center justify-between   rounded-2xl bg-[#323232] text-white font-light placeholder:text-[#C4C4C4]">
+                    <p>{item.name}</p>
+                    <img
+                      src="/delete.png"
+                      className="w-4 h-4"
+                      onClick={() => handleDelete(item.id)}
+                    />
+                  </div>
+                  <div className="flex gap-4 items-center justify-between py-6 bg-transparent rounded-lg ">
+                    <div className="flex flex-col">
+                    <label className="text-green-300">Start Date:</label>
+                    <input
+                      type="text"
+                      defaultValue={item.startDate}
+                      className="px-4 py-2 border border-gray-300 bg-[#323232] text-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-gray-500"
+                      placeholder="Start Date"
+                    />
+                    </div>
+                    <div className="flex flex-col ">
+                    <label className="text-red-300">End Date:</label>
+                    <input
+                      type="text"
+                      defaultValue={item.endDate}
+                      className="px-4 py-2 border border-gray-300 bg-[#323232] text-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-gray-500"
+                      placeholder="End Date"
+                    />
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>
-            {openCertificateModal && <CertificateAddModal certificateText={certificateText} setCertificateText={setCertificateText} />} 
+            {openCertificateModal && (
+              <CertificateAddModal
+                certificateText={certificateText}
+                setCertificateText={setCertificateText}
+                certificateStart={certificateStart}
+                setCertificateStart={setCertificateStart}
+              />
+            )}
             <div className="flex justify-center items-center py-4">
-
-            <div
-              className="border-[1px] border-[#D7FD44] flex gap-[0.62rem] px-10 py-2 rounded-3xl cursor-pointer max-w-[15.1875rem]"
-              onClick={() => handleOpenCertificateModal(null)}
-            >
-              <p className="w-3 h-3 text-[#D7FD44]">+</p>
-              <p className="text-[#D7FD44]">Add Experience</p>
-            </div>
+              <div
+                className="border-[1px] border-[#D7FD44] flex gap-[0.62rem] px-10 py-2 rounded-3xl cursor-pointer max-w-[15.1875rem]"
+                onClick={() => handleOpenCertificateModal(null)}
+              >
+                <p className="w-3 h-3 text-[#D7FD44]">+</p>
+                <p className="text-[#D7FD44]">Add Experience</p>
+              </div>
             </div>
           </div>
         </div>
