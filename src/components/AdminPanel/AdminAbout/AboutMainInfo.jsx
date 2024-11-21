@@ -10,7 +10,7 @@ import { useDeleteCertification } from "../../../hooks/useDeleteCertificate";
 
 export default function AboutMainInfo() {
   const [certificateText, setCertificateText] = useState("");
-  const [certificateStart, setCertificateStart] = useState("")
+  const [certificateStart, setCertificateStart] = useState("");
   const {
     openCertificateModal,
     setOpenCertificateModal,
@@ -47,7 +47,7 @@ export default function AboutMainInfo() {
           // startDate: certificateStart,
         });
         setCertificateText("");
-        setCertificateStart("")
+        setCertificateStart("");
       } catch (error) {
         console.error(error);
       }
@@ -114,9 +114,15 @@ export default function AboutMainInfo() {
             <div className="flex flex-col gap-3 ">
               <label className="text-white">Certification</label>
               {certification?.map((item) => (
-                <div key={item.id} className="bg-[#323232] p-[0.625rem] shadow-lg rounded-lg">
+                <div
+                  key={item.id}
+                  className="bg-[#323232] p-[0.625rem] shadow-lg rounded-lg"
+                >
                   <div className="w-full flex items-center justify-between   rounded-2xl bg-[#323232] text-white font-light placeholder:text-[#C4C4C4]">
-                    <p>{item.name}</p>
+                    <input
+                      className="placeholder:w-[34rem] w-[70%]  rounded-2xl bg-[#323232] text-white font-light placeholder:text-[#C4C4C4]"
+                      defaultValue={item.name}
+                    />
                     <img
                       src="/delete.png"
                       className="w-4 h-4"
@@ -125,22 +131,22 @@ export default function AboutMainInfo() {
                   </div>
                   <div className="flex gap-4 items-center justify-between py-6 bg-transparent rounded-lg ">
                     <div className="flex flex-col">
-                    <label className="text-green-300">Start Date:</label>
-                    <input
-                      type="text"
-                      defaultValue={item.startDate}
-                      className="px-4 py-2 border border-gray-300 bg-[#323232] text-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-gray-500"
-                      placeholder="Start Date"
-                    />
+                      <label className="text-green-300">Start Date:</label>
+                      <input
+                        type="text"
+                        defaultValue={item.startDate}
+                        className="px-4 py-2 border border-gray-300 bg-[#323232] text-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-gray-500"
+                        placeholder="Start Date"
+                      />
                     </div>
                     <div className="flex flex-col ">
-                    <label className="text-red-300">End Date:</label>
-                    <input
-                      type="text"
-                      defaultValue={item.endDate}
-                      className="px-4 py-2 border border-gray-300 bg-[#323232] text-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-gray-500"
-                      placeholder="End Date"
-                    />
+                      <label className="text-red-300">End Date:</label>
+                      <input
+                        type="text"
+                        defaultValue={item.endDate}
+                        className="px-4 py-2 border border-gray-300 bg-[#323232] text-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-gray-500"
+                        placeholder="End Date"
+                      />
                     </div>
                   </div>
                 </div>
