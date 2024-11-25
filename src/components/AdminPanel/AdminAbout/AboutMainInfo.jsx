@@ -7,20 +7,19 @@ import UpdateButton from "./UpdateButton";
 import CertificateAddModal from "./CertificateAddModal";
 import useAddCertification from "../../../hooks/useAddCertification";
 import { useDeleteCertification } from "../../../hooks/useDeleteCertificate";
+import useEditCertification from "../../../hooks/useEditCertification";
 
 export default function AboutMainInfo() {
   const [certificateText, setCertificateText] = useState("");
   const [certificateStart, setCertificateStart] = useState("");
-  const {
-    openCertificateModal,
-    setOpenCertificateModal,
-    setSelectedCertificateId,
-  } = useContext(Mycontext);
+  const {openCertificateModal,setOpenCertificateModal,selectedCertificateId,setSelectedCertificateId} = useContext(Mycontext);
   const { data, isLoading, error, isError } = useFetchAbout();
   const { data: certifications } = useCertification();
   const { mutate: deleteCertification } = useDeleteCertification();
   const { addCertificateInfo } = useAddCertification();
-  const editAbout = useEditAbout();
+  const editCertification = useEditCertification()
+  // const {mutate: editCertification} = useEditCertification()
+  const editAbout = useEditAbout()
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -40,19 +39,11 @@ export default function AboutMainInfo() {
       story: formAction.story,
       experience: formAction.experience,
     };
-    if (certificateText.trim() != "") {
-      try {
-        addCertificateInfo({
-          name: certificateText,
-          // startDate: certificateStart,
-        });
-        setCertificateText("");
-        setCertificateStart("");
-      } catch (error) {
-        console.error(error);
-      }
+    const updatedCertificate = {
+      certification : formAction.certification
     }
-    console.log(certificateStart);
+    console.log(updatedCertificate);
+    console.log(formAction.certificate);
 
     editAbout.mutate(
       { id: data.about[0].id, updatedAbout },
@@ -64,12 +55,42 @@ export default function AboutMainInfo() {
           console.error("Failed to update about info:", error.message);
         },
       }
-    );
+    )
+    if (selectedCertificateId) {
+      editCertification.mutate(
+        {
+          id: selectedCertificateId,
+          certification:  {updatedCertificate : formAction.certification} ,
+        },
+        {
+          onSuccess: () => console.log("Certification updated successfully!"),
+          onError: (error) => console.error("Failed to update certification:", error.message),
+        }
+      );
+    }
+
+    if (certificateText.trim() != "") {
+      try {
+        addCertificateInfo({
+          name: certificateText,
+        });
+        setCertificateText("");
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    // editCertification({selectedCertificateId, updateCertification})
+    // console.log(updateCertification, "update cert");
   }
+
+  // const handleCertificationEdit = (id) = {
+  // }
 
   const handleOpenCertificateModal = (id) => {
     setSelectedCertificateId(id);
-    setOpenCertificateModal(true);
+    // setOpenCertificateModal(true);
+    console.log(id);
   };
 
   const handleDelete = (id) => {
@@ -77,10 +98,6 @@ export default function AboutMainInfo() {
   };
 
   const { story, experience } = data.about[0];
-  const yearExp = experience
-    .split("")
-    .filter((char) => !isNaN(char))
-    .join("");
   const certification = certifications?.data;
 
   return (
@@ -105,7 +122,7 @@ export default function AboutMainInfo() {
               type="number"
               name="experience"
               placeholder="add your experience"
-              defaultValue={yearExp}
+              defaultValue={experience}
               className="placeholder:w-[34rem] w-full p-[0.625rem] rounded-2xl bg-[#323232] text-white font-light placeholder:text-[#C4C4C4]"
             />
           </div>
@@ -120,9 +137,11 @@ export default function AboutMainInfo() {
                 >
                   <div className="w-full flex items-center justify-between   rounded-2xl bg-[#323232] text-white font-light placeholder:text-[#C4C4C4]">
                     <input
+                      name="certification"
                       className="placeholder:w-[34rem] w-[70%]  rounded-2xl bg-[#323232] text-white font-light placeholder:text-[#C4C4C4]"
                       defaultValue={item.name}
                     />
+                    <p onClick={() => handleOpenCertificateModal(item.id)}>Edit</p>
                     <img
                       src="/delete.png"
                       className="w-4 h-4"

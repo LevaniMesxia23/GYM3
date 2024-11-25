@@ -7,13 +7,7 @@ import useEditPrices from "../../../hooks/useEditPrices";
 function EditModal() {
   const { selectedId, closeModal } = useContext(Mycontext);
   const { mutate: editService } = useEditPrices();
-
-  const {
-    data,
-    isLoading: priceLoading,
-    isError,
-    error: priceError,
-  } = usePriceId(selectedId);
+  const { data, isLoading: priceLoading, isError, error: priceError } = usePriceId(selectedId);
 
   if (priceLoading) {
     return <p>Loading...</p>;

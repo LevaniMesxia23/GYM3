@@ -92,7 +92,7 @@ export const editCertificateInfo = async (id,updatedCertificate) => {
   const { data: editCertificate, error } = await supabase
     .from("certification")
     .update(updatedCertificate)
-    .eq(id, "id")
+    .eq("id",id)
     .select()
     console.log(editCertificate);
   if (error) throw new Error(error.message);
