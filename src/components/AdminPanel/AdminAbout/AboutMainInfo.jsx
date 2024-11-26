@@ -57,11 +57,9 @@ export default function AboutMainInfo() {
       }
     )
     if (selectedCertificateId) {
+      console.log(selectedCertificateId);
       editCertification.mutate(
-        {
-          id: selectedCertificateId,
-          certification:  {updatedCertificate : formAction.certification} ,
-        },
+        {id: selectedCertificateId, updatedCertificate: formAction.certification},
         {
           onSuccess: () => console.log("Certification updated successfully!"),
           onError: (error) => console.error("Failed to update certification:", error.message),
@@ -84,13 +82,13 @@ export default function AboutMainInfo() {
     // console.log(updateCertification, "update cert");
   }
 
-  // const handleCertificationEdit = (id) = {
-  // }
+  const handleCertificationEdit = (id) => {
+    setSelectedCertificateId(id)
+    console.log(id);
+  }
 
   const handleOpenCertificateModal = (id) => {
-    setSelectedCertificateId(id);
-    // setOpenCertificateModal(true);
-    console.log(id);
+    setOpenCertificateModal(true);
   };
 
   const handleDelete = (id) => {
@@ -141,7 +139,7 @@ export default function AboutMainInfo() {
                       className="placeholder:w-[34rem] w-[70%]  rounded-2xl bg-[#323232] text-white font-light placeholder:text-[#C4C4C4]"
                       defaultValue={item.name}
                     />
-                    <p onClick={() => handleOpenCertificateModal(item.id)}>Edit</p>
+                    <p onClick={() => handleCertificationEdit(item.id)}>Edit</p>
                     <img
                       src="/delete.png"
                       className="w-4 h-4"
