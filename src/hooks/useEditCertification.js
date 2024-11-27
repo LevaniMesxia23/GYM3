@@ -5,7 +5,7 @@ const useEditCertification = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: ({  id, updatedCertificate  }) => editCertificateInfo(id,updatedCertificate), 
+    mutationFn: ({ id, updatedCertificate }) => editCertificateInfo(id,updatedCertificate), 
     onSuccess: () => {
       queryClient.invalidateQueries(["certification"]);
     },

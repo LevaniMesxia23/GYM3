@@ -40,7 +40,7 @@ const ServicesCarousel = () => {
                     </div>
                   ) : (
                     <img
-                      className="w-full h-[240px] object-cover rounded-lg transition-transform duration-500 ease-in-out transform group-hover:scale-105 group-hover:h-[50%]"
+                      className="w-full h-[240px] object-cover rounded-lg transition-transform duration-500 ease-in-out transform  group-hover:h-[50%]"
                       src={service.image}
                       alt={service.name}
                     />

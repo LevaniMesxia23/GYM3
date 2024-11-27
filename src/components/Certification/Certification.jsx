@@ -13,6 +13,7 @@ const Certification = () => {
     error,
   } = useCertification();
   const certification = certifications?.data;
+  console.log(certification);
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -46,11 +47,11 @@ const Certification = () => {
               Certifications
             </h3>
           </div>
-          <div className="text-white md:grid-cols-3 md:grid md::grid-cols-2 bg-[#121212] flex flex-col gap-3 mb-[5rem]">
+          <div className="text-white md:grid-cols-2 md:grid md::grid-cols-2 bg-[#121212] flex flex-col gap-10 mb-[5rem]">
             {certification?.map((certification, i) => (
+              <div key={i} className="flex items-center justify-between bg-[#323232] hover:bg-[#363636] p-6 rounded-lg shadow-xl">
               <span
-                key={i}
-                className="flex text-[#FFFFFF] leading-[21.8px] items-start text-[14px] gap-2"
+                className="flex text-[#FFFFFF] leading-[21.8px] items-start text-[14px] gap-2 w-[50%]"
               >
                 <div className="relative flex items-center justify-center">
                   <div className="w-10">
@@ -64,6 +65,12 @@ const Certification = () => {
                 </div>
                 {certification.name}
               </span>
+              <div className="flex flex-col">
+                <p><b className="text-green-300">Start</b> {certification.startDate}</p>
+                <p><b className="text-red-300">End</b> {certification.endDate}</p>
+              </div>
+              </div>
+              
             ))}
           </div>
         </div>
