@@ -32,6 +32,7 @@ function EditModal() {
   }
   const { id, name, sessions_single, sessions_five, sessions_ten } =
     data?.about[0];
+    console.log(data.about[0]);
 
   return (
     <div className="p-[2.56rem] bg-[#323232] flex items-center justify-center w-[55rem] rounded-[1.25rem]">

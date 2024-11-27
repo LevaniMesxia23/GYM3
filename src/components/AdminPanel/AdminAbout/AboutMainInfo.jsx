@@ -8,17 +8,17 @@ import CertificateAddModal from "./CertificateAddModal";
 import useAddCertification from "../../../hooks/useAddCertification";
 import { useDeleteCertification } from "../../../hooks/useDeleteCertificate";
 import useEditCertification from "../../../hooks/useEditCertification";
+import EditCertification from "./EditCertification";
 
 export default function AboutMainInfo() {
   const [certificateText, setCertificateText] = useState("");
-  const [certificateStart, setCertificateStart] = useState("");
-  const {openCertificateModal,setOpenCertificateModal,selectedCertificateId,setSelectedCertificateId} = useContext(Mycontext);
+  // const [certificateStart, setCertificateStart] = useState("");
+  const {openCertificateModal,setOpenCertificateModal,selectedCertificateId,setSelectedCertificateId,isOpenModalCertificate, setIsOpenModalCertificate} = useContext(Mycontext);
   const { data, isLoading, error, isError } = useFetchAbout();
   const { data: certifications } = useCertification();
   const { mutate: deleteCertification } = useDeleteCertification();
   const { addCertificateInfo } = useAddCertification();
-  const editCertification = useEditCertification()
-  // const {mutate: editCertification} = useEditCertification()
+  // const editCertification = useEditCertification()
   const editAbout = useEditAbout()
 
   if (isLoading) {
@@ -39,10 +39,10 @@ export default function AboutMainInfo() {
       story: formAction.story,
       experience: formAction.experience,
     };
-    const updatedCertificate = {
-      certification : formAction.certification
-    }
-    console.log(updatedCertificate);
+    // const updatedCertificate = {
+    //   certification : formAction.certification
+    // }
+    // console.log(updatedCertificate);
     console.log(formAction.certificate);
 
     editAbout.mutate(
@@ -58,13 +58,13 @@ export default function AboutMainInfo() {
     )
     if (selectedCertificateId) {
       console.log(selectedCertificateId);
-      editCertification.mutate(
-        {id: selectedCertificateId, updatedCertificate: formAction.certification},
-        {
-          onSuccess: () => console.log("Certification updated successfully!"),
-          onError: (error) => console.error("Failed to update certification:", error.message),
-        }
-      );
+      // editCertification.mutate(
+      //   {id: selectedCertificateId, updatedCertificate: formAction.certification},
+      //   {
+      //     onSuccess: () => console.log("Certification updated successfully!"),
+      //     onError: (error) => console.error("Failed to update certification:", error.message),
+      //   }
+      // );
     }
 
     if (certificateText.trim() != "") {
@@ -84,6 +84,7 @@ export default function AboutMainInfo() {
 
   const handleCertificationEdit = (id) => {
     setSelectedCertificateId(id)
+    setIsOpenModalCertificate(true)
     console.log(id);
   }
 
@@ -134,11 +135,7 @@ export default function AboutMainInfo() {
                   className="bg-[#323232] p-[0.625rem] shadow-lg rounded-lg"
                 >
                   <div className="w-full flex items-center justify-between   rounded-2xl bg-[#323232] text-white font-light placeholder:text-[#C4C4C4]">
-                    <input
-                      name="certification"
-                      className="placeholder:w-[34rem] w-[70%]  rounded-2xl bg-[#323232] text-white font-light placeholder:text-[#C4C4C4]"
-                      defaultValue={item.name}
-                    />
+                    <p name="certification">{item.name}</p>
                     <p onClick={() => handleCertificationEdit(item.id)}>Edit</p>
                     <img
                       src="/delete.png"
@@ -190,6 +187,11 @@ export default function AboutMainInfo() {
         </div>
         <UpdateButton />
       </form>
+      {isOpenModalCertificate && selectedCertificateId && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+          <EditCertification />
+        </div>
+      )}
     </div>
   );
 }
