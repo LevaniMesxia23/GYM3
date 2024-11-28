@@ -15,7 +15,6 @@ export const fetchServices = async () => {
 };
 export const fetchCertification = async () => {
   let { data, error } = await supabase.from("certification").select("*");
-  console.log(data);
   return { data, error };
 };
 
@@ -29,6 +28,14 @@ export const fetchPricesId = async (priceId) => {
     .from("prices")
     .select("*")
     .eq("id", priceId);
+  return { about, error };
+};
+
+export const fetchCertificationId = async (certificationId) => {
+  let { data: about, error } = await supabase
+    .from("certification")
+    .select("*")
+    .eq("id", certificationId);
   return { about, error };
 };
 
@@ -93,10 +100,8 @@ export const editCertificateInfo = async (id,updatedCertificate) => {
     .from("certification")
     .update(updatedCertificate)
     .eq("id",id)
-    .select()
     console.log(editCertificate);
   if (error) throw new Error(error.message);
-  return editCertificate;
 };
 
 export const clientInfo = [

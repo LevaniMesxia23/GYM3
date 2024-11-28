@@ -3,8 +3,7 @@ import { editCertificateInfo } from "../services/GymApi";
 
 const useEditCertification = () => {
   const queryClient = useQueryClient();
-
-  return useMutation({
+  const { mutate, error, isError,isPending } = useMutation({
     mutationFn: ({ id, updatedCertificate }) => editCertificateInfo(id,updatedCertificate), 
     onSuccess: () => {
       queryClient.invalidateQueries(["certification"]);
@@ -13,6 +12,7 @@ const useEditCertification = () => {
       console.error("Error updating About:", error.message);
     },
   });
+  return { mutate, error, isError,isPending };
 };
 
 export default useEditCertification;
