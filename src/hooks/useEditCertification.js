@@ -1,9 +1,9 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { editCertificateInfo } from "../services/GymApi";
 
-const useEditCertification = (id,updatedCertificate) => {
+const useEditCertification = () => {
   const queryClient = useQueryClient();
-  const { mutate, isLoading, error, isError } = useMutation({
+  const { mutate, error, isError,isPending } = useMutation({
     mutationFn: ({ id, updatedCertificate }) => editCertificateInfo(id,updatedCertificate), 
     onSuccess: () => {
       queryClient.invalidateQueries(["certification"]);
@@ -12,7 +12,7 @@ const useEditCertification = (id,updatedCertificate) => {
       console.error("Error updating About:", error.message);
     },
   });
-  return { mutate, isLoading, error, isError };
+  return { mutate, error, isError,isPending };
 };
 
 export default useEditCertification;

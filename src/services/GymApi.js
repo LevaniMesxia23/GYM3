@@ -100,7 +100,6 @@ export const editCertificateInfo = async (id,updatedCertificate) => {
     .from("certification")
     .update(updatedCertificate)
     .eq("id",id)
-    .select()
     console.log(editCertificate);
   if (error) throw new Error(error.message);
 };

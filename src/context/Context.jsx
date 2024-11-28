@@ -17,7 +17,7 @@ export const MyProvider = ({ children }) => {
   const [openEditModal, setOpenEditModal] = useState(false);
   const [openCertificateModal, setOpenCertificateModal] = useState(false);
   const [selectedCertificateId, setSelectedCertificateId] = useState(null);
-  const [isOpenModalCertificate, setIsOpenModalCertificate] = useState(null);
+  const [isOpenModalCertificate, setIsOpenModalCertificate] = useState(false);
   const [selectedId, setSelectedId] = useState(null);
   const isDesktop = useMediaQuery("only screen and (min-width : 1024px)");
   const isTablet = useMediaQuery("only screen and (min-width : 769px)");
@@ -52,8 +52,8 @@ export const MyProvider = ({ children }) => {
         setOpenCertificateModal,
         selectedCertificateId,
         setSelectedCertificateId,
-        isOpenModalCertificate,
-        setIsOpenModalCertificate,
+        isOpenModalCertificate, 
+        setIsOpenModalCertificate
       }}
     >
       {children}

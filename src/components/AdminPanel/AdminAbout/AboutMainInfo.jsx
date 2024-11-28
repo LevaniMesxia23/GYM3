@@ -170,8 +170,8 @@ export default function AboutMainInfo() {
               <CertificateAddModal
                 certificateText={certificateText}
                 setCertificateText={setCertificateText}
-                certificateStart={certificateStart}
-                setCertificateStart={setCertificateStart}
+                // certificateStart={certificateStart}
+                // setCertificateStart={setCertificateStart}
               />
             )}
             <div className="flex justify-center items-center py-4">
