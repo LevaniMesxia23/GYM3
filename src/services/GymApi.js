@@ -23,6 +23,14 @@ export const fetchPrices = async () => {
   return { about, error };
 };
 
+export const fetchBlogs = async () => {
+  let {data: blogs, error} = await supabase
+  .from("blog")
+  .select("*")
+  console.log(blogs);
+  return {blogs, error}
+}
+
 export const fetchPricesId = async (priceId) => {
   let { data: about, error } = await supabase
     .from("prices")
