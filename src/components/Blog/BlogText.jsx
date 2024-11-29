@@ -4,7 +4,11 @@ const BlogText = () => {
   const { data, isLoading, isError, error } = useFetchBlogs();
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return (
+      <div className="flex justify-center items-center w-full h-[240px]">
+        <l-grid size="60" speed="1.5" color="#D7FD44" />
+      </div>
+    );
   }
 
   if (isError) {

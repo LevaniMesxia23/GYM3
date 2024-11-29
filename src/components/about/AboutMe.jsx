@@ -79,7 +79,7 @@ function AboutMe() {
         )}
         <div className="flex justify-start lg:justify-end">
           <Link to={"/stories"}>
-            <button className="bg-[#B8D44A] text-[1rem] rounded-lg py-2 px-[3.325rem]">
+            <button className="bg-[#B8D44A] text-[1rem] rounded-lg py-2 px-[3.325rem] cursor-pointer transform scale-100 hover:scale-105 transition-transform duration-300">
               See More
             </button>
           </Link>

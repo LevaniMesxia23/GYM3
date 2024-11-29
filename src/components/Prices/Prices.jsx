@@ -90,11 +90,11 @@ function Prices() {
                   {item.name}
                 </p>
                 {!isMobile && (
-                  <div className="bg-[#D7FD44] rounded-full w-[5rem] h-[5rem]  flex items-center justify-center">
+                  <div className="bg-[#D7FD44] rounded-full w-[5rem] h-[5rem]  flex items-center justify-center cursor-pointer transform scale-100 hover:scale-125 transition-transform duration-300">
                     <img
                       src={DownArrow}
                       alt="Expand section"
-                      className={`transition-transform duration-300 ${
+                      className={`transition-transform duration-300  ${
                         arrowClick.includes(index)
                           ? "rotate-[49deg]"
                           : "rotate-0"
