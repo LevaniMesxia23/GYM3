@@ -1,13 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import useEditCertification from "../../../hooks/useEditCertification";
-import { useCertification } from "../../../hooks/useCertification";
 import { Mycontext } from "../../../context/Context";
 import { useCertificationId } from "../../../hooks/useCertificationId";
 import Cancel from "/cancel.svg";
 
 export default function EditCertification() {
-  const [certificateText, setCertificateText] = useState("");
-  const [certificateStart, setCertificateStart] = useState("");
   const { selectedCertificateId,isOpenModalCertificate, setIsOpenModalCertificate } = useContext(Mycontext);
   const { data: certificationId, isError : isErrorCert, error : errorCert, isLoading: isLoadingCert } = useCertificationId(selectedCertificateId);
   const { mutate: editCertification,isPending,isError,error } = useEditCertification();
@@ -37,10 +34,8 @@ export default function EditCertification() {
     const name = formData.get("name")
     const startDate = formData.get("startDate")
     const endDate = formData.get("endDate")
-    // console.log(formAction);
 
     editCertification({id, name, startDate, endDate});
-
     setIsOpenModalCertificate(!isOpenModalCertificate)
   }
 
@@ -62,7 +57,6 @@ export default function EditCertification() {
           </div>
         </div>
         <form onSubmit={certificateSubmit}>
-
           <div className="flex flex-col gap-3">
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 bg-white rounded-full"></div>
@@ -79,7 +73,7 @@ export default function EditCertification() {
             </div>
             <div className="flex flex-col ml-[1.44rem]">
               <input
-                type="text"
+                type="date"
                 className="w-full bg-[#323232] rounded-lg h-11 pl-[1.44rem] text-white"
                 placeholder="Weight Loss"
                 name="startDate"
@@ -88,7 +82,7 @@ export default function EditCertification() {
             </div>
             <div className="flex flex-col ml-[1.44rem]">
               <input
-                type="text"
+                type="date"
                 className="w-full bg-[#323232] rounded-lg h-11 pl-[1.44rem] text-white"
                 placeholder="Weight Loss"
                 name="endDate"

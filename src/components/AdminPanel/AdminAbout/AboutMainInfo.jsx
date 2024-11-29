@@ -61,6 +61,7 @@ export default function AboutMainInfo() {
           endDate: certificateEnd
         });
         setCertificateText("");
+        setOpenCertificateModal(false)
       } catch (error) {
         console.error(error);
       }
@@ -74,6 +75,9 @@ export default function AboutMainInfo() {
 
   const handleOpenCertificateModal = (id) => {
     setOpenCertificateModal(true);
+  };
+  const handleCloseCertificateModal = (id) => {
+    setOpenCertificateModal(false);
   };
 
   const handleDelete = (id) => {
@@ -169,7 +173,7 @@ export default function AboutMainInfo() {
                 setCertificateEnd={setCertificateEnd}
               />
             )}
-            <div className="flex justify-center items-center py-4">
+            <div className="flex justify-center items-center py-4 gap-4">
               <div
                 className="border-[1px] border-[#D7FD44] flex gap-[0.62rem] px-10 py-2 rounded-3xl cursor-pointer max-w-[15.1875rem]"
                 onClick={() => handleOpenCertificateModal(null)}
@@ -177,6 +181,12 @@ export default function AboutMainInfo() {
                 <p className="w-3 h-3 text-[#D7FD44]">+</p>
                 <p className="text-[#D7FD44]">Add Experience</p>
               </div>
+              {openCertificateModal && <div
+                className="border-[1px] border-[#D7FD44] flex gap-[0.62rem] px-10 py-2 rounded-3xl cursor-pointer max-w-[15.1875rem]"
+                onClick={() => handleCloseCertificateModal(null)}
+              >
+                <p className="text-[#D7FD44]">Cancel</p>
+              </div>}
             </div>
           </div>
         </div>
