@@ -11,7 +11,7 @@ function CustomersInfo() {
 
   if (isLoading) {
     return (
-      <div className="bg-gray h-[6.25rem] mt-[348px] flex px-10 justify-evenly gap-3">
+      <div className=" bg-[#292929] h-[6.25rem] mt-[348px] flex px-10 justify-evenly gap-3">
         {isTablet && (
           <div className="flex items-center">
             <Skeleton circle={true} height="2.77388rem" width="2.77388rem" />

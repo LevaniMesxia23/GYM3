@@ -43,7 +43,6 @@ export default function AboutMainInfo() {
     //   certification : formAction.certification
     // }
     // console.log(updatedCertificate);
-    console.log(formAction.certificate);
 
     editAbout.mutate(
       { id: data.about[0].id, updatedAbout },
@@ -57,7 +56,7 @@ export default function AboutMainInfo() {
       }
     )
     if (selectedCertificateId) {
-      console.log(selectedCertificateId);
+
       // editCertification.mutate(
       //   {id: selectedCertificateId, updatedCertificate: formAction.certification},
       //   {
@@ -85,7 +84,6 @@ export default function AboutMainInfo() {
   const handleCertificationEdit = (id) => {
     setSelectedCertificateId(id)
     setIsOpenModalCertificate(true)
-    console.log(id);
   }
 
   const handleOpenCertificateModal = (id) => {
@@ -136,12 +134,21 @@ export default function AboutMainInfo() {
                 >
                   <div className="w-full flex items-center justify-between   rounded-2xl bg-[#323232] text-white font-light placeholder:text-[#C4C4C4]">
                     <p name="certification">{item.name}</p>
-                    <p onClick={() => handleCertificationEdit(item.id)}>Edit</p>
+                    <div className="flex gap-6 items-center">
+
+                    <div onClick={() => handleCertificationEdit(item.id)} className="bg-[#D7FD44] w-[2.375rem] h-[2.375rem] rounded-full flex items-center justify-center">
+                    <img
+                        className="w-[1rem] h-[1rem]"
+                        src="/pen.png"
+                        alt="Edit"
+                      />
+                    </div>
                     <img
                       src="/delete.png"
                       className="w-4 h-4"
                       onClick={() => handleDelete(item.id)}
                     />
+                    </div>
                   </div>
                   <div className="flex gap-4 items-center justify-between py-6 bg-transparent rounded-lg ">
                     <div className="flex flex-col">

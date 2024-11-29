@@ -30,10 +30,14 @@ function StoryCarousel() {
     return (
       <div className="border-[#4D4D4D] border-[1px] p-10 bg-[#121212] rounded-2xl mx-10 flex flex-col items-center ">
         <div className="flex flex-col items-center justify-center mb-4">
-          <l-grid size="60" speed="1.5" color="#D7FD44" />
         </div>
-        <div className="flex flex-col w-full">
-          <Skeleton count={1} height={215 * 3} className="mb-4 bg-[#e5e7eb]" />
+        <div className="flex flex-row justify-between w-full">
+          <div className=" w-[49%]">
+          <Skeleton count={3} height={215} className="mb-4 bg-[#e5e7eb]" />
+          </div>
+          <div className=" w-[49%]">
+          <Skeleton count={3} height={215} className="mb-4 bg-[#e5e7eb]" />
+          </div>
         </div>
       </div>
     );

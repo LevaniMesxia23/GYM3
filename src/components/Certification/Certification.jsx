@@ -5,6 +5,7 @@ import About from "./About";
 import GirlRun from "/girlRun.png";
 import StoryCarousel from "../SuccessStory/StoryCarousel";
 import Check from "/check.png";
+import Skeleton from "react-loading-skeleton";
 const Certification = () => {
   const {
     data: certifications,
@@ -16,8 +17,18 @@ const Certification = () => {
   console.log(certification);
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return (
+      <div className="ml-12">
+        <Skeleton
+          width={"95%"}
+          height={"auto"}
+          className="rounded-lg mx-auto w-[95%] md:w-[100%]"
+          style={{ maxWidth: "100%", aspectRatio: "16/9" }}
+        />
+      </div>
+    );
   }
+  
   if (isError) {
     return <p>{error.message}</p>;
   }
@@ -25,10 +36,11 @@ const Certification = () => {
   return (
     <div className="bg-[#121212] pb-[5rem]">
       <div className=" object-cover md:w-[92%] mx-auto mb-[5rem]">
-        <img
+         <img
           className="rounded-lg mx-auto w-[95%] md:w-[100%] "
           src={GirlRun}
         />
+        
       </div>
       <div className="flex flex-col  items-center justify-center mx-auto w-[92%]">
         <About />
@@ -47,9 +59,9 @@ const Certification = () => {
               Certifications
             </h3>
           </div>
-          <div className="text-white md:grid-cols-2 md:grid md::grid-cols-2 bg-[#121212] flex flex-col gap-10 mb-[5rem]">
+          <div className="text-white md:grid-cols-2 md:grid bg-[#121212] flex flex-col gap-10 mb-[5rem]">
             {certification?.map((certification, i) => (
-              <div key={i} className="flex items-center justify-between bg-[#323232] hover:bg-[#363636] p-6 rounded-lg shadow-xl">
+              <div key={i} className="flex items-center justify-between bg-[#323232] hover:bg-[#3e3e3e] p-6 rounded-lg shadow-xl cursor-pointer transform scale-100 hover:scale-105 transition-transform duration-300">
               <span
                 className="flex text-[#FFFFFF] leading-[21.8px] items-start text-[14px] gap-2 w-[50%]"
               >

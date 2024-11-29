@@ -28,24 +28,21 @@ export default function EditCertification() {
     return <p>{errorCert.message}</p>;
   }
 
+  const { id, name, endDate, startDate } = certificationId?.about[0] || {};
+
   function certificateSubmit(e) {
     e.preventDefault();
 
     const formData = new FormData(e.target);
-    const formAction = Object.fromEntries(formData);
+    const name = formData.get("name")
+    const startDate = formData.get("startDate")
+    const endDate = formData.get("endDate")
+    // console.log(formAction);
 
-    const updatedCertificate = {
-      name: formAction.title,
-      startDate: formAction.startDate,
-      endDate: formAction.endDate
-    };
+    editCertification({id, name, startDate, endDate});
 
-    editCertification({ id, updatedCertificate });
-    console.log(id, updatedCertificate);
+    setIsOpenModalCertificate(!isOpenModalCertificate)
   }
-
-  const {id,name,endDate, startDate} = certificationId?.about[0] || {};
-  console.log(id,name, startDate, endDate);
 
   return (
     <div className="p-[2.56rem] bg-[#323232] flex items-center justify-center w-[55rem] rounded-[1.25rem]">
@@ -76,7 +73,7 @@ export default function EditCertification() {
                 type="text"
                 className="w-full bg-[#323232] rounded-lg h-11 pl-[1.44rem] text-white"
                 placeholder="Weight Loss"
-                name="title"
+                name="name"
                 defaultValue={name}
               />
             </div>
@@ -111,4 +108,43 @@ export default function EditCertification() {
   );
 }
 
-
+// {certification?.map((item) => (
+//   <div
+//     key={item.id}
+//     className="bg-[#323232] p-[0.625rem] shadow-lg rounded-lg"
+//   >
+//     <div className="w-full flex items-center justify-between   rounded-2xl bg-[#323232] text-white font-light placeholder:text-[#C4C4C4]">
+//       <input
+//         name="certification"
+//         className="placeholder:w-[34rem] w-[70%]  rounded-2xl bg-[#323232] text-white font-light placeholder:text-[#C4C4C4]"
+//         defaultValue={item.name}
+//       />
+//       <p onClick={() => handleCertificationEdit(item.id)}>Edit</p>
+//       <img
+//         src="/delete.png"
+//         className="w-4 h-4"
+//         onClick={() => handleDelete(item.id)}
+//       />
+//     </div>
+//     <div className="flex gap-4 items-center justify-between py-6 bg-transparent rounded-lg ">
+//       <div className="flex flex-col">
+//         <label className="text-green-300">Start Date:</label>
+//         <input
+//           type="text"
+//           defaultValue={item.startDate}
+//           className="px-4 py-2 border border-gray-300 bg-[#323232] text-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-gray-500"
+//           placeholder="Start Date"
+//         />
+//       </div>
+//       <div className="flex flex-col ">
+//         <label className="text-red-300">End Date:</label>
+//         <input
+//           type="text"
+//           defaultValue={item.endDate}
+//           className="px-4 py-2 border border-gray-300 bg-[#323232] text-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-gray-500"
+//           placeholder="End Date"
+//         />
+//       </div>
+//     </div>
+//   </div>
+// ))}

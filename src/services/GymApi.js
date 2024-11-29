@@ -23,6 +23,14 @@ export const fetchPrices = async () => {
   return { about, error };
 };
 
+export const fetchBlogs = async () => {
+  let {data: blogs, error} = await supabase
+  .from("blog")
+  .select("*")
+  console.log(blogs);
+  return {blogs, error}
+}
+
 export const fetchPricesId = async (priceId) => {
   let { data: about, error } = await supabase
     .from("prices")
@@ -95,13 +103,20 @@ export const deleteCertification = async (id) => {
   return deleteCertificate
 }
 
-export const editCertificateInfo = async (id,updatedCertificate) => {
+export const editCertificateInfo = async (id, name, startDate, endDate) => {
   const { data: editCertificate, error } = await supabase
     .from("certification")
-    .update(updatedCertificate)
+    .update({
+      name,
+      startDate,
+      endDate,
+    })
     .eq("id",id)
-    console.log(editCertificate);
-  if (error) throw new Error(error.message);
+    if(error){
+      console.error("Error updating certificate", error.message)
+      throw new Error(error.message)
+    }
+    return editCertificate
 };
 
 export const clientInfo = [
