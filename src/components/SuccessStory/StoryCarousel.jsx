@@ -91,7 +91,7 @@ function StoryCarousel() {
                 <img
                   src={image}
                   alt={`Success Story ${index + 1}`}
-                  className="w-full h-[215px] object-cover"
+                  className="w-full lg:h-[320px] h-[215px] object-cover"
                 />
               </div>
             </SwiperSlide>

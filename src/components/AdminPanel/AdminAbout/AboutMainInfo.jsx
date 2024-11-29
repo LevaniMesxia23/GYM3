@@ -7,18 +7,17 @@ import UpdateButton from "./UpdateButton";
 import CertificateAddModal from "./CertificateAddModal";
 import useAddCertification from "../../../hooks/useAddCertification";
 import { useDeleteCertification } from "../../../hooks/useDeleteCertificate";
-import useEditCertification from "../../../hooks/useEditCertification";
 import EditCertification from "./EditCertification";
 
 export default function AboutMainInfo() {
   const [certificateText, setCertificateText] = useState("");
-  // const [certificateStart, setCertificateStart] = useState("");
+  const [certificateStart, setCertificateStart] = useState("");
+  const [certificateEnd, setCertificateEnd] = useState("");
   const {openCertificateModal,setOpenCertificateModal,selectedCertificateId,setSelectedCertificateId,isOpenModalCertificate, setIsOpenModalCertificate} = useContext(Mycontext);
   const { data, isLoading, error, isError } = useFetchAbout();
   const { data: certifications } = useCertification();
   const { mutate: deleteCertification } = useDeleteCertification();
   const { addCertificateInfo } = useAddCertification();
-  // const editCertification = useEditCertification()
   const editAbout = useEditAbout()
 
   if (isLoading) {
@@ -39,10 +38,6 @@ export default function AboutMainInfo() {
       story: formAction.story,
       experience: formAction.experience,
     };
-    // const updatedCertificate = {
-    //   certification : formAction.certification
-    // }
-    // console.log(updatedCertificate);
 
     editAbout.mutate(
       { id: data.about[0].id, updatedAbout },
@@ -56,29 +51,20 @@ export default function AboutMainInfo() {
       }
     )
     if (selectedCertificateId) {
-
-      // editCertification.mutate(
-      //   {id: selectedCertificateId, updatedCertificate: formAction.certification},
-      //   {
-      //     onSuccess: () => console.log("Certification updated successfully!"),
-      //     onError: (error) => console.error("Failed to update certification:", error.message),
-      //   }
-      // );
     }
 
     if (certificateText.trim() != "") {
       try {
         addCertificateInfo({
           name: certificateText,
+          startDate: certificateStart,
+          endDate: certificateEnd
         });
         setCertificateText("");
       } catch (error) {
         console.error(error);
       }
     }
-
-    // editCertification({selectedCertificateId, updateCertification})
-    // console.log(updateCertification, "update cert");
   }
 
   const handleCertificationEdit = (id) => {
@@ -136,7 +122,7 @@ export default function AboutMainInfo() {
                     <p name="certification">{item.name}</p>
                     <div className="flex gap-6 items-center">
 
-                    <div onClick={() => handleCertificationEdit(item.id)} className="bg-[#D7FD44] w-[2.375rem] h-[2.375rem] rounded-full flex items-center justify-center">
+                    <div onClick={() => handleCertificationEdit(item.id)} className="bg-[#D7FD44] w-[2.375rem] h-[2.375rem] rounded-full flex items-center justify-center cursor-pointer">
                     <img
                         className="w-[1rem] h-[1rem]"
                         src="/pen.png"
@@ -145,7 +131,7 @@ export default function AboutMainInfo() {
                     </div>
                     <img
                       src="/delete.png"
-                      className="w-4 h-4"
+                      className="w-4 h-4 cursor-pointer"
                       onClick={() => handleDelete(item.id)}
                     />
                     </div>
@@ -177,8 +163,10 @@ export default function AboutMainInfo() {
               <CertificateAddModal
                 certificateText={certificateText}
                 setCertificateText={setCertificateText}
-                // certificateStart={certificateStart}
-                // setCertificateStart={setCertificateStart}
+                certificateStart={certificateStart}
+                setCertificateStart={setCertificateStart}
+                certificateEnd={certificateEnd}
+                setCertificateEnd={setCertificateEnd}
               />
             )}
             <div className="flex justify-center items-center py-4">
