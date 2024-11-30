@@ -10,6 +10,7 @@ function AdminBlog() {
   const [arrowClick, setArrowClick] = useState([]);
   const [openBlogEditModal, setOpenBlogEditModal] = useState(false);
   const [openBlogAddModal, setOpenBlogAddModal] = useState(false);
+  const [cancel, setCancel] = useState(false)
   const [] = useState();
   const { data: fetchBlogs, isError, isLoading, error } = useFetchBlogs();
   const { addBlogs } = useAddBlogs();
@@ -28,6 +29,7 @@ function AdminBlog() {
 
   const handleOpenAddModal = () => {
     setOpenBlogAddModal(true);
+    setCancel(true)
   };
 
   const handleOpenEditModal = () => {
@@ -133,9 +135,9 @@ function AdminBlog() {
             </div>
           ))}
 
-      {openBlogAddModal && (
+      {openBlogAddModal && cancel && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-          <BlogAddModal />
+          <BlogAddModal cancel={cancel} setCancel={setCancel}/>
         </div>
       )}
       {openBlogEditModal && (
