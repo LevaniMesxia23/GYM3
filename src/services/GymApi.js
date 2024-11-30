@@ -55,6 +55,13 @@ export const AddServices = async (addServices) => {
   if (error) throw new Error(error.message);
   return { services, error };
 };
+export const AddBlogs = async (addBlogs) => {
+  const { data: blogs, error } = await supabase
+    .from("blog")
+    .insert([addBlogs]);
+  if (error) throw new Error(error.message);
+  return { blogs, error };
+};
 
 export const deleteServices = async (id) => {
   const { data : deleteService, error} = await supabase
