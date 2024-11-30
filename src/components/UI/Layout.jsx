@@ -9,7 +9,7 @@ const Layout = () => {
   return (
     <div className="flex flex-col min-h-screen"> 
       {!isHomePage && <Header />}
-      <main className="flex-grow"> 
+      <main className="flex-grow bg-[#121212]"> 
         <Outlet />
       </main>
       <Footer />

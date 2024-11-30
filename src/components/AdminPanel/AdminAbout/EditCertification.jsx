@@ -1,13 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import useEditCertification from "../../../hooks/useEditCertification";
-import { useCertification } from "../../../hooks/useCertification";
 import { Mycontext } from "../../../context/Context";
 import { useCertificationId } from "../../../hooks/useCertificationId";
 import Cancel from "/cancel.svg";
 
 export default function EditCertification() {
-  const [certificateText, setCertificateText] = useState("");
-  const [certificateStart, setCertificateStart] = useState("");
   const { selectedCertificateId,isOpenModalCertificate, setIsOpenModalCertificate } = useContext(Mycontext);
   const { data: certificationId, isError : isErrorCert, error : errorCert, isLoading: isLoadingCert } = useCertificationId(selectedCertificateId);
   const { mutate: editCertification,isPending,isError,error } = useEditCertification();
@@ -37,10 +34,8 @@ export default function EditCertification() {
     const name = formData.get("name")
     const startDate = formData.get("startDate")
     const endDate = formData.get("endDate")
-    // console.log(formAction);
 
     editCertification({id, name, startDate, endDate});
-
     setIsOpenModalCertificate(!isOpenModalCertificate)
   }
 
@@ -62,7 +57,6 @@ export default function EditCertification() {
           </div>
         </div>
         <form onSubmit={certificateSubmit}>
-
           <div className="flex flex-col gap-3">
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 bg-white rounded-full"></div>
@@ -79,7 +73,7 @@ export default function EditCertification() {
             </div>
             <div className="flex flex-col ml-[1.44rem]">
               <input
-                type="text"
+                type="date"
                 className="w-full bg-[#323232] rounded-lg h-11 pl-[1.44rem] text-white"
                 placeholder="Weight Loss"
                 name="startDate"
@@ -88,7 +82,7 @@ export default function EditCertification() {
             </div>
             <div className="flex flex-col ml-[1.44rem]">
               <input
-                type="text"
+                type="date"
                 className="w-full bg-[#323232] rounded-lg h-11 pl-[1.44rem] text-white"
                 placeholder="Weight Loss"
                 name="endDate"
@@ -107,44 +101,3 @@ export default function EditCertification() {
     </div>
   );
 }
-
-// {certification?.map((item) => (
-//   <div
-//     key={item.id}
-//     className="bg-[#323232] p-[0.625rem] shadow-lg rounded-lg"
-//   >
-//     <div className="w-full flex items-center justify-between   rounded-2xl bg-[#323232] text-white font-light placeholder:text-[#C4C4C4]">
-//       <input
-//         name="certification"
-//         className="placeholder:w-[34rem] w-[70%]  rounded-2xl bg-[#323232] text-white font-light placeholder:text-[#C4C4C4]"
-//         defaultValue={item.name}
-//       />
-//       <p onClick={() => handleCertificationEdit(item.id)}>Edit</p>
-//       <img
-//         src="/delete.png"
-//         className="w-4 h-4"
-//         onClick={() => handleDelete(item.id)}
-//       />
-//     </div>
-//     <div className="flex gap-4 items-center justify-between py-6 bg-transparent rounded-lg ">
-//       <div className="flex flex-col">
-//         <label className="text-green-300">Start Date:</label>
-//         <input
-//           type="text"
-//           defaultValue={item.startDate}
-//           className="px-4 py-2 border border-gray-300 bg-[#323232] text-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-gray-500"
-//           placeholder="Start Date"
-//         />
-//       </div>
-//       <div className="flex flex-col ">
-//         <label className="text-red-300">End Date:</label>
-//         <input
-//           type="text"
-//           defaultValue={item.endDate}
-//           className="px-4 py-2 border border-gray-300 bg-[#323232] text-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-gray-500"
-//           placeholder="End Date"
-//         />
-//       </div>
-//     </div>
-//   </div>
-// ))}
