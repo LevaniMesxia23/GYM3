@@ -2,18 +2,18 @@ import DownArrow from "/downArrow.svg";
 import Skeleton from "react-loading-skeleton";
 import { useFetchBlogs } from "../../../hooks/useFetchBlogs";
 import { useState } from "react";
-import useAddBlogs from "../../../hooks/useAddBlogs";
 import BlogEditModal from "./BlogEditModal";
 import BlogAddModal from "./BlogAddModal";
+import { useDeleteBlogs } from "../../../hooks/useDeleteBlogs";
 
 function AdminBlog() {
   const [arrowClick, setArrowClick] = useState([]);
+  const [blogId, setBlogId] = useState(null)
   const [openBlogEditModal, setOpenBlogEditModal] = useState(false);
   const [openBlogAddModal, setOpenBlogAddModal] = useState(false);
   const [cancel, setCancel] = useState(false)
-  const [] = useState();
   const { data: fetchBlogs, isError, isLoading, error } = useFetchBlogs();
-  const { addBlogs } = useAddBlogs();
+  const {mutate: deleteBlog} = useDeleteBlogs()
 
   if (isLoading) {
     return <p>Loading</p>;
@@ -32,12 +32,17 @@ function AdminBlog() {
     setCancel(true)
   };
 
-  const handleOpenEditModal = () => {
+  const handleOpenEditModal = (id) => {
+    setBlogId(id)
     setOpenBlogEditModal(true);
+    setCancel(true)
   };
 
+  const handleDelete = (id) => {
+    deleteBlog(id)
+  }
+
   var blogsData = fetchBlogs.blogs;
-  console.log(fetchBlogs.blogs);
 
   return (
     <div className="relative px-[5rem] mt-[5rem] pb-[10.5rem]">
@@ -110,7 +115,7 @@ function AdminBlog() {
                   <div className="flex flex-col md:flex-row lg:flex-row md:justify-between lg:justify-between mt-4 transition-all duration-500 ease-in-out">
                     <div className="flex flex-col gap-3 w-[70%]">
                       <p className="text-white text-[1.25rem] font-bold">
-                        Price
+                        {item.author}
                       </p>
                       <div>
                         <p className="text-[#ABABAB] ">
@@ -140,9 +145,9 @@ function AdminBlog() {
           <BlogAddModal cancel={cancel} setCancel={setCancel}/>
         </div>
       )}
-      {openBlogEditModal && (
+      {openBlogEditModal && cancel && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-          <BlogEditModal />
+          <BlogEditModal cancel={cancel} setCancel={setCancel} blogId={blogId}/>
         </div>
       )}
     </div>

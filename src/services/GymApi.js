@@ -27,7 +27,6 @@ export const fetchBlogs = async () => {
   let {data: blogs, error} = await supabase
   .from("blog")
   .select("*")
-  console.log(blogs);
   return {blogs, error}
 }
 
@@ -62,6 +61,26 @@ export const AddBlogs = async (addBlogs) => {
   if (error) throw new Error(error.message);
   return { blogs, error };
 };
+
+export const editBlogs = async (id,author,title,description) => {
+  const { data: blogs, error } = await supabase
+    .from("blog")
+    .update({author,title,description})
+    .eq("id", id);
+    console.log(author,title,description);
+  if (error) throw new Error(error.message);
+};
+
+export const deleteBlogs = async (id) => {
+  const { data : deleteBlog, error} = await supabase
+  .from("blog")
+  .delete()
+  .eq("id", id)
+
+  console.log(id);
+  if(error) throw new Error(error.message)
+  return deleteBlog
+}
 
 export const deleteServices = async (id) => {
   const { data : deleteService, error} = await supabase
