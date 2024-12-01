@@ -4,6 +4,7 @@ import { useFetchBlogs } from "../../../hooks/useFetchBlogs";
 import { useState } from "react";
 import BlogEditModal from "./BlogEditModal";
 import BlogAddModal from "./BlogAddModal";
+import { useDeleteBlogs } from "../../../hooks/useDeleteBlogs";
 
 function AdminBlog() {
   const [arrowClick, setArrowClick] = useState([]);
@@ -11,8 +12,8 @@ function AdminBlog() {
   const [openBlogEditModal, setOpenBlogEditModal] = useState(false);
   const [openBlogAddModal, setOpenBlogAddModal] = useState(false);
   const [cancel, setCancel] = useState(false)
-  const [] = useState();
   const { data: fetchBlogs, isError, isLoading, error } = useFetchBlogs();
+  const {mutate: deleteBlog} = useDeleteBlogs()
 
   if (isLoading) {
     return <p>Loading</p>;
@@ -36,6 +37,10 @@ function AdminBlog() {
     setOpenBlogEditModal(true);
     setCancel(true)
   };
+
+  const handleDelete = (id) => {
+    deleteBlog(id)
+  }
 
   var blogsData = fetchBlogs.blogs;
 
