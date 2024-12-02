@@ -1,7 +1,6 @@
 import React from 'react'
 import Muscle from "/Vector.svg"
-import Search from "/search.svg"
-import Notification from "/bell.svg"
+// import AdminImages from '../AdminAbout/AdminImages'
 function AdminHeader() {
   return (
     <div className=' flex justify-between items-center  py-8 px-6'>
@@ -19,12 +18,10 @@ function AdminHeader() {
 
         <div className=' flex items-center gap-6'>
           <div className='flex items-center gap-2'>
-
-          <img src={Search} className='w-12 h-12' alt="" />
-          <img src={Notification} className='w-[1.507rem] h-[1.507rem]' alt="" />
           </div>
           <div className='w-10 h-10 rounded-full bg-red-500'></div>
         </div>
+        {/* <AdminImages /> */}
     </div>
   )
 }

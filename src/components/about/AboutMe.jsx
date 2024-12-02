@@ -48,7 +48,7 @@ function AboutMe() {
             alt="About Me"
             className={` ${
               isDesktop || isTablet
-                ? "h-[26.4375rem] w-[587px]"
+                ? "h-[452px] w-[500px]"
                 : "h-[13.28631rem] w-[295px]"
             } rounded-[16px]`}
           />

@@ -31,8 +31,8 @@ function App() {
           <Route path="admin" element={<AdminLayout />}>
             <Route index element={<DashboardPage />} />
             <Route path="dashboard" element={<DashboardPage />} />
-            <Route path="add-blogs" element={<AddBlogs />} />
-            <Route path="about-me" element={<AboutMe />} />
+            <Route path="blogs" element={<AddBlogs />} />
+            <Route path="stories" element={<AboutMe />} />
             <Route path="admin-services" element={<AdminServices />} />
           </Route>
         </Routes>

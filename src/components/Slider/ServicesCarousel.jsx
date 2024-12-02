@@ -14,20 +14,21 @@ const ServicesCarousel = () => {
   const services = data?.data;
 
   return (
-    <div className="bg-[#121212] h-[422px] py-[4rem]">
-      <section className=" lg:pl-10 text-white pl-10 py-5">
+    <div className="bg-[#121212] h-[422px] py-[2rem]">
+      <section className="lg:pr-10  text-white pl-10 py-5">
         <h3 className="text-[#C4C4C4] mb-5 text-center lg:text-left text-md">
           YOUR FITNESS JOURNEY STARTS HERE
         </h3>
         <Swiper
+
           breakpoints={{
-            768: { slidesPerView: 2 },
-            1024: { slidesPerView: 3 },
+            768: { slidesPerView: "auto" },
+            1024: { slidesPerView: "auto" },
           }}
           spaceBetween={15}
-          slidesPerView={1}
+          slidesPerView="auto"
         >
-          {(isLoading ? Array.from({ length: 5 }) : services)?.map(
+          {(isLoading ? Array.from({ length: 8 }) : services)?.map(
             (service, index) => (
               <SwiperSlide
                 key={service?.id || index}

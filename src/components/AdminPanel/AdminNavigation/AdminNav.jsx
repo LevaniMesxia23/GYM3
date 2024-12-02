@@ -8,9 +8,9 @@ function AdminNav({setIsOpen}) {
   };
   const navLink = [
     {name: "Dashboard", path: "/admin/dashboard"},
-    {name: "Add Blogs", path: "/admin/add-blogs"},
-    {name: "About Me", path: "/admin/about-me"},
+    {name: "Stories", path: "/admin/stories"},
     {name: "Services", path: "/admin/admin-services"},
+    {name: "Blogs", path: "/admin/blogs"},
   ]
   return (
     <div className=" flex items-center justify-center">
