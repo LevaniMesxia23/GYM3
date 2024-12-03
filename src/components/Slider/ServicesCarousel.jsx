@@ -14,8 +14,8 @@ const ServicesCarousel = () => {
   const services = data?.data;
 
   return (
-    <div className="bg-[#121212] h-[422px] py-[2rem]">
-      <section className="lg:pr-10  text-white pl-10 py-5">
+    <div className="bg-[#121212] h-[422px] py-[2rem] ">
+      <section className="lg:pr-10  text-white pl-10 py-5 max-w-[1520px]">
         <h3 className="text-[#C4C4C4] mb-5 text-center lg:text-left text-md">
           YOUR FITNESS JOURNEY STARTS HERE
         </h3>

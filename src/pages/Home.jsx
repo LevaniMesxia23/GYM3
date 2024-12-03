@@ -13,11 +13,10 @@ const Home = () => {
       <MainHeader />
       <div className="bg-[#121212]">
       <Slider />
-      <div className="flex flex-col lg:justify-center lg:items-center">
-
+      <div className="flex flex-col lg:justify-center lg:items-center ">
         <AboutMe />
         <StoryCarousel />
-        <div className="max-w-[1220px] flex items-center justify-start w-full">
+        <div className="max-w-[1520px] flex items-center justify-start w-full">
         <ContactUs />
         </div>
       </div>

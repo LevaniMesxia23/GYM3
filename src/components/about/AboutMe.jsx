@@ -19,7 +19,7 @@ function AboutMe() {
 
   return (
     <div
-      className={`pt-[3.75rem] pb-10 px-[2.5rem] flex ${
+      className={`pt-[3.75rem] pb-10 px-[2.5rem] flex w-full max-w-[1520px] ${
         isDesktop ? "flex-row" : "flex-col"
       } gap-10 bg-[#121212]`}
     >

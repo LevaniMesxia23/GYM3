@@ -87,7 +87,7 @@ const Certification = () => {
           </div>
         </div>
       </div>
-      <div className="lg:w-[98%] mx-auto">
+      <div className="lg:w-[98%] mx-auto flex items-center justify-center">
         <StoryCarousel />
       </div>
     </div>

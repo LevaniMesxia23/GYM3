@@ -45,7 +45,7 @@ export const ContactUs = () => {
   };
 
   return (
-    <div className={` ${isMobile ? "mx-auto items-center" : "max-w-2xl"} shadow-lg rounded-lg px-10 pt-10 pb-[10.5rem] `}>
+    <div className={` ${isMobile ? " items-center" : "max-w-2xl"} w-[1000px] shadow-lg rounded-lg px-10 pt-10 pb-[10.5rem] `}>
       <h2 className="gradient-text font-nunito text-[0.875rem] font-bold uppercase mb-4">Contact</h2>
 
       <form ref={form} onSubmit={sendEmail} className="space-y-4">

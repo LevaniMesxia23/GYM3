@@ -28,6 +28,7 @@ function StoryCarousel() {
 
   if (isLoading)
     return (
+      <div className="relative max-w-[1520px] w-full">
       <div className="border-[#4D4D4D] border-[1px] p-10 bg-[#121212] rounded-2xl mx-10 flex flex-col items-center ">
         <div className="flex flex-col items-center justify-center mb-4">
         </div>
@@ -40,10 +41,11 @@ function StoryCarousel() {
           </div>
         </div>
       </div>
+      </div>
     );
 
   return (
-    <div className="relative max-w-[1220px] w-full px-[2.5rem]">
+    <div className="relative max-w-[1520px] w-full px-[2.5rem]">
   <div className="border-[#4D4D4D] border-[1px] p-10 bg-[#121212] rounded-2xl mx-0">
     <div className="flex justify-start items-center gap-6 mb-10">
       <img
@@ -95,7 +97,7 @@ function StoryCarousel() {
               <img
                 src={image}
                 alt={`Success Story ${index + 1}`}
-                className="w-full h-[215px] object-cover object-center rounded-lg"
+                className="w-full h-[215px]  object-center rounded-lg"
               />
             </div>
           </SwiperSlide>
