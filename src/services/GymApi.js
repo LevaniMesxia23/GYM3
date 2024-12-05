@@ -120,6 +120,15 @@ export const addCertification = async (addCerf) => {
   return addCertificate
 }
 
+export const addImage = async (addImage) => {
+  const {data: addImg, error} = await supabase
+  .from("about")
+  .insert([addImage])
+  console.log(addImg);
+  if(error) throw new Error(error.message)
+  return addImage
+}
+
 export const deleteCertification = async (id) => {
   const {data: deleteCertificate, error} = await supabase
   .from("certification")
