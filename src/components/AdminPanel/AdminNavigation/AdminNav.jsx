@@ -7,7 +7,7 @@ function AdminNav({setIsOpen}) {
     setIsOpen(false);
   };
   const navLink = [
-    {name: "Dashboard", path: "/admin/dashboard"},
+    // {name: "Dashboard", path: "/admin/dashboard"},
     {name: "Stories", path: "/admin/stories"},
     {name: "Services", path: "/admin/admin-services"},
     {name: "Blogs", path: "/admin/blogs"},

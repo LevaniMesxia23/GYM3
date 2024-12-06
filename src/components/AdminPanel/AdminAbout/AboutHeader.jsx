@@ -11,7 +11,7 @@ import { useFetchAbout } from "../../../hooks/useFetchAbout";
 export default function AboutHeader() {
   const [imagePreview, setImagePreview] = useState(null);
   const { mutate, error } = useEditAbout();
-  const {mutate: addImage, error: errorImage} = useAddImage()
+  // const {mutate: addImage, error: errorImage} = useAddImage()
   const {data: getAbout} = useFetchAbout()
 
   let AboutImage = getAbout.about[9].image
@@ -47,7 +47,8 @@ export default function AboutHeader() {
       imageUrl = uploadData.path;
       
 
-      mutate({ id: getAbout.about[9].id,
+      mutate({ 
+        id: getAbout.about[9].id,
         image: `https://ylzgfzyvohnqdlzlxrfw.supabase.co/storage/v1/object/public/about/${imageUrl}`,
       })
 
@@ -93,7 +94,7 @@ export default function AboutHeader() {
           <div>
             <img
               className="rounded-full w-[5rem] h-[5rem]"
-              src={AboutImage}
+              src={imagePreview || AboutImage}
               alt="Profile"
             />
           </div>
