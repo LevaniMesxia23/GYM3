@@ -14,13 +14,14 @@ const ServicesCarousel = () => {
   const services = data?.data;
 
   return (
+    <div className="lg:flex flex-col justify-center items-center w-full">
     <div className="bg-[#121212] h-[422px] py-[2rem] ">
-      <section className="lg:pr-10  text-white pl-10 py-5 max-w-[1520px]">
+      <section className="pr-10  text-white pl-10 py-5 max-w-[1520px] ">
         <h3 className="text-[#C4C4C4] mb-5 text-center lg:text-left text-md">
           YOUR FITNESS JOURNEY STARTS HERE
         </h3>
         <Swiper
-
+        className="border  border-[#4D4D4D] rounded-2xl "
           breakpoints={{
             768: { slidesPerView: "auto" },
             1024: { slidesPerView: "auto" },
@@ -32,7 +33,7 @@ const ServicesCarousel = () => {
             (service, index) => (
               <SwiperSlide
                 key={service?.id || index}
-                className="cursor-pointer rounded-2xl max-w-[305px] lg:max-w-[295px] border border-[#4D4D4D]"
+                className="cursor-pointer rounded-2xl max-w-[305px] lg:max-w-[295px] border border-[#D7FD44]  m-4 mr-1"
               >
                 <div className="flex flex-col items-center justify-between p-5 h-[320px] group">
                   {isLoading ? (
@@ -58,6 +59,7 @@ const ServicesCarousel = () => {
           )}
         </Swiper>
       </section>
+    </div>
     </div>
   );
 };
