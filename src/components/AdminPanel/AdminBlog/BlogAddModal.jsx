@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Cancel from "/cancel.svg";
 import useAddBlogs from "../../../hooks/useAddBlogs";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function BlogAddModal({ setCancel }) {
   const { addBlogs } = useAddBlogs();
@@ -14,7 +14,7 @@ export default function BlogAddModal({ setCancel }) {
 
     if (!formAction.title || !formAction.author || !formAction.description) {
       toast.error("All fields are required!");
-      return
+      return;
     }
 
     try {
@@ -94,9 +94,9 @@ export default function BlogAddModal({ setCancel }) {
               </div>
             </button>
           </form>
+          <ToastContainer />
         </div>
       </div>
-      <ToastContainer />
     </>
   );
 }

@@ -3,11 +3,14 @@ import { usePriceId } from "../../../hooks/usePriceId";
 import { useContext, useState } from "react";
 import { Mycontext } from "../../../context/Context";
 import useEditPrices from "../../../hooks/useEditPrices";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function EditModal() {
   const { selectedId, closeModal } = useContext(Mycontext);
   const { mutate: editService } = useEditPrices();
   const { data, isLoading: priceLoading, isError, error: priceError } = usePriceId(selectedId);
+  const [formErrors, setFormErrors] = useState({}); 
 
   if (priceLoading) {
     return <p>Loading...</p>;
@@ -18,8 +21,20 @@ function EditModal() {
 
   function formAction(e) {
     e.preventDefault();
+    
     const formData = new FormData(e.target);
     const formValues = Object.fromEntries(formData);
+    
+    let errors = {};
+    if (!formValues.title) errors.title = "Title is required";
+    if (!formValues.singleSession) errors.singleSession = "Single Session Price is required";
+    if (!formValues.fiveSession) errors.fiveSession = "5-Session Package Price is required";
+    if (!formValues.tenSession) errors.tenSession = "10-Session Package Price is required";
+
+    if (Object.keys(errors).length > 0) {
+      setFormErrors(errors); 
+      return;
+    }
 
     const updatedData = {
       name: formValues.title,
@@ -27,11 +42,17 @@ function EditModal() {
       sessions_five: formValues.fiveSession,
       sessions_ten: formValues.tenSession,
     };
-    editService({ id, updatedData });
-    closeModal();
+
+    try {
+      editService({ id: selectedId, updatedData }); 
+      closeModal();
+      toast.success("Services updated successfully!");
+    } catch (error) {
+      toast.error("An error occurred while updating services");
+    }
   }
+
   const { id, name, sessions_single, sessions_five, sessions_ten } = data?.about[0];
-  console.log(data.about[0]);
 
   return (
     <div className="p-[2.56rem] bg-[#323232] flex items-center justify-center w-[55rem] rounded-[1.25rem]">
@@ -64,6 +85,7 @@ function EditModal() {
                 name="title"
                 defaultValue={name}
               />
+              {formErrors.title && <p className="text-red-500 text-sm">{formErrors.title}</p>}
             </div>
           </div>
 
@@ -85,6 +107,7 @@ function EditModal() {
                   name="singleSession"
                   defaultValue={sessions_single}
                 />
+                {formErrors.singleSession && <p className="text-red-500 text-sm">{formErrors.singleSession}</p>}
               </div>
 
               <div className="flex flex-col mt-3 gap-2">
@@ -96,6 +119,7 @@ function EditModal() {
                   name="fiveSession"
                   defaultValue={sessions_five}
                 />
+                {formErrors.fiveSession && <p className="text-red-500 text-sm">{formErrors.fiveSession}</p>}
               </div>
 
               <div className="flex flex-col mt-3 gap-2">
@@ -107,6 +131,7 @@ function EditModal() {
                   name="tenSession"
                   defaultValue={sessions_ten}
                 />
+                {formErrors.tenSession && <p className="text-red-500 text-sm">{formErrors.tenSession}</p>}
               </div>
             </div>
           </div>
@@ -120,6 +145,7 @@ function EditModal() {
           </div>
         </form>
       </div>
+      <ToastContainer />
     </div>
   );
 }

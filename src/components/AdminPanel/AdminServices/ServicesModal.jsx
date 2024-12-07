@@ -2,6 +2,8 @@ import React, { useContext, useState } from "react";
 import Cancel from "/cancel.svg";
 import { Mycontext } from "../../../context/Context";
 import useAddService from "../../../hooks/useAddServices";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function ServicesModal() {
   const { closeModal } = useContext(Mycontext);
@@ -24,8 +26,9 @@ function ServicesModal() {
       setFiveSessionPrice("");
       setTenSessionPrice("");
       closeModal()
+      toast.success("Services added successfully!")
     } catch (error) {
-      console.error(error);
+      toast.error("Failed to add Services!");
     }
   };
 
@@ -115,6 +118,7 @@ function ServicesModal() {
             <p className="w-3 h-3 text-[#D7FD44]">+</p>
             <p className="text-[#D7FD44]">Add Service</p>
           </div>
+          <ToastContainer />
         </div>
       </div>
     </div>

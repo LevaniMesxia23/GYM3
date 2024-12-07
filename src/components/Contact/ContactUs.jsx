@@ -30,7 +30,6 @@ export const ContactUs = () => {
         publicKey: "J0AOn-bhbOtNNwZ-d",
       });
       
-      console.log("SUCCESS!");
       toast.success("Message sent successfully!")
       e.target.reset();
     } catch (err) {
@@ -40,7 +39,6 @@ export const ContactUs = () => {
       });
       setErrors(validationErrors);
       toast.error("Please fix the errors in the form.");
-      console.log("Validation Failed", validationErrors);
     }
   };
 
@@ -94,7 +92,7 @@ export const ContactUs = () => {
           <input
             type="submit"
             value="Send"
-            className="px-4 py-2 border-[#4D4D4D] border-[1px] text-[#C4C4C499] w-[35%] rounded-lg hover:bg-blue-700 transition-colors cursor-pointer"
+            className="px-4 py-2 border-[#4D4D4D] border-[1px] text-[#C4C4C499] w-[35%] rounded-lg  hover:text-black  duration-700 hover:bg-[#D7FD44] hover:scale-105 hover:transition-transform cursor-pointer"
           />
           <ToastContainer />
         </div>

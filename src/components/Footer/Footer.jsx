@@ -37,7 +37,7 @@ function Footer() {
           {navNames.map((item, index) => (
             <ul key={index}>
               <Link to={item.path}>
-                <li className="text-[#C4C4C4] text-[0.75rem]">{item.name}</li>
+                <li className="text-[#C4C4C4] text-[0.75rem] hover:text-[#D7FD44] transition-transform hover:scale-125 duration-500">{item.name}</li>
               </Link>
             </ul>
           ))}

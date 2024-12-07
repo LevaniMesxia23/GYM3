@@ -113,10 +113,11 @@ export default function BlogEditModal({ setCancel, blogId }) {
                 <p className="text-[#D7FD44]">Edit Blogs</p>
               </div>
             </button>
+            <ToastContainer />
           </form>
         </div>
       </div>
-      <ToastContainer />
+      
     </div>
   );
 }
