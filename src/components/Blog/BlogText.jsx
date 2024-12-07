@@ -27,7 +27,6 @@ const BlogText = () => {
               <p className="text-[#D7FD44]  text-[1rem] leading-[24px]">
                 {blog.author}
               </p>
-              <img src={blog.image} className="w-8 h-8 rounded-[50%]" alt="" />
             </div>
             <div>
               <h1 className="text-2xl font-semibold py-5 text-white">

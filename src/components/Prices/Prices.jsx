@@ -130,21 +130,26 @@ function Prices() {
             </div>
           ))}
 
-      {priceData.length > 6 && !showAll ? (
-        <button
-          onClick={() => setShowAll(true)}
-          className="mt-6 text-[#D7FD44] font-bold uppercase text-center w-full"
-        >
-          See More...
-        </button>
-      ) : (
-        <button
-          onClick={() => setShowAll(false)}
-          className="mt-6 text-[#D7FD44] font-bold uppercase text-center w-full"
-        >
-          Show Less...
-        </button>
-      )}
+{priceData.length > 6 ? (
+  !showAll ? (
+    <button
+      onClick={() => setShowAll(true)}
+      className="mt-6 text-[#D7FD44] font-bold uppercase text-center w-full"
+    >
+      See More...
+    </button>
+  ) : (
+    <button
+      onClick={() => setShowAll(false)}
+      className="mt-6 text-[#D7FD44] font-bold uppercase text-center w-full"
+    >
+      Show Less...
+    </button>
+  )
+) : priceData.length === 0 && (
+  "" 
+)}
+
     </div>
     </div>
   );

@@ -4,6 +4,7 @@ import ServicesModal from "./ServicesModal";
 import EditModal from "./EditModal";
 import DownArrow from "/downArrow.svg";
 import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css"; 
 import { Mycontext } from "../../../context/Context";
 import { useDeleteServices } from "../../../hooks/useDeleteServices";
 
@@ -20,14 +21,6 @@ function AdminServices() {
   } = useContext(Mycontext);
   const { mutate: deleteServices } = useDeleteServices();
 
-  if (isLoading) {
-    return <p>Loading</p>;
-  }
-
-  if (error) return <p className="text-red-500">{error.message}</p>;
-
-  const priceData = data?.about || [];
-
   const handleToggle = (index) => {
     setArrowClick((prev) =>
       prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
@@ -43,6 +36,13 @@ function AdminServices() {
     console.log("Deleting service with ID:", id);
     deleteServices(id);
   };
+
+  if (error) {
+    return <p className="text-red-500">{error.message}</p>;
+  }
+
+  const priceData = data?.about || [];
+  console.log(priceData.length);
 
   return (
     <div className="relative px-[5rem] mt-[5rem] pb-[10.5rem]">
@@ -63,11 +63,11 @@ function AdminServices() {
       </div>
 
       {isLoading
-        ? Array.from({ length: priceData.length }).map((_, index) => (
+        ? Array.from({ length: 5 }).map((_, index) => (
             <div key={index} className="w-full mt-7">
               <div className="bg-[#222] rounded-[8.75rem] px-8 py-6 flex items-center justify-between">
                 <Skeleton className="w-1/2 h-[2rem]" />
-                <Skeleton circle className="w-[5rem] h-[5rem]" />
+                <Skeleton circle className="w-[3.375rem] h-[3.375rem]" />
               </div>
             </div>
           ))
@@ -100,7 +100,7 @@ function AdminServices() {
                   <img
                     onClick={() => handleDelete(item.id)}
                     src="/delete.png"
-                    className="w-6 h-6 "
+                    className="w-6 h-6"
                   />
                 </div>
               </div>
