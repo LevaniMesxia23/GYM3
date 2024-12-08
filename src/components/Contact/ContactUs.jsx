@@ -30,7 +30,6 @@ export const ContactUs = () => {
         publicKey: "J0AOn-bhbOtNNwZ-d",
       });
       
-      console.log("SUCCESS!");
       toast.success("Message sent successfully!")
       e.target.reset();
     } catch (err) {
@@ -40,12 +39,11 @@ export const ContactUs = () => {
       });
       setErrors(validationErrors);
       toast.error("Please fix the errors in the form.");
-      console.log("Validation Failed", validationErrors);
     }
   };
 
   return (
-    <div className={` ${isMobile ? "mx-auto items-center" : "max-w-2xl"} shadow-lg rounded-lg px-10 pt-10 pb-[10.5rem] `}>
+    <div className={` ${isMobile ? " items-center" : "max-w-2xl"} w-[1000px] shadow-lg rounded-lg px-10 pt-10 pb-[10.5rem] `}>
       <h2 className="gradient-text font-nunito text-[0.875rem] font-bold uppercase mb-4">Contact</h2>
 
       <form ref={form} onSubmit={sendEmail} className="space-y-4">
@@ -94,7 +92,7 @@ export const ContactUs = () => {
           <input
             type="submit"
             value="Send"
-            className="px-4 py-2 border-[#4D4D4D] border-[1px] text-[#C4C4C499] w-[35%] rounded-lg hover:bg-blue-700 transition-colors cursor-pointer"
+            className="px-4 py-2 border-[#4D4D4D] border-[1px] text-[#C4C4C499] w-[35%] rounded-lg  hover:text-black  duration-700 hover:bg-[#D7FD44] hover:scale-105 hover:transition-transform cursor-pointer"
           />
           <ToastContainer />
         </div>

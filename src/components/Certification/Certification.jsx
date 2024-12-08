@@ -6,7 +6,10 @@ import GirlRun from "/girlRun.png";
 import StoryCarousel from "../SuccessStory/StoryCarousel";
 import Check from "/check.png";
 import Skeleton from "react-loading-skeleton";
+import { useContext } from "react";
+import { Mycontext } from "../../context/Context";
 const Certification = () => {
+  const {isMobile} = useContext(Mycontext)
   const {
     data: certifications,
     isError,
@@ -87,7 +90,7 @@ const Certification = () => {
           </div>
         </div>
       </div>
-      <div className="lg:w-[98%] mx-auto">
+      <div className={`lg:w-[98%] ${isMobile && "w-auto" } mx-auto flex items-center justify-center`}>
         <StoryCarousel />
       </div>
     </div>

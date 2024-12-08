@@ -3,7 +3,7 @@ function Feedbacks() {
 
 
   const renderStars = (rating) => {
-    return Array.from({ length: 5 }, (_, i) => (
+    return Array.from({ length: clientInfo.length }, (_, i) => (
       <span
         key={i}
         className={`text-xl ${

@@ -8,6 +8,7 @@ import CertificateAddModal from "./CertificateAddModal";
 import useAddCertification from "../../../hooks/useAddCertification";
 import { useDeleteCertification } from "../../../hooks/useDeleteCertificate";
 import EditCertification from "./EditCertification";
+import AboutHeader from "./AboutHeader";
 
 export default function AboutMainInfo() {
   const [certificateText, setCertificateText] = useState("");
@@ -33,11 +34,14 @@ export default function AboutMainInfo() {
 
     const formData = new FormData(e.target);
     const formAction = Object.fromEntries(formData);
-
+    
     const updatedAbout = {
       story: formAction.story,
       experience: formAction.experience,
     };
+    console.log(formAction.image);
+    console.log(formAction.experience);
+    
 
     editAbout.mutate(
       { id: data.about[0].id, updatedAbout },
@@ -89,6 +93,7 @@ export default function AboutMainInfo() {
 
   return (
     <div className="flex flex-col gap-3 mt-[1.87rem]">
+      <AboutHeader />
       <form onSubmit={aboutFormAction}>
         <div className="flex flex-col w-full gap-6">
           <div className="flex flex-col w-full gap-3">
@@ -109,8 +114,8 @@ export default function AboutMainInfo() {
               type="number"
               name="experience"
               placeholder="add your experience"
-              defaultValue={experience}
               className="placeholder:w-[34rem] w-full p-[0.625rem] rounded-2xl bg-[#323232] text-white font-light placeholder:text-[#C4C4C4]"
+              defaultValue={experience}
             />
           </div>
 

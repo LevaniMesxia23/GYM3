@@ -24,7 +24,8 @@ function Prices() {
   };
 
   return (
-    <div className="px-[2.5rem] mt-[5rem] pb-[5.5rem]">
+    <div className="lg:flex flex-col justify-center items-center w-full ">
+    <div className="px-[2.5rem] mt-[5rem] pb-[5.5rem] w-full relative max-w-[1520px]">
       <div className=" flex justify-center items-center flex-col">
         <p
           className="uppercase font-bold text-[1.5rem]"
@@ -129,21 +130,27 @@ function Prices() {
             </div>
           ))}
 
-      {priceData.length > 6 && !showAll ? (
-        <button
-          onClick={() => setShowAll(true)}
-          className="mt-6 text-[#D7FD44] font-bold uppercase text-center w-full"
-        >
-          See More...
-        </button>
-      ) : (
-        <button
-          onClick={() => setShowAll(false)}
-          className="mt-6 text-[#D7FD44] font-bold uppercase text-center w-full"
-        >
-          Show Less...
-        </button>
-      )}
+{priceData.length > 6 ? (
+  !showAll ? (
+    <button
+      onClick={() => setShowAll(true)}
+      className="mt-6 text-[#D7FD44] font-bold uppercase text-center w-full"
+    >
+      See More...
+    </button>
+  ) : (
+    <button
+      onClick={() => setShowAll(false)}
+      className="mt-6 text-[#D7FD44] font-bold uppercase text-center w-full"
+    >
+      Show Less...
+    </button>
+  )
+) : priceData.length === 0 && (
+  "" 
+)}
+
+    </div>
     </div>
   );
 }

@@ -13,7 +13,7 @@ function AdminPanel() {
   const onSubmit = async (data) => {
     sessionStorage.setItem("adminLogin", JSON.stringify(data))
     alert('Login successfull')
-    navigate("/admin/dashboard")
+    navigate("/admin/stories")
   };
 
   return (

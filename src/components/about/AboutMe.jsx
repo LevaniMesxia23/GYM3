@@ -19,7 +19,7 @@ function AboutMe() {
 
   return (
     <div
-      className={`pt-[3.75rem] pb-10 px-[2.5rem] flex ${
+      className={`pt-[3.75rem] pb-10 px-[2.5rem] flex w-full max-w-[1520px] ${
         isDesktop ? "flex-row" : "flex-col"
       } gap-10 bg-[#121212]`}
     >
@@ -48,7 +48,7 @@ function AboutMe() {
             alt="About Me"
             className={` ${
               isDesktop || isTablet
-                ? "h-[26.4375rem] w-[587px]"
+                ? "h-[452px] w-[500px]"
                 : "h-[13.28631rem] w-[295px]"
             } rounded-[16px]`}
           />
