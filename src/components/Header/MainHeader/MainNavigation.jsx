@@ -7,7 +7,7 @@ function MainNavigation({ setIsOpen }) {
   const location = useLocation();
 
   const handleNavClick = () => {
-    setIsOpen(false); 
+    setIsOpen(false);
   };
 
   const navItems = [
@@ -23,7 +23,9 @@ function MainNavigation({ setIsOpen }) {
       {!isDesktop ? (
         <nav
           className={`absolute top-0 left-0 right-0 bg-[black] px-10 pt-14 pb-6 transition-all duration-300 ease-in-out ${
-            isOpen ? "opacity-100 transform translate-y-0" : "opacity-0 transform -translate-y-full"
+            isOpen
+              ? "opacity-100 transform translate-y-0"
+              : "opacity-0 transform -translate-y-full"
           }`}
         >
           <ul className="flex flex-col gap-2 pt-[100px]">
@@ -57,22 +59,22 @@ function MainNavigation({ setIsOpen }) {
             const isActive = location.pathname === path;
 
             return (
-              <li
-                key={name}
-                className={`flex justify-center items-center gap-2 h-[3rem] px-4 transition-colors duration-300 rounded-[2.875rem] ${
-                  isActive ? "bg-[#D7FD44]" : "bg-transparent"
+              <Link
+                to={path}
+                onClick={handleNavClick}
+                className={`font-Nunito text-[1rem] font-[700] leading-normal ${
+                  isActive ? "text-black" : "text-white"
                 }`}
               >
-                <Link
-                  to={path}
-                  onClick={handleNavClick}
-                  className={`font-Nunito text-[1rem] font-[700] leading-normal ${
-                    isActive ? "text-black" : "text-white"
+                <li
+                  key={name}
+                  className={`flex justify-center items-center gap-2 h-[3rem] px-6 transition-colors duration-700 rounded-[2.875rem] hover:bg-gray-500 cursor-pointer ${
+                    isActive ? "bg-[#D7FD44]" : "bg-transparent"
                   }`}
                 >
                   {name}
-                </Link>
-              </li>
+                </li>
+              </Link>
             );
           })}
         </ul>

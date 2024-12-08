@@ -11,11 +11,18 @@ import { useFetchAbout } from "../../../hooks/useFetchAbout";
 export default function AboutHeader() {
   const [imagePreview, setImagePreview] = useState(null);
   const { mutate, error } = useEditAbout();
-  // const {mutate: addImage, error: errorImage} = useAddImage()
-  const {data: getAbout} = useFetchAbout()
+  const {mutate: addImage, error: errorImage} = useAddImage()
+  const {data: getAbout, isLoading, isError, error: aboutError} = useFetchAbout()
 
-  let AboutImage = getAbout.about[9].image
-  console.log(getAbout.about[9].id);
+  if(isLoading){
+    return <p>Loading...</p> 
+  }
+  if(isError){
+    return <p>{aboutError.message}</p>
+  }
+
+  let AboutImage = getAbout.about[11].image
+  console.log(getAbout.about[9].image);
   const {
     register,
     handleSubmit,
@@ -47,10 +54,9 @@ export default function AboutHeader() {
       imageUrl = uploadData.path;
       
 
-      mutate({ 
-        id: getAbout.about[9].id,
+      addImage({
         image: `https://ylzgfzyvohnqdlzlxrfw.supabase.co/storage/v1/object/public/about/${imageUrl}`,
-      })
+      });
 
       console.log(imageUrl);
 
@@ -94,7 +100,7 @@ export default function AboutHeader() {
           <div>
             <img
               className="rounded-full w-[5rem] h-[5rem]"
-              src={imagePreview || AboutImage}
+              src={AboutImage}
               alt="Profile"
             />
           </div>
