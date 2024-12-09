@@ -3,14 +3,12 @@ import { useForm } from "react-hook-form";
 import { supabase } from "../../../services/supabaseConfig";
 import { v4 as uuidv4 } from "uuid";
 import { toast } from "react-toastify";
-import useEditAbout from "../../../hooks/useEditAbout";
 import { useAddImage } from "../../../hooks/useAddImage";
 import { useFetchAbout } from "../../../hooks/useFetchAbout";
 
 
 export default function AboutHeader() {
   const [imagePreview, setImagePreview] = useState(null);
-  const { mutate, error } = useEditAbout();
   const {mutate: addImage, error: errorImage} = useAddImage()
   const {data: getAbout, isLoading, isError, error: aboutError} = useFetchAbout()
 
@@ -37,32 +35,41 @@ export default function AboutHeader() {
       setImagePreview(URL.createObjectURL(file));
     }
   };
+  
 
   const onSubmit = async (data) => {
     let imageUrl = null;
 
+  
     try {
+
+      const existingImagePath = getAbout.about[9].image.slice(72);
+      const { error: deleteError } = await supabase.storage
+        .from("about")
+        .remove([existingImagePath]);
+  
+      if (deleteError) {
+        throw deleteError;
+      }
+      console.log("Existing image removed successfully!");
+  
       const imageName = `${uuidv4()}_${data.image[0].name}`;
-      console.log(imageName);
       const { data: uploadData, error: uploadError } = await supabase.storage
         .from("about")
         .upload(imageName, data.image[0]);
-        console.log(imageName,data.image[0]);
-
+  
       if (uploadError) throw uploadError;
-
+  
       imageUrl = uploadData.path;
-      
-
+  
       addImage({
         image: `https://ylzgfzyvohnqdlzlxrfw.supabase.co/storage/v1/object/public/about/${imageUrl}`,
       });
-
-      console.log(imageUrl);
-
+  
+      console.log("New image uploaded and database updated successfully!");
       toast.success("Profile updated successfully!");
     } catch (err) {
-      console.error("Error uploading image:", err);
+      console.error("Error updating profile:", err);
       toast.error("Failed to update profile.");
     } finally {
       reset({
@@ -71,6 +78,7 @@ export default function AboutHeader() {
       setImagePreview(null);
     }
   };
+  
 
   const handleRemoveImage = () => {
     setImagePreview(null);
@@ -85,10 +93,6 @@ export default function AboutHeader() {
           Add info for your clients
         </p>
       </div>
-      {/* {getAbout.about.map(item => (
-        <img key={item.id} src={item.image} alt="" />
-      )) } */}
-
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col gap-[1.81rem]"
