@@ -127,7 +127,7 @@ export default function AboutMainInfo() {
                   key={item.id}
                   className="bg-[#323232] p-[0.625rem] shadow-lg rounded-lg"
                 >
-                  <div className="w-full flex items-center justify-between   rounded-2xl bg-[#323232] text-white font-light placeholder:text-[#C4C4C4]">
+                  <div className="w-full flex items-center justify-between  rounded-2xl bg-[#323232] text-white font-light placeholder:text-[#C4C4C4]">
                     <p name="certification">{item.name}</p>
                     <div className="flex gap-6 items-center">
 

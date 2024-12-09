@@ -8,7 +8,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 function AboutMe() {
   const { isDesktop, isTablet } = useContext(Mycontext);
   const { data, error, isLoading } = useFetchAbout();
-  const Image = data?.about[0]?.image;
+  const Image = data?.about[11]?.image;
   const Story = data?.about[0]?.story;
 
   if (error) return <div>Error: {error.message}</div>;

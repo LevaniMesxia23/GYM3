@@ -2,6 +2,7 @@ import { supabase } from "./supabaseConfig";
 
 export const fetchAbout = async () => {
   let { data: about, error } = await supabase.from("about").select("*");
+  console.log(about);
   return { about, error };
 };
 

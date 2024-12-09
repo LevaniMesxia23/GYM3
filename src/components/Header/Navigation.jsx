@@ -2,7 +2,6 @@ import { useLocation, Link } from "react-router-dom";
 import { Mycontext } from "../../context/Context";
 import { useContext } from "react";
 
-
 function Navigation({ isOpen, setIsOpen }) {
   const { isDesktop } = useContext(Mycontext);
   const location = useLocation();
@@ -33,14 +32,15 @@ function Navigation({ isOpen, setIsOpen }) {
 
               return (
                 <li
-                  key={name}
-                  className={`flex justify-center items-center gap-2 w-full h-[3rem] flex-shrink-0 rounded-lg transition-colors duration-300 ${
+                  key={name} 
+                  className={`flex justify-center items-center gap-2 w-full h-[3rem] flex-shrink-0 rounded-lg transition-colors duration-300  ${
                     isActive ? "bg-[#D7FD44]" : "bg-transparent"
                   }`}
                 >
                   <Link
                     to={path}
                     onClick={handleNavClick}
+                    key={name} 
                     className={`w-full text-center font-Nunito text-[1rem] font-[700] leading-normal ${
                       isActive ? "text-black" : "text-white"
                     }`}
@@ -60,22 +60,22 @@ function Navigation({ isOpen, setIsOpen }) {
             const isActive = location.pathname === path;
 
             return (
-              <li
-                key={name}
-                className={`flex justify-center items-center gap-2 h-[3rem] px-4 transition-colors duration-300 rounded-[2.875rem] ${
-                  isActive ? "bg-[#D7FD44]" : "bg-transparent"
+              <Link
+                key={name} 
+                to={path}
+                onClick={handleNavClick}
+                className={`font-Nunito text-[1rem] font-[700] leading-normal ${
+                  isActive ? "text-black" : "text-white"
                 }`}
               >
-                <Link
-                  to={path}
-                  onClick={handleNavClick}
-                  className={`font-Nunito text-[1rem] font-[700] leading-normal ${
-                    isActive ? "text-black" : "text-white"
+                <li
+                  className={`flex justify-center items-center gap-2 h-[3rem] px-6 transition-colors duration-700 rounded-[2.875rem] hover:bg-gray-500 cursor-pointer ${
+                    isActive ? "bg-[#D7FD44]" : "bg-transparent"
                   }`}
                 >
                   {name}
-                </Link>
-              </li>
+                </li>
+              </Link>
             );
           })}
         </ul>
