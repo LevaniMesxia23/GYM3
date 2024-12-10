@@ -6,21 +6,25 @@ import { toast } from "react-toastify";
 import { useAddImage } from "../../../hooks/useAddImage";
 import { useFetchAbout } from "../../../hooks/useFetchAbout";
 
-
 export default function AboutHeader() {
   const [imagePreview, setImagePreview] = useState(null);
-  const {mutate: addImage, error: errorImage} = useAddImage()
-  const {data: getAbout, isLoading, isError, error: aboutError} = useFetchAbout()
+  const { mutate: addImage } = useAddImage();
+  const {
+    data: getAbout,
+    isLoading,
+    isError,
+    error: aboutError,
+  } = useFetchAbout();
 
-  if(isLoading){
-    return <p>Loading...</p> 
+  if (isLoading) {
+    return <p>Loading...</p>;
   }
-  if(isError){
-    return <p>{aboutError.message}</p>
+  if (isError) {
+    return <p>{aboutError.message}</p>;
   }
 
-  let AboutImage = getAbout.about[11].image
-  console.log(getAbout.about[9].image);
+  let AboutImage = getAbout.about.at(-1)?.image;
+
   const {
     register,
     handleSubmit,
@@ -28,44 +32,30 @@ export default function AboutHeader() {
     formState: { errors },
   } = useForm();
 
-
   const handleImagePreview = (e) => {
     const file = e.target.files[0];
     if (file) {
       setImagePreview(URL.createObjectURL(file));
     }
   };
-  
 
   const onSubmit = async (data) => {
     let imageUrl = null;
 
-  
     try {
-
-      const existingImagePath = getAbout.about[9].image.slice(72);
-      const { error: deleteError } = await supabase.storage
-        .from("about")
-        .remove([existingImagePath]);
-  
-      if (deleteError) {
-        throw deleteError;
-      }
-      console.log("Existing image removed successfully!");
-  
       const imageName = `${uuidv4()}_${data.image[0].name}`;
       const { data: uploadData, error: uploadError } = await supabase.storage
         .from("about")
         .upload(imageName, data.image[0]);
-  
+
       if (uploadError) throw uploadError;
-  
+
       imageUrl = uploadData.path;
-  
+
       addImage({
         image: `https://ylzgfzyvohnqdlzlxrfw.supabase.co/storage/v1/object/public/about/${imageUrl}`,
       });
-  
+
       console.log("New image uploaded and database updated successfully!");
       toast.success("Profile updated successfully!");
     } catch (err) {
@@ -77,12 +67,6 @@ export default function AboutHeader() {
       });
       setImagePreview(null);
     }
-  };
-  
-
-  const handleRemoveImage = () => {
-    setImagePreview(null);
-    reset({ image: null });
   };
 
   return (
@@ -104,7 +88,7 @@ export default function AboutHeader() {
           <div>
             <img
               className="rounded-full w-[5rem] h-[5rem]"
-              src={AboutImage}
+              src={imagePreview || AboutImage || ""}
               alt="Profile"
             />
           </div>
@@ -118,21 +102,13 @@ export default function AboutHeader() {
                 className="hidden"
                 {...register("image", {
                   required: "Please upload an image",
-                  onChange: handleImagePreview, 
+                  onChange: handleImagePreview,
                 })}
               />
             </label>
             {errors.image && (
               <p className="text-red-500 text-sm">{errors.image.message}</p>
             )}
-
-            <button
-              type="button"
-              className="border-[1px] border-[#D7FD44] flex gap-[0.62rem] px-10 py-2 rounded-3xl cursor-pointer text-[#D7FD44]"
-              onClick={handleRemoveImage}
-            >
-              Remove Profile Picture
-            </button>
           </div>
         </div>
 
