@@ -6,13 +6,20 @@ import { useServices } from "../../hooks/useServices";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { grid } from "ldrs";
+import { useContext } from "react";
+import { Mycontext } from "../../context/Context";
+import { useMediaQuery } from "@uidotdev/usehooks";
 
 grid.register();
 
 const ServicesCarousel = () => {
+  const {isDesktop,isTablet} = useContext(Mycontext)
+  const isDesktopSize = useMediaQuery("only screen and (min-width : 1281px) and (max-width: 1400px)");
+  const isMediumSize = useMediaQuery("only screen and (min-width : 1023px) and (max-width: 1281px)");
+  const isLargeSize = useMediaQuery("only screen and (min-width : 1400px)");
   const { data, isLoading } = useServices();
   const services = data?.data || [];
-  const loadingPlaceholderCount = services.length || 8; 
+  const loadingPlaceholderCount = isLargeSize ? 11 : isDesktopSize ? 9 : isMediumSize ? 8 : isDesktop ? 7 : isTablet ? 6 : 4;
 
   return (
     <div className="lg:flex flex-col justify-center items-center w-full">

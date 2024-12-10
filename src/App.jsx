@@ -15,12 +15,11 @@ import AboutMe from "./pages/AdminPages/AboutMe";
 import React from "react";
 
 function App() {
-
-function NotFoundRedirect() {
-  React.useEffect(() => {
-    window.history.back();
-  }, []);
-}
+  function NotFoundRedirect() {
+    React.useEffect(() => {
+      window.history.back();
+    }, []);
+  }
   return (
     <>
       <MyProvider>

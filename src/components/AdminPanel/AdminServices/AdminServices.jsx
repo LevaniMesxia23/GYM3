@@ -33,7 +33,6 @@ function AdminServices() {
   };
 
   const handleDelete = (id) => {
-    console.log("Deleting service with ID:", id);
     deleteServices(id);
   };
 
@@ -42,7 +41,6 @@ function AdminServices() {
   }
 
   const priceData = data?.about || [];
-  console.log(priceData.length);
 
   return (
     <div className="relative px-[5rem] mt-[5rem] pb-[10.5rem]">

@@ -18,15 +18,15 @@ export default function BlogAddModal({ setCancel }) {
     }
 
     try {
-      toast.success("Blog added successfully!");
       addBlogs({
         author: formAction.author,
         title: formAction.title,
         description: formAction.description,
       });
       setCancel((prev) => !prev);
+      
     } catch (error) {
-      toast.error("Failed to add Blog!");
+      console.error(error)
     }
   };
 
