@@ -1,5 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { AddBlogs } from "../services/GymApi";
+import { toast } from "react-toastify";
 
 const useAddBlogs = () => {
   const queryClient = useQueryClient()
@@ -8,9 +9,10 @@ const useAddBlogs = () => {
     mutationFn: AddBlogs,
     onSuccess: () => {
       queryClient.invalidateQueries(['blog'])
+      toast.success("Blog added successfully!");
     },
     onError: (error) => {
-      console.error("Error adding blogs:", error)
+      toast.error("Blog added successfully!");
     }
   })
   return {addBlogs}

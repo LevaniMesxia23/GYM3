@@ -9,6 +9,7 @@ import useAddCertification from "../../../hooks/useAddCertification";
 import { useDeleteCertification } from "../../../hooks/useDeleteCertificate";
 import EditCertification from "./EditCertification";
 import AboutHeader from "./AboutHeader";
+import Skeleton from "react-loading-skeleton";
 
 export default function AboutMainInfo() {
   const [certificateText, setCertificateText] = useState("");
@@ -22,7 +23,27 @@ export default function AboutMainInfo() {
   const editAbout = useEditAbout()
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return (
+      <div className="flex flex-col gap-3 mt-[1.87rem]">
+
+      <div className="w-full">
+        <Skeleton height={40} width={200} className="mb-4" />
+        <Skeleton height={40} width={150} />
+      </div>
+      <div className="w-full">
+        <Skeleton height={40} width={200} className="mb-4" />
+        <Skeleton height={40} width={150} />
+      </div>
+      <div className="w-full">
+        <Skeleton height={40} width={200} className="mb-4" />
+        <Skeleton height={40} borderRadius={20} className="mb-4" />
+        <Skeleton height={200} className="mb-4" />
+        <Skeleton height={40} width={150} />
+        <Skeleton height={40} className="mb-4" />
+        <Skeleton height={200} className="mb-4" />
+        <Skeleton height={200} className="mb-4" />
+      </div>
+    </div>)
   }
 
   if (isError) {
@@ -39,8 +60,6 @@ export default function AboutMainInfo() {
       story: formAction.story,
       experience: formAction.experience,
     };
-    console.log(formAction.image);
-    console.log(formAction.experience);
     
 
     editAbout.mutate(

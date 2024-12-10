@@ -16,8 +16,6 @@ const BlogText = () => {
   }
 
   var blogs = data.blogs;
-
-  console.log(blogs.map((item) => item.author));
   return (
     <div>
       {blogs?.map(function blogsMap(blog) {

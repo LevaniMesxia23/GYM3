@@ -60,6 +60,7 @@ function MainNavigation({ setIsOpen }) {
 
             return (
               <Link
+              key={name}
                 to={path}
                 onClick={handleNavClick}
                 className={`font-Nunito text-[1rem] font-[700] leading-normal ${
@@ -67,7 +68,7 @@ function MainNavigation({ setIsOpen }) {
                 }`}
               >
                 <li
-                  key={name}
+                  
                   className={`flex justify-center items-center gap-2 h-[3rem] px-6 transition-colors duration-700 rounded-[2.875rem] hover:bg-gray-500 cursor-pointer ${
                     isActive ? "bg-[#D7FD44]" : "bg-transparent"
                   }`}

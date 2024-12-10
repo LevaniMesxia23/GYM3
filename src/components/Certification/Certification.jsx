@@ -17,7 +17,6 @@ const Certification = () => {
     error,
   } = useCertification();
   const certification = certifications?.data;
-  console.log(certification);
 
   if (isLoading) {
     return (

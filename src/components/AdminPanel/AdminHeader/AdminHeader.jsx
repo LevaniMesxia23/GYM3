@@ -27,7 +27,7 @@ function AdminHeader() {
     return <p>{aboutError.message}</p>;
   }
 
-  const AboutImage = getAbout.about[11]?.image;
+  const AboutImage = getAbout.about.at(-1)?.image;
 
   return (
     <div className="flex justify-between items-center py-8 px-6">

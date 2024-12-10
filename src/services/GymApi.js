@@ -2,7 +2,6 @@ import { supabase } from "./supabaseConfig";
 
 export const fetchAbout = async () => {
   let { data: about, error } = await supabase.from("about").select("*");
-  console.log(about);
   return { about, error };
 };
 
@@ -68,7 +67,6 @@ export const editBlogs = async (id,author,title,description) => {
     .from("blog")
     .update({author,title,description})
     .eq("id", id);
-    console.log(author,title,description);
   if (error) throw new Error(error.message);
 };
 
@@ -77,8 +75,6 @@ export const deleteBlogs = async (id) => {
   .from("blog")
   .delete()
   .eq("id", id)
-
-  console.log(id);
   if(error) throw new Error(error.message)
   return deleteBlog
 }
@@ -89,7 +85,6 @@ export const deleteServices = async (id) => {
   .delete()
   .eq("id", id)
 
-  console.log(id);
   if(error) throw new Error(error.message)
   return deleteService
 }
@@ -107,7 +102,6 @@ export const editAboutInfo = async (id,updatedAbout) => {
     .from("about")
     .update(updatedAbout)
     .eq("id", id);
-    console.log(editAbout);
   if (error) throw new Error(error.message);
   return editAbout;
 };
@@ -116,7 +110,6 @@ export const addCertification = async (addCerf) => {
   const {data: addCertificate, error} = await supabase
   .from("certification")
   .insert([addCerf])
-  console.log(addCertificate);
   if(error) throw new Error(error.message)
   return addCertificate
 }
@@ -125,7 +118,6 @@ export const addImage = async (addImage) => {
   const {data: addImg, error} = await supabase
   .from("about")
   .insert([addImage])
-  console.log(addImg);
   if(error) throw new Error(error.message)
   return addImage
 }
