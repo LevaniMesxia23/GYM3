@@ -8,6 +8,8 @@ import Check from "/check.png";
 import Skeleton from "react-loading-skeleton";
 import { useContext } from "react";
 import { Mycontext } from "../../context/Context";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import 'react-lazy-load-image-component/src/effects/blur.css';
 const Certification = () => {
   const {isMobile} = useContext(Mycontext)
   const {
@@ -38,7 +40,8 @@ const Certification = () => {
   return (
     <div className="bg-[#121212] pb-[5rem]">
       <div className=" object-cover md:w-[92%] mx-auto mb-[5rem]">
-         <img
+         <LazyLoadImage
+         effect="blur"
           className="rounded-lg mx-auto w-[95%] md:w-[100%] "
           src={GirlRun}
         />
