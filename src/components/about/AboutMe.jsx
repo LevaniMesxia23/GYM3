@@ -4,6 +4,8 @@ import { Mycontext } from "../../context/Context";
 import { useContext } from "react";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 function AboutMe() {
   const { isDesktop, isTablet } = useContext(Mycontext);
@@ -43,9 +45,10 @@ function AboutMe() {
             borderRadius="16px"
           />
         ) : (
-          <img
+          <LazyLoadImage
             src={Image}
             alt="About Me"
+            effect="blur"
             className={` ${
               isDesktop || isTablet
                 ? "h-[452px] w-[500px]"
