@@ -56,7 +56,6 @@ export default function AboutHeader() {
         image: `https://ylzgfzyvohnqdlzlxrfw.supabase.co/storage/v1/object/public/about/${imageUrl}`,
       });
 
-      console.log("New image uploaded and database updated successfully!");
       toast.success("Profile updated successfully!");
     } catch (err) {
       console.error("Error updating profile:", err);

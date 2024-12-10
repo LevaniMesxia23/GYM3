@@ -20,7 +20,6 @@ const ServicesCarousel = () => {
   const { data, isLoading } = useServices();
   const services = data?.data || [];
   const loadingPlaceholderCount = isLargeSize ? 11 : isDesktopSize ? 9 : isMediumSize ? 8 : isDesktop ? 7 : isTablet ? 6 : 4;
-  console.log(loadingPlaceholderCount);
 
   return (
     <div className="lg:flex flex-col justify-center items-center w-full">

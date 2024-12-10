@@ -4,7 +4,6 @@ import arrows from "../../../public/threeArrow.svg";
 import star from "../../../public/star11.svg";
 const About = () => {
   const { data, error, isLoading, isError } = useFetchAbout();
-  console.log(data?.about);
 
   if (isLoading) {
     return <p>Loading...</p>;
