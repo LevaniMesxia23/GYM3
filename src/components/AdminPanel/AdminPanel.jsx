@@ -7,20 +7,29 @@ import { yupResolver } from "@hookform/resolvers/yup";
 function AdminPanel() {
   const navigate = useNavigate();
 
-  const {register, handleSubmit, formState: {errors}} = useForm({
-    resolver: yupResolver(adminSchema)
-  })
+  const { register, handleSubmit, formState: { errors } } = useForm({
+    resolver: yupResolver(adminSchema),
+  });
+
   const onSubmit = async (data) => {
-    sessionStorage.setItem("adminLogin", JSON.stringify(data))
-    alert('Login successfull')
-    navigate("/admin/stories")
+    sessionStorage.setItem("adminLogin", JSON.stringify(data));
+    alert('Login successful');
+    navigate("/admin/stories");
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-[#121212]">
+    <div
+    
+      className="flex items-center justify-center min-h-screen "
+      style={{
+        backgroundImage: "url(https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExcDkya3Rid3J1a214cHVoZmV0aDNnaGN6anc3bW12NXV4MXRnYXV3diZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/qrBN3xzrJ0EHMqw0km/giphy.gif)",
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
+    >
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="bg-[#1E1E1E] p-8 rounded-lg shadow-md space-y-6"
+        className="bg-[#1E1E1E] p-8 rounded-lg shadow-md space-y-6 lg:w-[30%] h-[300px]"
       >
         <h2 className="text-center text-[#D7FD44] font-semibold text-2xl mb-4">
           Admin Panel Login
@@ -30,20 +39,20 @@ function AdminPanel() {
           <input
             type="text"
             {...register("login")}
-            placeholder="Login"
+            placeholder="Login (admin)"
             className="w-full px-4 py-2 rounded-md bg-[#2A2A2A] text-[#C4C4C4] placeholder-[#C4C4C4] focus:outline-none focus:ring-2 focus:ring-[#D7FD44] border border-[#3A3A3A]"
           />
-          {errors.login && <p className=" mt-2 text-red-500">{errors.login.message}</p>}
+          {errors.login && <p className="mt-2 text-red-500">{errors.login.message}</p>}
         </div>
 
         <div>
           <input
             type="password"
             {...register("password")}
-            placeholder="Password"
+            placeholder="Password (admin)"
             className="w-full px-4 py-2 rounded-md bg-[#2A2A2A] text-[#C4C4C4] placeholder-[#C4C4C4] focus:outline-none focus:ring-2 focus:ring-[#D7FD44] border border-[#3A3A3A]"
           />
-          {errors.password && <p className=" mt-2 text-red-500">{errors.password.message}</p>}
+          {errors.password && <p className="mt-2 text-red-500">{errors.password.message}</p>}
         </div>
 
         <button
