@@ -13,7 +13,7 @@ const About = () => {
   }
 
   const {story,experience} = data?.about[0]
-  const yearExp = experience.split("").filter(char => !isNaN(char)).join("")
+  const yearExp = experience
 
   return (
     <div className=" flex flex-col gap-5 text-[#C4C4C4] leading-[27.2px] text-[18px] ">
