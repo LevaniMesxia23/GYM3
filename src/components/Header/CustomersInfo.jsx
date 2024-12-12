@@ -39,9 +39,6 @@ function CustomersInfo() {
 
   const { experience } = data.about[0];
   const yearExp = experience
-    .split("")
-    .filter((char) => !isNaN(char))
-    .join("");
 
   return (
     <div className="bg-[#D7FD44] h-[6.25rem] mt-[348px] flex px-10 justify-evenly gap-3">
