@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import { useForm } from "react-hook-form";
 import { supabase } from "../../../services/supabaseConfig";
 import { v4 as uuidv4 } from "uuid";
@@ -15,6 +15,12 @@ export default function AboutHeader() {
     isError,
     error: aboutError,
   } = useFetchAbout();
+    const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -25,12 +31,7 @@ export default function AboutHeader() {
 
   let AboutImage = getAbout.about.at(-1)?.image;
 
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm();
+
 
   const handleImagePreview = (e) => {
     const file = e.target.files[0];
